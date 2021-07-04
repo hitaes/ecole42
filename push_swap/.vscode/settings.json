@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		"*.vue": "html",
+		"cstdlib": "cpp",
+		"locale": "cpp"
+	}
+}
