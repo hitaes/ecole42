@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 15:00:29 by taeskim           #+#    #+#             */
-/*   Updated: 2021/07/04 20:25:05 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/07/08 19:32:39 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
  */
 
-void			validator_int(char *s)
+int				validator_int(char *s)
 {
 	long long	num;
 	int			s_len;
@@ -33,34 +33,34 @@ void			validator_int(char *s)
 	num = 0;
 	s_len = ft_strlen(s);
 	if (s_len > 12)
-		exit(1);
+		return (0);
 	else if (s_len >= 11 && s[0] != '-')
-		exit(1);
+		return (0);
 	else
 	{
 		num = ft_atoi(s);
 		if (num <= INT_MAX && num >= INT_MIN)
-			printf("|💚%d|", (int)num);
+			return ((int)num);
 		else
-			exit(1);
+			return (0);
 	}
 }
 
 // 1.2 입력값 중에 문자가 있으면 0을 반환하면서 종료,
 // 앞자리가 0이라면 0 제거(atoi에서 10을 곱하는 과정에서 자연스럽게 처리됨.)
 
-void		validator_num(char *s)
+int		validator_num(char *s)
 {
 	int		i;
 
 	i = 0;
 	if (!(s[i]))
-		exit(1);
+		return (0);
 	while (s[i])
 	{
 		if (!(ft_isdigit(s[i])) && s[0] != '-')
-			exit(1);
+			return (0);
 		i++;
 	}
-	validator_int(s);
+	return (validator_int(s));
 }

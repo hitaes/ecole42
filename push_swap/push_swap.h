@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taeskim <taeskim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 15:00:44 by taeskim           #+#    #+#             */
-/*   Updated: 2021/06/15 11:32:42 by taeskim          ###   ########.fr       */
+/*   Updated: 2021/07/08 19:38:41 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,19 @@
 # include <limits.h>
 # include "./libft/libft.h"
 
-void	validator_num(char *s);
+struct node
+{
+	struct node *previous;
+	int value;
+	struct node *next;
+};
+
+typedef struct
+{
+	int count;
+	struct node node_box[];
+} node_container;
+
+int 	validator_num(char *s);
 
 #endif
