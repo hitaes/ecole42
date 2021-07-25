@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   validator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/14 13:32:41 by taeskim           #+#    #+#             */
-/*   Updated: 2021/07/21 15:32:20 by pac-man          ###   ########.fr       */
+/*   Created: 2021/06/14 15:00:29 by taeskim           #+#    #+#             */
+/*   Updated: 2021/07/24 00:29:41 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../push_swap.h"
 
-int	ft_isdigit(char c)
+int *validator(int count, char **v_str)
 {
-	return (c >= '0' && c <= '9');
+	int i;
+	int v_num;
+	int *v_nums;
+
+	i = -1;
+	v_num = 0;
+	v_nums = (int *)malloc(sizeof(int) * count);
+	if (!(v_nums))
+		return (NULL);
+	while (count - ++i)
+		v_nums[i] = validator_num(*(v_str + i));
+	validator_duplicate(count, v_nums);
+	validator_sorting(count, v_nums);
+	return (v_nums);
 }

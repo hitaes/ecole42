@@ -1,18 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   validator_sign.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/14 13:32:41 by taeskim           #+#    #+#             */
-/*   Updated: 2021/07/21 15:32:20 by pac-man          ###   ########.fr       */
+/*   Created: 2021/07/23 01:18:20 by pac-man           #+#    #+#             */
+/*   Updated: 2021/07/23 01:23:21 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../push_swap.h"
 
-int	ft_isdigit(char c)
+void validator_sign(char *str)
 {
-	return (c >= '0' && c <= '9');
+	int i;
+	int sign;
+
+	i = -1;
+	sign = 0;
+	while (str[++i])
+	{
+		if (sign && (str[i] == '+' || str[i] == '-'))
+			exit(1);
+		if (str[i] == '+' || str[i] == '-')
+			sign = str[i];
+	}
 }

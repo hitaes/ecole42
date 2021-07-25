@@ -1,18 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   validator_duplicate.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/14 13:32:41 by taeskim           #+#    #+#             */
-/*   Updated: 2021/07/21 15:32:20 by pac-man          ###   ########.fr       */
+/*   Created: 2021/07/24 00:23:25 by pac-man           #+#    #+#             */
+/*   Updated: 2021/07/24 00:35:15 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../push_swap.h"
 
-int	ft_isdigit(char c)
+void	validator_duplicate(int count, int *v_nums)
 {
-	return (c >= '0' && c <= '9');
+	int i;
+	int j;
+
+	i = -1;
+	j = 0;
+	while (count - ++i > 0)
+	{
+		while (count - ++j > 0)
+			if (v_nums[i] == v_nums[j])
+			{
+				printf("✅dup\n");
+				exit(1);
+			}
+		j = i + 1;
+	}
 }

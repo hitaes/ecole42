@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: taeskim <taeskim@student.42.fr>            +#+  +:+       +#+         #
+#    By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/14 12:29:05 by taeskim           #+#    #+#              #
-#    Updated: 2021/06/15 11:02:57 by taeskim          ###   ########.fr        #
+#    Updated: 2021/07/24 00:26:14 by pac-man          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,16 @@ RM = rm -rf
 LIB = ./libft/libft.a
 
 SRCS = \
-	validator_num.c \
+	./node_setter/node_setter.c \
+	./utils/ft_clean.c \
+	./utils/ft_get_count.c \
+	./parser/parser_input.c \
+	./validators/validator.c \
+	./validators/validator_sign.c \
+	./validators/validator_num.c \
+	./validators/validator_int.c \
+	./validators/validator_duplicate.c \
+	./validators/validator_sorting.c \
 
 SRCS_OBJS = ${SRCS:.c=.o}
 

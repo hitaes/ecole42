@@ -1,18 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_count.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/14 13:32:41 by taeskim           #+#    #+#             */
-/*   Updated: 2021/07/21 15:32:20 by pac-man          ###   ########.fr       */
+/*   Created: 2021/07/23 23:40:06 by pac-man           #+#    #+#             */
+/*   Updated: 2021/07/23 23:40:52 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../push_swap.h"
 
-int	ft_isdigit(char c)
+int ft_get_count(int argc, char **argv)
 {
-	return (c >= '0' && c <= '9');
+	int i;
+	int j;
+	int count;
+
+	i = 0;
+	j = -1;
+	count = 0;
+	while (++i < argc)
+	{
+		while (argv[i][++j])
+			if (argv[i][j] == ' ')
+				count++;
+		count++;
+	}
+	return (count);
 }
