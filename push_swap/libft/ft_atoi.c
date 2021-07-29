@@ -6,16 +6,16 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 10:11:38 by taeskim           #+#    #+#             */
-/*   Updated: 2021/07/04 20:22:36 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/07/26 14:33:28 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long long								ft_atoi(const char *src)
+long long ft_atoi(const char *src)
 {
-	long long							sign;
-	long long							num;
+	long long sign;
+	long long num;
 
 	sign = 1;
 	num = 0;

@@ -6,13 +6,13 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 15:00:29 by taeskim           #+#    #+#             */
-/*   Updated: 2021/07/24 00:29:41 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/07/28 12:32:31 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int *validator(int count, char **v_str)
+int *validator(int the_number_of_els, char **v_str, char c)
 {
 	int i;
 	int v_num;
@@ -20,12 +20,10 @@ int *validator(int count, char **v_str)
 
 	i = -1;
 	v_num = 0;
-	v_nums = (int *)malloc(sizeof(int) * count);
-	if (!(v_nums))
-		return (NULL);
-	while (count - ++i)
-		v_nums[i] = validator_num(*(v_str + i));
-	validator_duplicate(count, v_nums);
-	validator_sorting(count, v_nums);
+	v_nums = ft_calloc(sizeof(int), the_number_of_els);
+	while (++i < the_number_of_els)
+		v_nums[i] = validator_num(*(v_str + i), c);
+	validator_duplicate(the_number_of_els, v_nums);
+	validator_sorting(the_number_of_els, v_nums);
 	return (v_nums);
 }

@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_sorting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/14 13:33:23 by taeskim           #+#    #+#             */
-/*   Updated: 2021/07/27 02:09:38 by pac-man          ###   ########.fr       */
+/*   Created: 2021/07/28 16:10:24 by pac-man           #+#    #+#             */
+/*   Updated: 2021/07/29 18:00:00 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-#define LIBFT_H
-#include <stdio.h>
-#include <stdlib.h>
+#include "../push_swap.h"
 
-int ft_isdigit(char c);
-long long ft_atoi(const char *src);
-int ft_strlen(char *s);
-void *ft_memset(void *b, int c, int len);
-void *ft_calloc(size_t count, size_t size);
-size_t ft_strlcpy(char *dst, const char *src, size_t dstsize);
-char *ft_strdup(char *s);
+void pb1(stack *s_a, stack *s_b)
+{
+	ft_append_node(s_b, s_a->head);
+	ft_remove_node(s_a, s_a->head);
+}
 
-#endif
+void ft_sorting(stack *s_a, stack *s_b)
+{
+	ft_append_node(s_b, s_a->head);
+	ft_append_node(s_b, s_a->head->next);
+	ft_append_node(s_b, s_a->head->next->next);
+	// ft_append_node(s_b, s_a->head->next->next);
+}

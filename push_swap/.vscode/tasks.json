@@ -7,8 +7,7 @@
             "args": [
 				"-Wall -Wextra -Werror", 
 				"-g",
-				// "main.c", "node_setter/*.c", "validators/*.c", "libft/*.c", "utils/*.c",
-				"main.c", "utils/*.c", "libft/*.c", "parser/*.c",
+				"main.c", "node_setter/*.c", "validators/*.c", "libft/*.c", "utils/*.c", "parser/*.c", "instructions/*.c", "sorting/ft_sorting.c",
 				"-o",
 				"push_swap" 
             ],

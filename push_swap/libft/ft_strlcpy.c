@@ -1,19 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_clean.c                                         :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/21 23:28:00 by pac-man           #+#    #+#             */
-/*   Updated: 2021/07/22 01:19:15 by pac-man          ###   ########.fr       */
+/*   Created: 2021/07/26 14:33:12 by pac-man           #+#    #+#             */
+/*   Updated: 2021/07/26 16:03:06 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "libft.h"
 
-void ft_clean(void *ptr)
+size_t ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	free(ptr);
-	ptr = 0;
+	size_t i;
+
+	i = 0;
+	if (!src)
+		return (0);
+	if (dstsize)
+	{
+		while ((i + 1 < dstsize) && src[i])
+		{
+			dst[i] = src[i];
+			++i;
+		}
+		dst[i] = '\0';
+	}
+	while (src[i])
+		++i;
+	return (i);
 }
