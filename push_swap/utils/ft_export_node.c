@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sorting.c                                       :+:      :+:    :+:   */
+/*   ft_export_node.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/28 16:10:24 by pac-man           #+#    #+#             */
-/*   Updated: 2021/07/30 02:36:37 by pac-man          ###   ########.fr       */
+/*   Created: 2021/07/30 00:21:55 by pac-man           #+#    #+#             */
+/*   Updated: 2021/07/30 00:22:13 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void ft_sorting(stack *s_a, stack *s_b)
+node *ft_export_node(node *n)
 {
-	pb(s_a, s_b);
-	pb(s_a, s_b);
-	pp(s_a, s_b);
-	// pb(s_a, s_b);
-	// pb(s_a, s_b);
-	// rr(s_a, s_b);
-	// rrr(s_a, s_b);
-	// pp(s_a, s_b);
-	// sa(s_a);
-	// sb(s_b);
-	// ss(s_a, s_b);
+	node *tmp;
+
+	tmp = (node *)malloc(sizeof(node));
+	if (!(tmp))
+		return (NULL);
+	tmp->value = n->value;
+	tmp->next = 0;
+	tmp->prev = 0;
+	free(n);
+	n = 0;
+	return (tmp);
 }

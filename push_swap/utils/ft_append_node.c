@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 16:03:17 by pac-man           #+#    #+#             */
-/*   Updated: 2021/07/29 17:40:53 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/07/30 00:21:51 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,28 @@
 
 void ft_append_node(stack *stk, node *new_node)
 {
-	if (!(stk->tail))
-		stk->tail = new_node;
+	node *tmp;
+
+	tmp = ft_export_node(new_node);
+	if (!(stk->head))
+		stk->head = tmp;
 	else
 	{
-		if (!(stk->head))
+		if (!(stk->tail))
 		{
-			stk->head = new_node;
-			new_node->next = stk->tail;
-			stk->tail->prev = new_node;
+			stk->tail = stk->head;
+			stk->head = tmp;
+			stk->head->next = stk->tail;
+			stk->tail->prev = stk->head;
 		}
 		else
 		{
-			new_node->next = stk->head;
-			stk->head->prev = new_node;
-			stk->head = new_node;
+			tmp->next = stk->head;
+			stk->head->prev = tmp;
+			stk->head = tmp;
 		}
+		stk->head->prev = stk->tail;
+		stk->tail->next = stk->head;
 	}
 	stk->count++;
 }

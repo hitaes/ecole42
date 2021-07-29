@@ -6,7 +6,7 @@
 #    By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/14 12:29:05 by taeskim           #+#    #+#              #
-#    Updated: 2021/07/28 18:00:55 by pac-man          ###   ########.fr        #
+#    Updated: 2021/07/30 02:25:54 by pac-man          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS = \
 	./utils/ft_append_node.c \
 	./utils/ft_node_reset.c \
 	./utils/ft_remove_node.c \
+	./utils/ft_export_node.c \
 	./parser/parser_input.c \
 	./sorting/ft_sorting.c \
 	./validators/validator.c \
@@ -36,6 +37,9 @@ SRCS = \
 	./validators/validator_duplicate.c \
 	./validators/validator_sorting.c \
 	./instructions/push.c \
+	./instructions/swap.c \
+	./instructions/rotate.c \
+	./instructions/rrotate.c \
 
 SRCS_OBJS = ${SRCS:.c=.o}
 

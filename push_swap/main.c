@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 12:27:43 by taeskim           #+#    #+#             */
-/*   Updated: 2021/07/29 17:21:37 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/07/30 00:56:41 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,34 +28,38 @@ int main(int argc, char **argv)
 	v_strs = parser_input(argc, argv, the_number_of_els, c);
 	v_nums = validator(the_number_of_els, v_strs, c);
 	node_setter(&s_a, the_number_of_els, v_nums);
-	// printf("✅1: in main, s_a->head: %lld\n", (long long)s_a.head);
 	ft_sorting(&s_a, &s_b);
-	// printf("✅2: in main, s_a->head: %lld\n", (long long)s_a.head);
-
-	// while (s_a.count--)
-	// {
-	// 	printf("✅aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n");
-	// 	printf("✅curr: %lld\n", (long long)s_a.head);
-	// 	printf("✅value: %d\n", s_a.head->value);
-	// 	printf("✅prev: %lld\n", (long long)s_a.head->prev);
-	// 	printf("✅next: %lld\n", (long long)s_a.head->next);
-	// 	s_a.head = s_a.head->next;
-	// }
+	printf("==========================================\n");
+	printf("s_a           s_b\n");
+	// 두개의 값을 비교해서 더 큰 것을 기준으로 출력
+	the_number_of_els = s_a.count >= s_b.count ? s_a.count : s_b.count;
+	while (the_number_of_els--)
+	{
+		printf("%d            %d\n", s_a.head ? s_a.head->value : 0, s_b.head ? s_b.head->value : 0);
+		// printf("✅curr: %lld\n", (long long)s_a.head);
+		// printf("✅value: %lld\n", (long long)s_a.head->value);
+		// printf("✅prev: %lld\n", (long long)s_a.head->prev);
+		// printf("✅next: %lld\n", (long long)s_a.head->next);
+		if (s_a.head)
+			s_a.head = s_a.head->next;
+		if (s_b.head)
+			s_b.head = s_b.head->next;
+	}
+	printf("==========================================\n");
 	// printf("✅==========================================\n");
-	// printf("✅bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\n");
 	// printf("✅curr: %lld\n", (long long)s_b.tail);
 	// printf("✅value: %d\n", s_b.tail->value);
 	// printf("✅prev: %lld\n", (long long)s_b.tail->prev);
 	// printf("✅next: %lld\n", (long long)s_b.tail->next);
-	while (s_b.count--)
-	{
-		printf("✅==========================================\n");
-		printf("✅curr: %lld\n", (long long)s_b.head);
-		printf("✅value: %d\n", s_b.head->value);
-		printf("✅prev: %lld\n", (long long)s_b.head->prev);
-		printf("✅next: %lld\n", (long long)s_b.head->next);
-		s_b.head = s_b.head->next;
-	}
+	// while (s_b.count--)
+	// {
+	// 	printf("✅==========================================\n");
+	// 	printf("✅curr: %lld\n", (long long)s_b.head);
+	// 	printf("✅value: %d\n", s_b.head->value);
+	// 	printf("✅prev: %lld\n", (long long)s_b.head->prev);
+	// 	printf("✅next: %lld\n", (long long)s_b.head->next);
+	// 	s_b.head = s_b.head->next;
+	// }
 
 	return (0);
 }
