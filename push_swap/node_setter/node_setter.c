@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/19 00:56:14 by pac-man           #+#    #+#             */
-/*   Updated: 2021/07/29 19:48:21 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/07/30 17:16:08 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ void node_setter(stack *s_a, int the_number_of_els, int *v_nums)
 	i = -1;
 	while (++i < the_number_of_els)
 		ft_append_node(s_a, create_node(*(v_nums + i)));
+	validator_sorting(s_a);
 }

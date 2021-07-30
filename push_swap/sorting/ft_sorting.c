@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 16:10:24 by pac-man           #+#    #+#             */
-/*   Updated: 2021/07/30 02:36:37 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/07/30 17:08:41 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,10 @@
 
 void ft_sorting(stack *s_a, stack *s_b)
 {
-	pb(s_a, s_b);
-	pb(s_a, s_b);
-	pp(s_a, s_b);
-	// pb(s_a, s_b);
-	// pb(s_a, s_b);
-	// rr(s_a, s_b);
-	// rrr(s_a, s_b);
-	// pp(s_a, s_b);
-	// sa(s_a);
-	// sb(s_b);
-	// ss(s_a, s_b);
+	if (s_a->count == 2)
+		if (s_a->head->value < s_a->tail->value)
+			sa(s_a);
+
+	printf("✅s_a: %lld\n", (long long)s_a);
+	printf("✅s_b: %lld\n", (long long)s_b);
 }

@@ -6,7 +6,7 @@
 #    By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/14 12:29:05 by taeskim           #+#    #+#              #
-#    Updated: 2021/07/30 02:25:54 by pac-man          ###   ########.fr        #
+#    Updated: 2021/07/30 15:01:22 by pac-man          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,6 @@ SRCS = \
 	./utils/ft_get_count.c \
 	./utils/ft_stack_init.c \
 	./utils/ft_append_node.c \
-	./utils/ft_node_reset.c \
 	./utils/ft_remove_node.c \
 	./utils/ft_export_node.c \
 	./parser/parser_input.c \

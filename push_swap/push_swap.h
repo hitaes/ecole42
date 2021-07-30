@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 15:00:44 by taeskim           #+#    #+#             */
-/*   Updated: 2021/07/30 02:25:39 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/07/30 17:15:54 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int *validator(int count, char **v_str, char c);
 int validator_num(char *s, char c);
 int validator_int(char *s);
 void validator_duplicate(int count, int *v_nums);
-void validator_sorting(int count, int *v_nums);
+void validator_sorting(stack *stk);
 void node_setter(stack *s_a, int the_number_of_els, int *v_nums);
 // instructions
 void pb(stack *from, stack *to);
