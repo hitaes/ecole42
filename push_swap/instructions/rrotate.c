@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 02:11:48 by pac-man           #+#    #+#             */
-/*   Updated: 2021/07/30 15:53:01 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/04 17:52:21 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void rra(stack *stk)
 	{
 		stk->head = stk->tail;
 		stk->tail = stk->tail->prev;
-		printf("rra\n");
+		ft_putstr("rra\n");
 	}
 }
 
@@ -28,7 +28,7 @@ void rrb(stack *stk)
 	{
 		stk->head = stk->tail;
 		stk->tail = stk->tail->prev;
-		printf("rrb\n");
+		ft_putstr("rrb\n");
 	}
 }
 
@@ -40,6 +40,6 @@ void rrr(stack *l_stk, stack *r_stk)
 		l_stk->tail = l_stk->tail->prev;
 		r_stk->head = r_stk->tail;
 		r_stk->tail = r_stk->tail->prev;
-		printf("rrr\n");
+		ft_putstr("rrr\n");
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 12:47:57 by pac-man           #+#    #+#             */
-/*   Updated: 2021/07/30 02:36:53 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/04 17:52:09 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void pb(stack *from, stack *to)
 	{
 		ft_append_node(to, from->head);
 		ft_remove_node(from);
-		printf("pb\n");
+		ft_putstr("pb\n");
 	}
 }
 
@@ -28,7 +28,7 @@ void pa(stack *from, stack *to)
 	{
 		ft_append_node(to, from->head);
 		ft_remove_node(from);
-		printf("pa\n");
+		ft_putstr("pa\n");
 	}
 }
 
@@ -45,6 +45,6 @@ void pp(stack *from, stack *to)
 		ft_remove_node(to);
 		ft_append_node(to, tmp_from);
 		ft_append_node(from, tmp_to);
-		printf("pp\n");
+		ft_putstr("pp\n");
 	}
 }

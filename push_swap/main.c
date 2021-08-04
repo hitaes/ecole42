@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 12:27:43 by taeskim           #+#    #+#             */
-/*   Updated: 2021/07/30 17:17:30 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/04 11:56:03 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int main(int argc, char **argv)
 	int *v_nums;
 	char **v_strs;
 	char c;
+	int tmp_sa;
+	int tmp_sb;
 
 	c = ' ';
 	ft_stack_init(&s_a);
@@ -30,6 +32,8 @@ int main(int argc, char **argv)
 	node_setter(&s_a, the_number_of_els, v_nums);
 	ft_sorting(&s_a, &s_b);
 
+	tmp_sa = s_a.count;
+	tmp_sb = s_b.count;
 	// 출력부
 	printf("==========================================\n");
 	printf("s_a           s_b\n");
@@ -49,6 +53,9 @@ int main(int argc, char **argv)
 		}
 	}
 	printf("==========================================\n");
-	validator_sorting(&s_a);
+	s_a.count = tmp_sa;
+	s_b.count = tmp_sb;
+	if (!(s_b.count))
+		validator_sorting(&s_a);
 	return (0);
 }

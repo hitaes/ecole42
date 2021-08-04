@@ -6,7 +6,7 @@
 #    By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/14 13:36:10 by taeskim           #+#    #+#              #
-#    Updated: 2021/07/27 02:03:44 by pac-man          ###   ########.fr        #
+#    Updated: 2021/08/04 17:49:32 by pac-man          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS = \
 	ft_calloc.c     \
 	ft_strlcpy.c    \
 	ft_strdup.c		\
+	ft_putstr.c 	\
 
 SRCS_OBJS = ${SRCS:%.c=%.o}
 

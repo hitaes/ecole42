@@ -1,36 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validator_sorting.c                                :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/24 00:24:32 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/04 17:52:40 by pac-man          ###   ########.fr       */
+/*   Created: 2021/08/04 17:47:48 by pac-man           #+#    #+#             */
+/*   Updated: 2021/08/04 17:49:51 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "libft.h"
 
-void validator_sorting(stack *stk)
+void ft_putstr(char *s)
 {
-	int sorted_el;
-	int tmp_count;
-	node *tmp;
-
-	sorted_el = 0;
-	tmp_count = stk->count;
-	tmp = stk->head;
-	while (tmp_count - 1 > 0)
-	{
-		if (tmp->value < tmp->next->value)
-			sorted_el++;
-		tmp_count--;
-		tmp = tmp->next;
-	}
-	if (stk->count - 1 == sorted_el)
-	{
-		ft_putstr("✅ sorted!\n");
-		exit(1);
-	}
+	if (!s)
+		return;
+	write(1, s, ft_strlen(s));
 }
