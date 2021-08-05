@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 15:00:44 by taeskim           #+#    #+#             */
-/*   Updated: 2021/07/30 17:15:54 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/05 02:18:45 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,8 @@ void rrb(stack *stk);
 void rrr(stack *l_stk, stack *r_stk);
 // sorting
 void ft_sorting(stack *s_a, stack *s_b);
+void ft_sorting_two(stack *s_a);
+void ft_sorting_three(stack *s_a);
+void ft_sorting_five(stack *s_a, stack *s_b);
 
 #endif

@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validator.c                                        :+:      :+:    :+:   */
+/*   ft_sorting_two.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/14 15:00:29 by taeskim           #+#    #+#             */
-/*   Updated: 2021/08/05 02:31:45 by pac-man          ###   ########.fr       */
+/*   Created: 2021/08/05 00:15:41 by pac-man           #+#    #+#             */
+/*   Updated: 2021/08/05 00:16:40 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int *validator(int the_number_of_els, char **v_str, char c)
+void ft_sorting_two(stack *s_a)
 {
-	int i;
-	int v_num;
-	int *v_nums;
-
-	i = -1;
-	v_num = 0;
-	v_nums = ft_calloc(sizeof(int), the_number_of_els);
-	while (++i < the_number_of_els)
-		v_nums[i] = validator_num(*(v_str + i), c);
-	validator_duplicate(the_number_of_els, v_nums);
-	return (v_nums);
+	if (s_a->head->value > s_a->head->next->value)
+		sa(s_a);
 }

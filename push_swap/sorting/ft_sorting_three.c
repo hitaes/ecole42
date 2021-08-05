@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validator.c                                        :+:      :+:    :+:   */
+/*   ft_sorting_three.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/14 15:00:29 by taeskim           #+#    #+#             */
-/*   Updated: 2021/08/05 02:31:45 by pac-man          ###   ########.fr       */
+/*   Created: 2021/08/05 00:17:00 by pac-man           #+#    #+#             */
+/*   Updated: 2021/08/05 00:17:35 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int *validator(int the_number_of_els, char **v_str, char c)
+void ft_sorting_three(stack *s_a)
 {
-	int i;
-	int v_num;
-	int *v_nums;
+	int count;
 
-	i = -1;
-	v_num = 0;
-	v_nums = ft_calloc(sizeof(int), the_number_of_els);
-	while (++i < the_number_of_els)
-		v_nums[i] = validator_num(*(v_str + i), c);
-	validator_duplicate(the_number_of_els, v_nums);
-	return (v_nums);
+	count = s_a->count;
+	while (count--)
+		if (s_a->head->value > s_a->head->next->value)
+			sa(s_a);
+		else if (s_a->head->next->value > s_a->head->next->next->value)
+		{
+			rra(s_a);
+			if (s_a->head->value > s_a->head->next->value)
+				sa(s_a);
+		}
 }
