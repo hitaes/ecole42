@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 00:23:25 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/04 17:52:37 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/08 16:18:21 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void validator_duplicate(int count, int *v_nums)
 		while (count - ++j > 0)
 			if (v_nums[i] == v_nums[j])
 			{
-				ft_putstr("✅dup\n");
 				exit(1);
 			}
 		j = i + 1;

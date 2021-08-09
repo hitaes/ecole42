@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 00:24:32 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/04 17:52:40 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/08 15:05:20 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void validator_sorting(stack *stk)
 	}
 	if (stk->count - 1 == sorted_el)
 	{
-		ft_putstr("✅ sorted!\n");
 		exit(1);
 	}
 }

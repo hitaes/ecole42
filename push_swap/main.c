@@ -6,11 +6,44 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 12:27:43 by taeskim           #+#    #+#             */
-/*   Updated: 2021/08/05 02:30:51 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/09 17:50:20 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void print_sorting(stack *s_a, stack *s_b)
+{
+	int tmp_sa;
+	int tmp_sb;
+	int the_number_of_els;
+
+	tmp_sa = s_a->count;
+	tmp_sb = s_b->count;
+	the_number_of_els = 0;
+	printf("==========================================\n");
+	printf("s_a           s_b\n");
+	the_number_of_els = s_a->count >= s_b->count ? s_a->count : s_b->count;
+	while (the_number_of_els--)
+	{
+		printf("%d            %d\n", s_a->count ? s_a->head->value : 0, s_b->count ? s_b->head->value : 0);
+		if (s_a->count)
+		{
+			s_a->count--;
+			s_a->head = s_a->head->next;
+		}
+		if (s_b->count)
+		{
+			s_b->count--;
+			s_b->head = s_b->head->next;
+		}
+	}
+	printf("==========================================\n");
+	s_a->count = tmp_sa;
+	s_b->count = tmp_sb;
+	if (!(s_b->count))
+		validator_sorting(s_a);
+}
 
 int main(int argc, char **argv)
 {
@@ -20,10 +53,10 @@ int main(int argc, char **argv)
 	int *v_nums;
 	char **v_strs;
 	char c;
-	int tmp_sa;
-	int tmp_sb;
+	node *tmp_node;
 
 	c = ' ';
+	tmp_node = 0;
 	ft_stack_init(&s_a);
 	ft_stack_init(&s_b);
 	the_number_of_els = ft_get_count(argc, argv, c);
@@ -32,30 +65,15 @@ int main(int argc, char **argv)
 	node_setter(&s_a, the_number_of_els, v_nums);
 	ft_sorting(&s_a, &s_b);
 
-	tmp_sa = s_a.count;
-	tmp_sb = s_b.count;
-	// 출력부
-	printf("==========================================\n");
-	printf("s_a           s_b\n");
-	the_number_of_els = s_a.count >= s_b.count ? s_a.count : s_b.count;
-	while (the_number_of_els--)
+	// print_sorting(&s_a, &s_b);
+
+	while (s_a.count)
 	{
-		printf("%d            %d\n", s_a.count ? s_a.head->value : 0, s_b.count ? s_b.head->value : 0);
-		if (s_a.count)
-		{
-			s_a.count--;
-			s_a.head = s_a.head->next;
-		}
-		if (s_b.count)
-		{
-			s_b.count--;
-			s_b.head = s_b.head->next;
-		}
+		tmp_node = s_a.tail->prev;
+		free(s_a.tail);
+		s_a.tail = tmp_node;
+		s_a.count--;
 	}
-	printf("==========================================\n");
-	s_a.count = tmp_sa;
-	s_b.count = tmp_sb;
-	if (!(s_b.count))
-		validator_sorting(&s_a);
+
 	return (0);
 }
