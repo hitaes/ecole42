@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 16:10:24 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/08 20:46:27 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/10 17:44:39 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void ft_combine(stack *s_a, stack *s_b, int exponent)
 		ft_combine(s_a, s_b, exponent - 1);
 	while (i-- > 0)
 	{
-		// printf("✅before i: %d, exponent: %d\n", i, exponent);
+		printf("✅before i: %d, exponent: %d\n", i, exponent);
 		j = ft_squre(2, exponent);
 		while (j-- > 0)
 			rr(s_a, s_b);
