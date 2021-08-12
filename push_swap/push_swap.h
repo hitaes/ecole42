@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 15:00:44 by taeskim           #+#    #+#             */
-/*   Updated: 2021/08/06 00:40:23 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/11 15:46:37 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct node
 typedef struct
 {
 	int count;
+	int alter;
 	node *head;
 	node *tail;
 } stack;
