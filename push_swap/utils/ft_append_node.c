@@ -6,36 +6,36 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 16:03:17 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/02 12:49:04 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/13 00:38:52 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void ft_append_node(stack *stk, node *new_node)
+void ft_append_node(stack *to, node *from)
 {
 	node *tmp;
 
-	tmp = ft_export_node(new_node);
-	if (!(stk->head))
-		stk->head = tmp;
+	tmp = ft_export_node(from);
+	if (!(to->head))
+		to->head = tmp;
 	else
 	{
-		if (!(stk->tail))
+		if (!(to->tail))
 		{
-			stk->tail = stk->head;
-			stk->head = tmp;
-			stk->head->next = stk->tail;
-			stk->tail->prev = stk->head;
+			to->tail = to->head;
+			to->head = tmp;
+			to->head->next = to->tail;
+			to->tail->prev = to->head;
 		}
 		else
 		{
-			tmp->next = stk->head;
-			stk->head->prev = tmp;
-			stk->head = tmp;
+			tmp->next = to->head;
+			to->head->prev = tmp;
+			to->head = tmp;
 		}
-		stk->head->prev = stk->tail;
-		stk->tail->next = stk->head;
+		to->head->prev = to->tail;
+		to->tail->next = to->head;
 	}
-	stk->count++;
+	to->count++;
 }

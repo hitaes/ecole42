@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 12:27:43 by taeskim           #+#    #+#             */
-/*   Updated: 2021/08/12 12:04:59 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/13 17:56:07 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ void print_sorting(stack *s_a, stack *s_b)
 	printf("==========================================\n");
 	s_a->count = tmp_sa;
 	s_b->count = tmp_sb;
-	if (!(s_b->count))
-		validator_sorting(s_a);
 }
 
 int main(int argc, char **argv)
@@ -55,6 +53,10 @@ int main(int argc, char **argv)
 	char c;
 	node *tmp_node;
 
+	int i;
+
+	i = -1;
+
 	c = ' ';
 	tmp_node = 0;
 	ft_stack_init(&s_a);
@@ -65,15 +67,19 @@ int main(int argc, char **argv)
 	node_setter(&s_a, the_number_of_els, v_nums);
 	ft_sorting(&s_a, &s_b);
 
-	print_sorting(&s_a, &s_b);
+	// print_sorting(&s_a, &s_b);
 
-	while (s_a.count)
-	{
-		tmp_node = s_a.tail->prev;
-		free(s_a.tail);
-		s_a.tail = tmp_node;
-		s_a.count--;
-	}
+	// while (s_a.count)
+	// {
+	// 	tmp_node = s_a.tail->prev;
+	// 	free(s_a.tail);
+	// 	s_a.tail = tmp_node;
+	// 	s_a.count--;
+	// }
+	// free(v_strs);
+	// v_strs = 0;
+	// free(v_nums);
+	// v_nums = 0;
 
 	return (0);
 }

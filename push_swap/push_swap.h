@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 15:00:44 by taeskim           #+#    #+#             */
-/*   Updated: 2021/08/11 15:46:37 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/13 14:20:25 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,20 @@ typedef struct node
 typedef struct
 {
 	int count;
-	int alter;
+	int s_index;
+	int s_count;
 	node *head;
 	node *tail;
 } stack;
 
+typedef struct
+{
+	int index;
+	int count;
+} foundation;
+
 void validator_sign(char *str);
 char **parser_input(int argc, char **argv, int the_number_of_el, char c);
-// char **parser_input(int argc, int count, char **argv);
 // void ft_clean(void *ptr);
 // utils
 int ft_get_count(int argc, char **argv, char c);
@@ -47,7 +53,7 @@ int *validator(int count, char **v_str, char c);
 int validator_num(char *s, char c);
 int validator_int(char *s);
 void validator_duplicate(int count, int *v_nums);
-void validator_sorting(stack *stk);
+void validator_sorting(int count, int *v_nums);
 void node_setter(stack *s_a, int the_number_of_els, int *v_nums);
 // instructions
 void pb(stack *from, stack *to);
@@ -67,5 +73,11 @@ void ft_sorting(stack *s_a, stack *s_b);
 void ft_sorting_two(stack *s_a);
 void ft_sorting_three(stack *s_a);
 void ft_sorting_five(stack *s_a, stack *s_b);
+void ft_sorting_all(stack *s_a, stack *s_b);
+int ft_get_the_smallest_num(stack *s_a);
+int ft_get_place(stack *s_a, int v);
+void ft_insert_el(stack *s_a, stack *s_b, int place, int v);
+int ft_best_future(stack *s_a, stack *s_b, int place, int v);
+void ft_agamotto_eye(stack *s_a, stack *s_b);
 
 #endif

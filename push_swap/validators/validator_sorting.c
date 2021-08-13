@@ -6,30 +6,26 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 00:24:32 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/08 15:05:20 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/13 11:26:02 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void validator_sorting(stack *stk)
+void validator_sorting(int count, int *v_nums)
 {
-	int sorted_el;
-	int tmp_count;
-	node *tmp;
+	int i;
+	int sorting_count;
 
-	sorted_el = 0;
-	tmp_count = stk->count;
-	tmp = stk->head;
-	while (tmp_count - 1 > 0)
+	i = -1;
+	sorting_count = 0;
+	while (count - 1 > ++i)
 	{
-		if (tmp->value < tmp->next->value)
-			sorted_el++;
-		tmp_count--;
-		tmp = tmp->next;
+		if (v_nums[i] > v_nums[i + 1])
+			break;
+		else
+			sorting_count++;
 	}
-	if (stk->count - 1 == sorted_el)
-	{
+	if (sorting_count == count - 1)
 		exit(1);
-	}
 }
