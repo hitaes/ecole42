@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 23:14:25 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/13 16:08:06 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/14 18:08:47 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,44 +41,40 @@ int ft_get_place(stack *s_a, int v)
 	indicator = 0;
 	start = 0;
 	tmp_n = s_a->head;
-	if (s_a->count > 1)
+	start = ft_get_the_smallest_num(s_a);
+	while (tmp_n->value != start)
+		tmp_n = tmp_n->next;
+	while (++place < s_a->count + 1)
 	{
-		start = ft_get_the_smallest_num(s_a);
-		while (tmp_n->value != start)
-			tmp_n = tmp_n->next;
-		while (++place < s_a->count + 1)
-		{
-			if (tmp_n->value > v)
-				break;
-			tmp_n = tmp_n->next;
-		}
-		indicator = tmp_n->prev->value;
-		place = 0;
-		tmp_n = s_a->head;
-		while (tmp_n->value != indicator)
-		{
-			place++;
-			tmp_n = tmp_n->next;
-		}
-		place = place + 2;
+		if (tmp_n->value > v)
+			break;
+		tmp_n = tmp_n->next;
 	}
-	else
-		place = 1;
+	indicator = tmp_n->prev->value;
+	place = 0;
+	tmp_n = s_a->head;
+	while (tmp_n->value != indicator)
+	{
+		place++;
+		tmp_n = tmp_n->next;
+	}
+	place = place + 2;
 	return (place);
 }
 
 void ft_insert_el(stack *s_a, stack *s_b, int place, int v)
 {
 	int i;
-	node *node;
+	int b_place;
 
 	i = -1;
-	node = s_b->head;
-	while (node->value != v && s_b->count >= 2)
-	{
-		rb(s_b);
-		node = node->next;
-	}
+	b_place = ft_get_place(s_b, v) - 2;
+	if ((s_b->count / 2) >= b_place && s_b->count >= 2)
+		while (--b_place)
+			rb(s_b);
+	else
+		while (s_b->count + 1 > b_place + ++i)
+			rrb(s_b);
 	if (s_a->count / 2 < place)
 	{
 		while (s_a->count + 1 > place + ++i)
@@ -103,7 +99,10 @@ int ft_best_future(stack *s_a, stack *s_b, int place, int v)
 	node = s_b->head;
 	while (node->value != v && s_b->count >= 2)
 	{
-		cost++;
+		if ((s_b->count / 2) + 1 >= ft_get_place(s_b, v) - 1)
+			cost++;
+		else
+			cost++;
 		node = node->next;
 	}
 	if (s_a->count / 2 < place)
@@ -150,5 +149,6 @@ void ft_agamotto_eye(stack *s_a, stack *s_b)
 		}
 		cur_result = cur_result->next;
 	}
+	printf("✅place: %d, result: %d\n", tmp_place, tmp_result->value);
 	ft_insert_el(s_a, s_b, tmp_place, tmp_result->value);
 }
