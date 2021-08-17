@@ -6,7 +6,7 @@
 #    By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/14 12:29:05 by taeskim           #+#    #+#              #
-#    Updated: 2021/08/16 15:32:50 by pac-man          ###   ########.fr        #
+#    Updated: 2021/08/17 14:53:07 by pac-man          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRCS = \
 	./sorting/ft_sorting_five.c \
 	./sorting/ft_sorting_all.c \
 	./sorting/ft_sorting_utils.c \
+	./sorting/ft_sorting_algo.c \
 	./validators/validator.c \
 	./validators/validator_sign.c \
 	./validators/validator_num.c \

@@ -29,7 +29,7 @@ if [[ $# -ne 3 ]]; then
     exit -1
 fi
 
-rm -f push_swap_result.txt
+# rm -f push_swap_result.txt
 
 digit='^[0-9]+$' 		#digit number
 range='^[0-9]+-[0-9]+$' #range type 
@@ -85,6 +85,7 @@ for ((stack_size = $startRange; stack_size <= $endRange; stack_size++)); do
   	printf "${DARKGRAY} TEST $testNB: ${NOCOLOR}"
 	ARG=`./genstack.pl $stack_size -1000 1000` ;
 	"./$1/push_swap" $ARG > push_swap_result.txt ;
+	printf "$ARG\n"
 	RESULT_CHECKER=`"./$1/checker" $ARG < push_swap_result.txt`
 	if [[ "$RESULT_CHECKER" = "KO" ]]; then
 		printf "${RED}$RESULT_CHECKER ${NOCOLOR}"
@@ -140,4 +141,4 @@ for ((stack_size = $startRange; stack_size <= $endRange; stack_size++)); do
   printf "\nMean: $MEAN for stack of size $stack_size \n\n"
 done 
 
-rm -rf push_swap_result.txt
+# rm -rf push_swap_result.txt

@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 15:00:44 by taeskim           #+#    #+#             */
-/*   Updated: 2021/08/16 15:32:51 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/17 17:40:54 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@ typedef struct
 
 typedef struct
 {
-	int index;
-	int count;
-} foundation;
+	int cost;
+	int place;
+	node *result;
+} candidate;
 
 void validator_sign(char *str);
 char **parser_input(int argc, char **argv, int the_number_of_el, char c);
@@ -74,12 +75,13 @@ void ft_sorting_two(stack *s_a);
 void ft_sorting_three(stack *s_a);
 void ft_sorting_five(stack *s_a, stack *s_b);
 void ft_sorting_all(stack *s_a, stack *s_b);
-int ft_get_the_smallest_num(stack *s_a);
-int ft_get_place(stack *s_a, int v);
 void ft_insert_el(stack *s_a, stack *s_b, int place, int v);
 int ft_best_future(stack *s_a, stack *s_b, int place, int v);
-void ft_agamotto_eye(stack *s_a, stack *s_b);
+void ft_agamotto_eye(stack *s_a, stack *s_b, char direction);
 // sorting util
+int ft_get_the_smallest_num(stack *s_a);
+int ft_get_the_biggest_num(stack *to);
 int ft_get_index(stack *stk, int v);
+int ft_get_place(stack *to, int v, char direction);
 
 #endif
