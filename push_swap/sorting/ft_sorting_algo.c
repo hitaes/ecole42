@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 14:46:03 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/17 17:52:10 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/17 22:11:38 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void ft_insert_el_r(stack *to, stack *from, int place, int v)
 	}
 }
 
-void ft_agamotto_eye(stack *to, stack *from, char direction)
+void ft_agamotto_eye(stack *to, stack *from, char direction, int range)
 {
 	int i;
 	candidate tmp;
@@ -95,7 +95,7 @@ void ft_agamotto_eye(stack *to, stack *from, char direction)
 	ft_candidate_init(&tmp);
 	ft_candidate_init(&cur);
 	cur.result = from->head;
-	while (++i <= from->count)
+	while (++i <= range)
 	{
 		cur.place = ft_get_place(to, cur.result->value, direction);
 		cur.cost = ft_best_future(to, from, cur.place, cur.result->value);

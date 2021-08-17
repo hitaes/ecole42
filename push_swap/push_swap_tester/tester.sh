@@ -85,7 +85,7 @@ for ((stack_size = $startRange; stack_size <= $endRange; stack_size++)); do
   	printf "${DARKGRAY} TEST $testNB: ${NOCOLOR}"
 	ARG=`./genstack.pl $stack_size -1000 1000` ;
 	"./$1/push_swap" $ARG > push_swap_result.txt ;
-	printf "$ARG\n"
+	# printf "$ARG\n"
 	RESULT_CHECKER=`"./$1/checker" $ARG < push_swap_result.txt`
 	if [[ "$RESULT_CHECKER" = "KO" ]]; then
 		printf "${RED}$RESULT_CHECKER ${NOCOLOR}"

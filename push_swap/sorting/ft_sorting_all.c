@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 02:12:38 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/17 17:58:03 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/17 22:20:12 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,23 +41,43 @@ void ft_to_base(stack *stk, char direction)
 
 void ft_sorting_all(stack *s_a, stack *s_b)
 {
-	int i;
+	int counter;
 	char direction;
-	int the_number_of_els;
 
-	i = -1;
+	counter = s_a->count;
 	direction = 'd';
-	the_number_of_els = s_a->count;
-	while (++i < the_number_of_els / 2)
-		ft_agamotto_eye(s_b, s_a, direction);
-	ft_to_base(s_b, direction);
+	// s_a->count = counter / 2;
+	// while (s_a->count)
+	// 	ft_agamotto_eye(s_b, s_a, direction, s_a->count);
+	// ft_to_base(s_b, direction);
+	// s_a->count = counter - s_b->count;
+	// while (s_a->count)
+	// 	pb(s_a, s_b);
+
+	// int counter;
+	// char direction;
+
+	// counter = 0;
+	// direction = 'd';
 	while (s_a->count)
-		pb(s_a, s_b);
-	direction = 'a';
-	while (i++ < the_number_of_els)
-		ft_agamotto_eye(s_a, s_b, direction);
-	// ft_to_base(s_a, direction);
-	// while (s_b->count)
-	// 	pa(s_b, s_a);
-	// ft_to_base(s_a, direction);
+		ft_agamotto_eye(s_b, s_a, direction, s_a->count);
+	ft_to_base(s_b, direction);
+	while (s_b->count)
+		pa(s_b, s_a);
+
+	// while (s_a->count)
+	// {
+	// 	ft_agamotto_eye(s_b, s_a, direction, s_a->count);
+	// 	counter++;
+	// }
+	// s_a->count = counter;
+	// while (s_a->count)
+	// 	pb(s_a, s_b);
+	// // s_b->count = counter;
+	// // direction = 'a';
+	// // while (s_b->count)
+	// // 	ft_agamotto_eye(s_a, s_b, direction, s_b->count);
+	// // s_b->count = counter;
+
+	// // printf("✅s_a->head->value: %d, s_b->head->value: %d\n", s_a->head->value, s_b->head->value);
 }

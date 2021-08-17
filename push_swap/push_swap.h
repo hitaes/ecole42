@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 15:00:44 by taeskim           #+#    #+#             */
-/*   Updated: 2021/08/17 17:40:54 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/17 18:55:45 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void ft_sorting_five(stack *s_a, stack *s_b);
 void ft_sorting_all(stack *s_a, stack *s_b);
 void ft_insert_el(stack *s_a, stack *s_b, int place, int v);
 int ft_best_future(stack *s_a, stack *s_b, int place, int v);
-void ft_agamotto_eye(stack *s_a, stack *s_b, char direction);
+void ft_agamotto_eye(stack *to, stack *from, char direction, int range);
 // sorting util
 int ft_get_the_smallest_num(stack *s_a);
 int ft_get_the_biggest_num(stack *to);
