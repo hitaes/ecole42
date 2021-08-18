@@ -6,33 +6,11 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 14:46:03 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/17 22:11:38 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/18 17:29:00 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-int ft_best_future(stack *to, stack *from, int place, int v)
-{
-	int cost;
-	int b_place;
-
-	b_place = ft_get_index(from, v);
-	cost = (from->count + 1) / 2 <= b_place ? from->count - b_place : b_place;
-	if ((to->count + 1) / 2 <= place)
-	{
-		while (to->count > place++)
-			cost++;
-		cost++;
-	}
-	else
-	{
-		while (place--)
-			cost++;
-		cost++;
-	}
-	return (cost);
-}
 
 void ft_candidate_init(candidate *c)
 {
@@ -112,3 +90,5 @@ void ft_agamotto_eye(stack *to, stack *from, char direction, int range)
 	else
 		ft_insert_el_r(to, from, tmp.place, tmp.result->value);
 }
+
+// 250번 반복하는 것이고s_a, s_b 스택이 회전함으로 정렬되엉 있는 값을 보장 받을 수 없게 된다.

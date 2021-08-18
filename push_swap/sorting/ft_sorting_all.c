@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 02:12:38 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/17 22:20:12 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/18 17:53:04 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,42 +42,75 @@ void ft_to_base(stack *stk, char direction)
 void ft_sorting_all(stack *s_a, stack *s_b)
 {
 	int counter;
-	char direction;
 
-	counter = s_a->count;
-	direction = 'd';
-	// s_a->count = counter / 2;
-	// while (s_a->count)
-	// 	ft_agamotto_eye(s_b, s_a, direction, s_a->count);
-	// ft_to_base(s_b, direction);
-	// s_a->count = counter - s_b->count;
+	counter = (s_a->count / 2) + 1;
+	while (--counter)
+		ft_agamotto_eye(s_b, s_a, 'd', counter);
 	// while (s_a->count)
 	// 	pb(s_a, s_b);
+	// while (s_b->count)
+	// 	ft_agamotto_eye(s_a, s_b, 'a', s_b->count);
+	// ft_to_base(s_a, 'a');
 
-	// int counter;
-	// char direction;
+	// counter = (s_b->count / 2) + 1;
+	// ft_to_base(s_b, 'd');
+	// counter = (s_b->count / 2) + 1;
+	// while (s_b->count)
+	// 	ft_agamotto_eye(s_a, s_b, 'a', s_b->count);
 
-	// counter = 0;
-	// direction = 'd';
-	while (s_a->count)
-		ft_agamotto_eye(s_b, s_a, direction, s_a->count);
-	ft_to_base(s_b, direction);
-	while (s_b->count)
-		pa(s_b, s_a);
+	// ft_to_base(s_a, 'a');
+	// while (--counter)
+	// 	pb(s_a, s_b);
+	// while (s_a->count)
+	// ft_agamotto_eye(s_b, s_a, 'd', s_a->count);
+	// counter = (s_b->count / 2) + 1;
+	// while (--counter)
+	// 	pa(s_b, s_a);
+	// while (s_b->count)
+	// 	ft_agamotto_eye(s_a, s_b, 'a', s_b->count);
+
+	// while (s_b->count)
+	// 	pa(s_b, s_a);
+	// ft_to_base(s_a, 'a');
 
 	// while (s_a->count)
+	// 	pb(s_a, s_b);
+	// counter = (s_b->count / 2) + 1;
+	// while (--counter)
 	// {
-	// 	ft_agamotto_eye(s_b, s_a, direction, s_a->count);
-	// 	counter++;
+	// 	ft_stack_mover(&s_tmp, s_b->head);
+	// 	ft_remove_node(s_b);
 	// }
-	// s_a->count = counter;
+	// while (s_tmp.count)
+	// 	ft_agamotto_eye(s_a, &s_tmp, 'a', s_tmp.count);
+	// while (s_b->count)
+	// 	ft_agamotto_eye(s_a, s_b, 'a', s_b->count);
+	// ft_to_base(s_a, 'a');
+	// while (--counter)
+	// 	s_a->head = s_a->head->next;
+
+	// ft_agamotto_eye(s_b, &s_tmp, 'd', s_tmp.count);
+	// ft_agamotto_eye(s_b, &s_tmp, 'd', s_tmp.count);
+	// ft_to_base(s_b, 'd');
 	// while (s_a->count)
 	// 	pb(s_a, s_b);
-	// // s_b->count = counter;
-	// // direction = 'a';
-	// // while (s_b->count)
-	// // 	ft_agamotto_eye(s_a, s_b, direction, s_b->count);
-	// // s_b->count = counter;
+	// ft_stack_init(&s_tmp);
+	// counter = (s_b->count / 2) + 1;
+	// while (--counter)
+	// {
+	// ft_remove_node(s_b);
+	// }
+	// while (s_tmp.count)
+	// 	ft_agamotto_eye(s_a, &s_tmp, 'a', s_tmp.count);
+	// while (s_b->count)
+	// 	ft_agamotto_eye(s_a, s_b, 'a', s_b->count);
+	// ft_to_base(s_a, 'a');
+	// while (s_a->count)
+	// 	pb(s_a, s_b);
 
-	// // printf("✅s_a->head->value: %d, s_b->head->value: %d\n", s_a->head->value, s_b->head->value);
+	// while (s_a->count)
+	// 	ft_agamotto_eye(s_b, s_a, 'd', s_a->count);
+	// printf("✅%d\n", s_a->head->value);
+	// printf("✅%d\n", s_a->head->next->value);
+	// s_a->count = counter - s_b->count;
 }

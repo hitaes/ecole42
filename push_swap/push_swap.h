@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 15:00:44 by taeskim           #+#    #+#             */
-/*   Updated: 2021/08/17 18:55:45 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/18 11:57:12 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ typedef struct node
 typedef struct
 {
 	int count;
-	int s_index;
-	int s_count;
 	node *head;
 	node *tail;
 } stack;
@@ -40,9 +38,7 @@ typedef struct
 	node *result;
 } candidate;
 
-void validator_sign(char *str);
 char **parser_input(int argc, char **argv, int the_number_of_el, char c);
-// void ft_clean(void *ptr);
 // utils
 int ft_get_count(int argc, char **argv, char c);
 void ft_stack_init(stack *u_stack);
@@ -76,6 +72,7 @@ void ft_sorting_three(stack *s_a);
 void ft_sorting_five(stack *s_a, stack *s_b);
 void ft_sorting_all(stack *s_a, stack *s_b);
 void ft_insert_el(stack *s_a, stack *s_b, int place, int v);
+void ft_insert_el_r(stack *to, stack *from, int place, int v);
 int ft_best_future(stack *s_a, stack *s_b, int place, int v);
 void ft_agamotto_eye(stack *to, stack *from, char direction, int range);
 // sorting util
