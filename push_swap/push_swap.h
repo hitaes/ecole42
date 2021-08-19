@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 15:00:44 by taeskim           #+#    #+#             */
-/*   Updated: 2021/08/18 11:57:12 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/19 15:59:39 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,17 @@ typedef struct node
 typedef struct
 {
 	int count;
+	int s_index;
+	int s_count;
 	node *head;
 	node *tail;
 } stack;
+
+typedef struct
+{
+	int index;
+	int count;
+} foundation;
 
 typedef struct
 {
@@ -73,12 +81,13 @@ void ft_sorting_five(stack *s_a, stack *s_b);
 void ft_sorting_all(stack *s_a, stack *s_b);
 void ft_insert_el(stack *s_a, stack *s_b, int place, int v);
 void ft_insert_el_r(stack *to, stack *from, int place, int v);
-int ft_best_future(stack *s_a, stack *s_b, int place, int v);
 void ft_agamotto_eye(stack *to, stack *from, char direction, int range);
+void ft_to_base(stack *stk, char direction);
 // sorting util
 int ft_get_the_smallest_num(stack *s_a);
 int ft_get_the_biggest_num(stack *to);
 int ft_get_index(stack *stk, int v);
 int ft_get_place(stack *to, int v, char direction);
+int ft_best_future(stack *s_a, stack *s_b, int place, int v);
 
 #endif

@@ -6,11 +6,38 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 14:46:03 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/18 17:29:00 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/19 18:02:45 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+
+void ft_to_base(stack *stk, char direction)
+{
+	int start;
+
+	start = 0;
+	if (direction == 'a')
+	{
+		start = ft_get_the_smallest_num(stk);
+		if ((stk->count / 2) + 1 <= ft_get_index(stk, start))
+			while (stk->head->value != start)
+				rra(stk);
+		else
+			while (stk->head->value != start)
+				ra(stk);
+	}
+	else
+	{
+		start = ft_get_the_biggest_num(stk);
+		if ((stk->count / 2) + 1 <= ft_get_index(stk, start))
+			while (stk->head->value != start)
+				rrb(stk);
+		else
+			while (stk->head->value != start)
+				rb(stk);
+	}
+}
 
 void ft_candidate_init(candidate *c)
 {
@@ -21,13 +48,13 @@ void ft_candidate_init(candidate *c)
 
 void ft_insert_el(stack *to, stack *from, int place, int v)
 {
-	if ((from->count + 1) <= ft_get_index(from, v))
+	if ((from->count / 2) + 1 <= ft_get_index(from, v))
 		while (from->head->value != v)
 			rrb(from);
 	else
 		while (from->head->value != v)
 			rb(from);
-	if ((to->count + 1) / 2 <= place)
+	if ((to->count / 2) + 1 <= place)
 	{
 		while (to->count > place++)
 			rra(to);
@@ -43,13 +70,13 @@ void ft_insert_el(stack *to, stack *from, int place, int v)
 
 void ft_insert_el_r(stack *to, stack *from, int place, int v)
 {
-	if ((from->count + 1) / 2 <= ft_get_index(from, v))
+	if ((from->count / 2) + 1 <= ft_get_index(from, v))
 		while (from->head->value != v)
 			rra(from);
 	else
 		while (from->head->value != v)
 			ra(from);
-	if ((to->count + 1) / 2 <= place)
+	if ((to->count / 2) + 1 <= place)
 	{
 		while (to->count > place++)
 			rrb(to);
@@ -90,5 +117,3 @@ void ft_agamotto_eye(stack *to, stack *from, char direction, int range)
 	else
 		ft_insert_el_r(to, from, tmp.place, tmp.result->value);
 }
-
-// 250번 반복하는 것이고s_a, s_b 스택이 회전함으로 정렬되엉 있는 값을 보장 받을 수 없게 된다.
