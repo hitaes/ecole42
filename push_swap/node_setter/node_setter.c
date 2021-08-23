@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/19 00:56:14 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/19 16:03:48 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/23 17:46:48 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,39 +49,50 @@ void stack_init(stack *stk, node *new_node)
 	stk->count++;
 }
 
-foundation ft_init_foundation(foundation *f)
+void ft_append_s_el(stack *s_a, int v)
 {
-	f->count = 1;
-	f->index = 0;
-	return (*f);
-}
-
-void ft_get_foundation(int *v_nums, stack *f, int the_number_of_els)
-{
+	int *tmp;
 	int i;
-	foundation tmp;
 
 	i = -1;
-	tmp = ft_init_foundation(&tmp);
-	while (the_number_of_els - 1 > ++i)
+	tmp = s_a->s_list;
+	s_a->s_list_count++;
+	s_a->s_list = (int *)malloc(sizeof(int) * s_a->s_list_count);
+	if (!(s_a->s_list))
+		exit(1);
+	while (++i < s_a->s_list_count - 1)
+		s_a->s_list[i] = tmp[i];
+	s_a->s_list[i] = v;
+	if (tmp)
 	{
-		if (v_nums[i] > v_nums[i + 1])
+		free(tmp);
+		tmp = 0;
+	}
+}
+
+void ft_find_sequence(stack *s_a, int els, int *v_nums)
+{
+	int i;
+	int se;
+
+	i = -1;
+	se = 0;
+	while (++i < els - 1)
+	{
+		if (v_nums[i] < v_nums[i + 1])
 		{
-			if (tmp.count > f->s_count)
+			se++;
+			if (se >= 3)
 			{
-				f->s_index = tmp.index;
-				f->s_count = tmp.count;
+				if (se == 3)
+					for (int j = 2; j >= 0; j--)
+						ft_append_s_el(s_a, v_nums[i - j]);
+				else
+					ft_append_s_el(s_a, v_nums[i]);
 			}
-			tmp.count = 1;
-			tmp.index = i + 1;
 		}
 		else
-			tmp.count++;
-	}
-	if (tmp.count > f->s_count)
-	{
-		f->s_index = tmp.index;
-		f->s_count = tmp.count;
+			se = 0;
 	}
 }
 
@@ -90,7 +101,7 @@ void node_setter(stack *s_a, int the_number_of_els, int *v_nums)
 	int i;
 
 	i = -1;
-	ft_get_foundation(v_nums, s_a, the_number_of_els);
+	ft_find_sequence(s_a, the_number_of_els, v_nums);
 	while (++i < the_number_of_els)
 		stack_init(s_a, create_node(*(v_nums + i)));
 }

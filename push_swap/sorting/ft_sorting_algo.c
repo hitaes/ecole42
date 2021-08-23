@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 14:46:03 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/19 18:02:45 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/23 17:56:39 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void ft_to_base(stack *stk, char direction)
 	if (direction == 'a')
 	{
 		start = ft_get_the_smallest_num(stk);
-		if ((stk->count / 2) + 1 <= ft_get_index(stk, start))
+		if (stk->count / 2 <= ft_get_index(stk, start))
 			while (stk->head->value != start)
 				rra(stk);
 		else
@@ -30,7 +30,7 @@ void ft_to_base(stack *stk, char direction)
 	else
 	{
 		start = ft_get_the_biggest_num(stk);
-		if ((stk->count / 2) + 1 <= ft_get_index(stk, start))
+		if (stk->count / 2 <= ft_get_index(stk, start))
 			while (stk->head->value != start)
 				rrb(stk);
 		else
@@ -45,16 +45,39 @@ void ft_candidate_init(candidate *c)
 	c->place = 0;
 	c->result = 0;
 }
+void ft_head_setter(stack *to, stack *from, int place, int v)
+{
+	int indicator;
+	int from_index;
+
+	indicator = from->count / 2;
+	from_index = ft_get_index(from, v);
+	if (indicator <= place && indicator <= from_index)
+	{
+		while (from->head->value != v)
+			rrr(from, to);
+	}
+	else if (indicator > place && indicator > from_index)
+	{
+		while (from->head->value != v)
+			rr(from, to);
+	}
+}
 
 void ft_insert_el(stack *to, stack *from, int place, int v)
 {
-	if ((from->count / 2) + 1 <= ft_get_index(from, v))
+	int from_index;
+
+	ft_head_setter(to, from, place, v);
+	from_index = ft_get_index(from, v);
+	if (from->count / 2 <= from_index)
 		while (from->head->value != v)
 			rrb(from);
 	else
 		while (from->head->value != v)
 			rb(from);
-	if ((to->count / 2) + 1 <= place)
+	place = ft_get_place(to, v, 'a');
+	if (to->count / 2 <= place)
 	{
 		while (to->count > place++)
 			rra(to);
@@ -70,13 +93,18 @@ void ft_insert_el(stack *to, stack *from, int place, int v)
 
 void ft_insert_el_r(stack *to, stack *from, int place, int v)
 {
-	if ((from->count / 2) + 1 <= ft_get_index(from, v))
+	int from_index;
+
+	ft_head_setter(to, from, place, v);
+	from_index = ft_get_index(from, v);
+	if (from->count / 2 <= from_index)
 		while (from->head->value != v)
 			rra(from);
 	else
 		while (from->head->value != v)
 			ra(from);
-	if ((to->count / 2) + 1 <= place)
+	place = ft_get_place(to, v, 'd');
+	if (to->count / 2 <= place)
 	{
 		while (to->count > place++)
 			rrb(to);
@@ -104,7 +132,7 @@ void ft_agamotto_eye(stack *to, stack *from, char direction, int range)
 	{
 		cur.place = ft_get_place(to, cur.result->value, direction);
 		cur.cost = ft_best_future(to, from, cur.place, cur.result->value);
-		if (!(tmp.cost) || tmp.cost > cur.cost)
+		if ((!(tmp.cost) || tmp.cost > cur.cost))
 		{
 			tmp.place = cur.place;
 			tmp.result = cur.result;

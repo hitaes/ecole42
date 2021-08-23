@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 23:14:25 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/19 11:20:25 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/21 03:06:51 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,8 @@ int ft_best_future(stack *to, stack *from, int place, int v)
 	int b_place;
 
 	b_place = ft_get_index(from, v);
-	cost = (from->count / 2) + 1 <= b_place ? from->count - b_place : b_place;
-	if ((to->count / 2) + 1 <= place)
+	cost = from->count / 2 <= b_place ? from->count - b_place : b_place;
+	if (to->count / 2 <= place)
 	{
 		while (to->count > place++)
 			cost++;

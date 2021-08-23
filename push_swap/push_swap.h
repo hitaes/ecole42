@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 15:00:44 by taeskim           #+#    #+#             */
-/*   Updated: 2021/08/19 15:59:39 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/23 17:29:43 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,11 @@ typedef struct node
 typedef struct
 {
 	int count;
-	int s_index;
-	int s_count;
+	int *s_list;
+	int s_list_count;
 	node *head;
 	node *tail;
 } stack;
-
-typedef struct
-{
-	int index;
-	int count;
-} foundation;
 
 typedef struct
 {
