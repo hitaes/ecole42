@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 14:46:03 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/25 17:43:08 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/26 00:54:49 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,47 @@ void	ft_t_candidate_init(t_candidate *c)
 	c->result = 0;
 }
 
+void	ft_top_setter(t_stack *to, t_stack *from, int place, int from_index)
+{
+	if ((from->count / 2) + 1 <= from_index && (to->count / 2) + 1 <= place)
+	{
+		if (place < from_index)
+		{
+			while (to->count > place++)
+				rrr(from, to);
+		}
+		else
+			while (from->count > from_index++)
+				rrr(from, to);
+	}
+	else if ((from->count / 2) + 1 > from_index && (to->count / 2) + 1 > place)
+	{
+		if (place < from_index)
+		{
+			while (place--)
+				rr(from, to);
+		}
+		else
+			while (from_index--)
+				rr(from, to);
+	}
+}
+
 void	ft_insert_el(t_stack *to, t_stack *from, int place, int v)
 {
 	int	from_index;
 
 	from_index = ft_get_index(from, v);
-	if (from->count / 2 <= from_index)
-		while (from->head->value != v)
+	ft_top_setter(to, from, place, from_index);
+	from_index = ft_get_index(from, v);
+	if ((from->count / 2) + 1 <= from_index)
+		while (from->count > from_index++)
 			rrb(from);
 	else
-		while (from->head->value != v)
+		while (from_index--)
 			rb(from);
 	place = ft_get_place(to, v, 'a');
-	if (to->count / 2 <= place)
+	if ((to->count / 2) + 1 <= place)
 	{
 		while (to->count > place++)
 			rra(to);
@@ -50,16 +78,16 @@ void	ft_insert_el_r(t_stack *to, t_stack *from, int place, int v)
 	int	from_index;
 
 	from_index = ft_get_index(from, v);
-	if (from->count / 2 <= from_index)
-	{
-		while (from->head->value != v)
+	ft_top_setter(to, from, place, from_index);
+	from_index = ft_get_index(from, v);
+	if ((from->count / 2) + 1 <= from_index)
+		while (from->count > from_index++)
 			rra(from);
-	}
 	else
-		while (from->head->value != v)
+		while (from_index--)
 			ra(from);
 	place = ft_get_place(to, v, 'd');
-	if (to->count / 2 <= place)
+	if ((to->count / 2) + 1 <= place)
 	{
 		while (to->count > place++)
 			rrb(to);

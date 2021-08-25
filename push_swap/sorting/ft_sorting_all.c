@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 02:12:38 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/25 18:05:32 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/26 01:02:37 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,23 +66,27 @@ int	ft_make_remaining(t_stack *s_a, t_stack *s_b)
 
 void	ft_sorting_all(t_stack *s_a, t_stack *s_b)
 {
-	int		counter;
-	int		place;
-	double	weight;
-	int		p_counter;
+	int	counter;
+	int	p_counter;
+	int	place;
 
-	weight = 1.1;
-	place = 0;
-	counter = (s_a->count / weight) + 1;
-	while (--counter)
-		ft_agamotto_eye(s_b, s_a, 'd', s_a->count);
-	ft_to_base(s_b, 'd');
-	ft_get_sequence(s_a);
-	p_counter = ft_make_remaining(s_a, s_b);
-	while (--p_counter)
+	if (s_a->count > 101)
 	{
-		place = ft_get_place(s_a, s_b->head->value, 'a');
-		ft_insert_el(s_a, s_b, place, s_b->head->value);
+		counter = (s_a->count / 1.1) + 1;
+		while (--counter)
+			ft_agamotto_eye(s_b, s_a, 'd', s_a->count);
+		ft_get_sequence(s_a);
+		p_counter = ft_make_remaining(s_a, s_b);
+		while (--p_counter && (s_a->head))
+		{
+			place = ft_get_place(s_a, s_b->head->value, 'a');
+			ft_insert_el(s_a, s_b, place, s_b->head->value);
+		}
+	}
+	else
+	{
+		ft_get_sequence(s_a);
+		ft_make_remaining(s_a, s_b);
 	}
 	while (s_b->count)
 		ft_agamotto_eye(s_a, s_b, 'a', s_b->count);

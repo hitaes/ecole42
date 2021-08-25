@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 23:14:25 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/25 14:36:22 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/25 22:56:08 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_to_base(t_stack *stk, char direction)
 	if (direction == 'a')
 	{
 		start = ft_get_conditional_num(stk, 'a');
-		if (stk->count / 2 <= ft_get_index(stk, start))
+		if ((stk->count / 2) + 1 <= ft_get_index(stk, start))
 			while (stk->head->value != start)
 				rra(stk);
 		else
@@ -52,7 +52,7 @@ void	ft_to_base(t_stack *stk, char direction)
 	else
 	{
 		start = ft_get_conditional_num(stk, 'd');
-		if (stk->count / 2 <= ft_get_index(stk, start))
+		if ((stk->count / 2) + 1 <= ft_get_index(stk, start))
 			while (stk->head->value != start)
 				rrb(stk);
 		else
@@ -113,11 +113,11 @@ int	ft_best_future(t_stack *to, t_stack *from, int place, int v)
 	int	b_place;
 
 	b_place = ft_get_index(from, v);
-	if (from->count / 2 <= b_place)
+	if ((from->count / 2) + 1 <= b_place)
 		cost = from->count - b_place;
 	else
 		cost = b_place;
-	if (to->count / 2 <= place)
+	if ((to->count / 2) + 1 <= place)
 	{
 		while (to->count > place++)
 			cost++;

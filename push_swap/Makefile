@@ -6,7 +6,7 @@
 #    By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/14 12:29:05 by taeskim           #+#    #+#              #
-#    Updated: 2021/08/25 14:36:33 by pac-man          ###   ########.fr        #
+#    Updated: 2021/08/26 01:28:47 by pac-man          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,8 @@ SRCS = \
 	./utils/ft_append_node.c \
 	./utils/ft_remove_node.c \
 	./utils/ft_export_node.c \
+	./utils/ft_free.c \
+	./utils/ft_error_disposal.c \
 	./parser/parser_input.c \
 	./sorting/ft_sorting.c \
 	./sorting/ft_sorting_two.c \

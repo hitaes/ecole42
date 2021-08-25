@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 12:27:43 by taeskim           #+#    #+#             */
-/*   Updated: 2021/08/25 17:57:22 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/26 01:17:56 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,10 @@ int	main(int argc, char **argv)
 	v_nums = validator(the_number_of_els, v_strs, ' ');
 	t_node_setter(&s_a, the_number_of_els, v_nums);
 	ft_sorting(&s_a, &s_b);
+	ft_free_stack(&s_a);
+	free(v_strs);
+	v_strs = 0;
+	free(v_nums);
+	v_nums = 0;
 	return (0);
 }

@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sorting_five.c                                  :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/05 02:11:15 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/25 22:50:57 by pac-man          ###   ########.fr       */
+/*   Created: 2021/08/25 18:44:37 by pac-man           #+#    #+#             */
+/*   Updated: 2021/08/26 01:18:47 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	ft_sorting_five(t_stack *s_a, t_stack *s_b)
+void	ft_free_stack(t_stack *stk)
 {
-	pb(s_a, s_b);
-	pb(s_a, s_b);
-	ft_sorting_three(s_a);
-	while (s_b->count)
-		ft_agamotto_eye(s_a, s_b, 'a', s_b->count);
-	ft_to_base(s_a, 'a');
+	t_node	*tmp_n;
+
+	while (stk->count)
+	{
+		tmp_n = stk->tail->prev;
+		free(stk->tail);
+		stk->tail = tmp_n;
+		stk->count--;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 00:20:32 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/25 11:56:47 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/26 01:34:08 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	validator_num(char *s, char c)
 	while (s[i])
 	{
 		if (!(ft_isdigit(s[i])) && s[0] != '-' && s[0] != '+' && s[i] != c)
-			exit(1);
+			ft_error_disposal();
 		i++;
 	}
 	while (*s == c)

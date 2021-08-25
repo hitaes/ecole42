@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 15:00:44 by taeskim           #+#    #+#             */
-/*   Updated: 2021/08/25 17:57:07 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/26 01:58:24 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct candidate
 	t_node	*result;
 }	t_candidate;
 
+// parser
 char	**parser_input(int argc, char **argv, int the_number_of_el, char c);
 //	utils
 int		ft_get_count(int argc, char **argv, char c);
@@ -53,6 +54,8 @@ void	ft_t_stack_init(t_stack *u_stack);
 void	ft_append_t_node(t_stack *s_a, t_node *new_node);
 void	ft_remove_t_node(t_stack *stk);
 t_node	*ft_export_t_node(t_node *n);
+void	ft_free_stack(t_stack *stk);
+void	ft_error_disposal(void);
 //	validators
 int		*validator(int count, char **v_str, char c);
 int		validator_num(char *s, char c);
