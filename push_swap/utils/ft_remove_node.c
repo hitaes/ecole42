@@ -6,13 +6,13 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 17:25:00 by pac-man           #+#    #+#             */
-/*   Updated: 2021/07/30 02:06:09 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/25 14:23:37 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void ft_remove_node(stack *stk)
+void	ft_remove_t_node(t_stack *stk)
 {
 	if (stk->count > 2)
 	{

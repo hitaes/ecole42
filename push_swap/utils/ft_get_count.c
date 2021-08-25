@@ -6,24 +6,24 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 23:40:06 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/13 00:29:05 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/25 12:46:06 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void state_change(int *state, int *count)
+void	state_change(int *state, int *count)
 {
 	*state = 0;
 	(*count)++;
 }
 
-int ft_get_count(int argc, char **argv, char c)
+int	ft_get_count(int argc, char **argv, char c)
 {
-	int l;
-	int i;
-	int j;
-	int char_appear;
+	int	l;
+	int	i;
+	int	j;
+	int	char_appear;
 
 	l = 0;
 	i = 0;

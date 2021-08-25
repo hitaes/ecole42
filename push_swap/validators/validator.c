@@ -6,17 +6,17 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 15:00:29 by taeskim           #+#    #+#             */
-/*   Updated: 2021/08/13 11:25:24 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/25 11:55:57 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int *validator(int the_number_of_els, char **v_str, char c)
+int	*validator(int the_number_of_els, char **v_str, char c)
 {
-	int i;
-	int v_num;
-	int *v_nums;
+	int	i;
+	int	v_num;
+	int	*v_nums;
 
 	i = -1;
 	v_num = 0;

@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 17:07:32 by pac-man           #+#    #+#             */
-/*   Updated: 2021/07/20 17:07:34 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/25 12:42:34 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_memset(void *b, int c, int len)
 {
-	unsigned char *p;
+	unsigned char	*p;
 
 	p = b;
 	while (len-- > 0)

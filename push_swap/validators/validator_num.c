@@ -6,15 +6,15 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 00:20:32 by pac-man           #+#    #+#             */
-/*   Updated: 2021/07/28 12:10:40 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/25 11:56:47 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int validator_num(char *s, char c)
+int	validator_num(char *s, char c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s[i])

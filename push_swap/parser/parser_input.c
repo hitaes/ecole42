@@ -6,15 +6,15 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 01:22:24 by pac-man           #+#    #+#             */
-/*   Updated: 2021/07/28 12:32:06 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/25 12:46:29 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-char *ft_slicer(char **str, int *j, int *char_appear)
+char	*ft_slicer(char **str, int *j, int *char_appear)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = ft_strdup(*str);
 	tmp[*j] = 0;
@@ -24,13 +24,13 @@ char *ft_slicer(char **str, int *j, int *char_appear)
 	return (tmp);
 }
 
-char **parser_input(int argc, char **argv, int the_number_of_els, char c)
+char	**parser_input(int argc, char **argv, int the_number_of_els, char c)
 {
-	int i;
-	int j;
-	int k;
-	int char_appear;
-	char **v_strs;
+	int		i;
+	int		j;
+	int		k;
+	int		char_appear;
+	char	**v_strs;
 
 	i = 0;
 	j = -1;

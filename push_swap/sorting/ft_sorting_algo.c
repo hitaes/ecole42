@@ -6,76 +6,23 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 14:46:03 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/25 02:34:31 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/25 17:43:08 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void ft_to_base(stack *stk, char direction)
-{
-	int start;
-
-	start = 0;
-	if (direction == 'a')
-	{
-		start = ft_get_the_smallest_num(stk);
-		if (stk->count / 2 <= ft_get_index(stk, start))
-			while (stk->head->value != start)
-				rra(stk);
-		else
-			while (stk->head->value != start)
-				ra(stk);
-	}
-	else
-	{
-		start = ft_get_the_biggest_num(stk);
-		if (stk->count / 2 <= ft_get_index(stk, start))
-			while (stk->head->value != start)
-				rrb(stk);
-		else
-			while (stk->head->value != start)
-				rb(stk);
-	}
-}
-
-void ft_candidate_init(candidate *c)
+void	ft_t_candidate_init(t_candidate *c)
 {
 	c->cost = 0;
 	c->place = 0;
 	c->result = 0;
 }
-void ft_head_setter(stack *to, stack *from, int place, int v)
+
+void	ft_insert_el(t_stack *to, t_stack *from, int place, int v)
 {
-	int indicator;
-	int from_index;
+	int	from_index;
 
-	indicator = from->count / 2;
-	from_index = ft_get_index(from, v);
-	if (indicator <= place && indicator <= from_index)
-	{
-		if (from_index <= place)
-		{
-			while (from->head->value != v)
-				rrr(from, to);
-		}
-		else
-			while (to->count > place++)
-				rrr(from, to);
-
-	}
-	else if (indicator > place && indicator > from_index)
-	{
-		while (from->head->value != v)
-			rr(from, to);
-	}
-}
-
-void ft_insert_el(stack *to, stack *from, int place, int v)
-{
-	int from_index;
-
-	// ft_head_setter(to, from, place, v);
 	from_index = ft_get_index(from, v);
 	if (from->count / 2 <= from_index)
 		while (from->head->value != v)
@@ -98,11 +45,10 @@ void ft_insert_el(stack *to, stack *from, int place, int v)
 	}
 }
 
-void ft_insert_el_r(stack *to, stack *from, int place, int v)
+void	ft_insert_el_r(t_stack *to, t_stack *from, int place, int v)
 {
-	int from_index;
+	int	from_index;
 
-	// ft_head_setter(to, from, place, v);
 	from_index = ft_get_index(from, v);
 	if (from->count / 2 <= from_index)
 	{
@@ -127,28 +73,15 @@ void ft_insert_el_r(stack *to, stack *from, int place, int v)
 	}
 }
 
-int ft_sequence_checker(stack *stk, int v)
+void	ft_agamotto_eye(t_stack *to, t_stack *from, char direction, int range)
 {
-	int check;
-	int i;
-
-	check = 1;
-	i = -1;
-	while (++i < stk->s_list_count)
-		if (v == stk->s_list[i])
-			return (0);
-	return (check);
-}
-
-void ft_agamotto_eye(stack *to, stack *from, char direction, int range)
-{
-	int i;
-	candidate tmp;
-	candidate cur;
+	int			i;
+	t_candidate	tmp;
+	t_candidate	cur;
 
 	i = 0;
-	ft_candidate_init(&tmp);
-	ft_candidate_init(&cur);
+	ft_t_candidate_init(&tmp);
+	ft_t_candidate_init(&cur);
 	cur.result = from->head;
 	while (++i <= range)
 	{

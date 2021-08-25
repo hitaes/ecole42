@@ -6,13 +6,13 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 02:11:48 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/25 01:50:08 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/25 14:20:52 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void rra(stack *stk)
+void	rra(t_stack *stk)
 {
 	if (stk->count >= 2)
 	{
@@ -22,7 +22,7 @@ void rra(stack *stk)
 	}
 }
 
-void rrb(stack *stk)
+void	rrb(t_stack *stk)
 {
 	if (stk->count >= 2)
 	{
@@ -32,7 +32,7 @@ void rrb(stack *stk)
 	}
 }
 
-void rrr(stack *l_stk, stack *r_stk)
+void	rrr(t_stack *l_stk, t_stack *r_stk)
 {
 	if (l_stk->count >= 2 && r_stk->count >= 2)
 	{

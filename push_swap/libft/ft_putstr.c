@@ -6,15 +6,15 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 17:47:48 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/23 00:01:18 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/25 12:43:41 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_putstr(char *s)
+void	ft_putstr(char *s)
 {
 	if (!s)
-		return;
+		return ;
 	write(1, s, ft_strlen(s));
 }

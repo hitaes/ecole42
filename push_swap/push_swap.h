@@ -6,91 +6,87 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 15:00:44 by taeskim           #+#    #+#             */
-/*   Updated: 2021/08/25 01:25:31 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/25 17:57:07 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
-#define PUSH_SWAP_H
-#include <stdlib.h>
-#include <stdio.h>
-#include <limits.h>
-#include "./libft/libft.h"
+# define PUSH_SWAP_H
+# include <stdlib.h>
+# include <stdio.h>
+# include <limits.h>
+# include "./libft/libft.h"
 
 typedef struct node
 {
-	int value;
-	struct node *prev;
-	struct node *next;
-} node;
+	int			value;
+	struct node	*prev;
+	struct node	*next;
+}	t_node;
 
-typedef struct
+typedef struct stack
 {
-	int count;
-	int median;
-	int *s_list;
-	int s_list_count;
-	int s_index;
-	int s_count;
-	node *head;
-	node *tail;
-} stack;
+	int		count;
+	int		s_index;
+	int		s_count;
+	t_node	*head;
+	t_node	*tail;
+}	t_stack;
 
-typedef struct
+typedef struct foundation
 {
-	int index;
-	int count;
-} foundation;
+	int	index;
+	int	count;
+}	t_foundation;
 
-typedef struct
+typedef struct candidate
 {
-	int cost;
-	int place;
-	node *result;
-} candidate;
+	int		cost;
+	int		place;
+	t_node	*result;
+}	t_candidate;
 
-char **parser_input(int argc, char **argv, int the_number_of_el, char c);
-// utils
-int ft_get_count(int argc, char **argv, char c);
-void ft_stack_init(stack *u_stack);
-void ft_append_node(stack *s_a, node *new_node);
-void ft_remove_node(stack *stk);
-node *ft_export_node(node *n);
-// validators
-int *validator(int count, char **v_str, char c);
-int validator_num(char *s, char c);
-int validator_int(char *s);
-void validator_duplicate(int count, int *v_nums);
-void validator_sorting(int count, int *v_nums);
-void node_setter(stack *s_a, int the_number_of_els, int *v_nums);
-// instructions
-void pb(stack *from, stack *to);
-void pa(stack *from, stack *to);
-void pp(stack *from, stack *to);
-void sa(stack *stk);
-void sb(stack *stk);
-void ss(stack *l_stk, stack *r_stk);
-void ra(stack *stk);
-void rb(stack *stk);
-void rr(stack *l_stk, stack *r_stk);
-void rra(stack *stk);
-void rrb(stack *stk);
-void rrr(stack *l_stk, stack *r_stk);
-// sorting
-void ft_sorting(stack *s_a, stack *s_b);
-void ft_sorting_two(stack *s_a);
-void ft_sorting_three(stack *s_a);
-void ft_sorting_five(stack *s_a, stack *s_b);
-void ft_sorting_all(stack *s_a, stack *s_b);
-void ft_insert_el(stack *s_a, stack *s_b, int place, int v);
-void ft_insert_el_r(stack *to, stack *from, int place, int v);
-void ft_agamotto_eye(stack *to, stack *from, char direction, int range);
-void ft_to_base(stack *stk, char direction);
-// sorting util
-int ft_get_the_smallest_num(stack *s_a);
-int ft_get_the_biggest_num(stack *to);
-int ft_get_index(stack *stk, int v);
-int ft_get_place(stack *to, int v, char direction);
-int ft_best_future(stack *s_a, stack *s_b, int place, int v);
+char	**parser_input(int argc, char **argv, int the_number_of_el, char c);
+//	utils
+int		ft_get_count(int argc, char **argv, char c);
+void	ft_t_stack_init(t_stack *u_stack);
+void	ft_append_t_node(t_stack *s_a, t_node *new_node);
+void	ft_remove_t_node(t_stack *stk);
+t_node	*ft_export_t_node(t_node *n);
+//	validators
+int		*validator(int count, char **v_str, char c);
+int		validator_num(char *s, char c);
+int		validator_int(char *s);
+void	validator_duplicate(int count, int *v_nums);
+void	validator_sorting(int count, int *v_nums);
+void	t_node_setter(t_stack *s_a, int the_number_of_els, int *v_nums);
+//	instructions
+void	pb(t_stack *from, t_stack *to);
+void	pa(t_stack *from, t_stack *to);
+void	pp(t_stack *from, t_stack *to);
+void	sa(t_stack *stk);
+void	sb(t_stack *stk);
+void	ss(t_stack *l_stk, t_stack *r_stk);
+void	ra(t_stack *stk);
+void	rb(t_stack *stk);
+void	rr(t_stack *l_stk, t_stack *r_stk);
+void	rra(t_stack *stk);
+void	rrb(t_stack *stk);
+void	rrr(t_stack *l_stk, t_stack *r_stk);
+//	sorting
+void	ft_sorting(t_stack *s_a, t_stack *s_b);
+void	ft_sorting_two(t_stack *s_a);
+void	ft_sorting_three(t_stack *s_a);
+void	ft_sorting_five(t_stack *s_a, t_stack *s_b);
+void	ft_sorting_all(t_stack *s_a, t_stack *s_b);
+void	ft_insert_el(t_stack *s_a, t_stack *s_b, int place, int v);
+//	void ft_insert_el_r(stack *to, stack *from, int place, int v);
+void	ft_agamotto_eye(t_stack *to, t_stack *from, char direction, int range);
+void	ft_to_base(t_stack *stk, char direction);
+//	sorting util
+int		ft_get_conditional_num(t_stack *to, char c);
+int		ft_get_index(t_stack *stk, int v);
+int		ft_get_place(t_stack *to, int v, char direction);
+int		ft_best_future(t_stack *s_a, t_stack *s_b, int place, int v);
 
 #endif

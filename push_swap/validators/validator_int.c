@@ -6,16 +6,16 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 00:21:59 by pac-man           #+#    #+#             */
-/*   Updated: 2021/07/28 12:08:33 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/25 11:56:39 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int validator_int(char *s)
+int	validator_int(char *s)
 {
-	long long num;
-	int s_len;
+	long long	num;
+	int			s_len;
 
 	num = 0;
 	s_len = ft_strlen(s);
