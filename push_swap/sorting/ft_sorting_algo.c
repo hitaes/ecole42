@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 14:46:03 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/23 17:56:39 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/25 02:34:31 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,15 @@ void ft_head_setter(stack *to, stack *from, int place, int v)
 	from_index = ft_get_index(from, v);
 	if (indicator <= place && indicator <= from_index)
 	{
-		while (from->head->value != v)
-			rrr(from, to);
+		if (from_index <= place)
+		{
+			while (from->head->value != v)
+				rrr(from, to);
+		}
+		else
+			while (to->count > place++)
+				rrr(from, to);
+
 	}
 	else if (indicator > place && indicator > from_index)
 	{
@@ -68,7 +75,7 @@ void ft_insert_el(stack *to, stack *from, int place, int v)
 {
 	int from_index;
 
-	ft_head_setter(to, from, place, v);
+	// ft_head_setter(to, from, place, v);
 	from_index = ft_get_index(from, v);
 	if (from->count / 2 <= from_index)
 		while (from->head->value != v)
@@ -95,11 +102,13 @@ void ft_insert_el_r(stack *to, stack *from, int place, int v)
 {
 	int from_index;
 
-	ft_head_setter(to, from, place, v);
+	// ft_head_setter(to, from, place, v);
 	from_index = ft_get_index(from, v);
 	if (from->count / 2 <= from_index)
+	{
 		while (from->head->value != v)
 			rra(from);
+	}
 	else
 		while (from->head->value != v)
 			ra(from);
@@ -116,6 +125,19 @@ void ft_insert_el_r(stack *to, stack *from, int place, int v)
 			rb(to);
 		pb(from, to);
 	}
+}
+
+int ft_sequence_checker(stack *stk, int v)
+{
+	int check;
+	int i;
+
+	check = 1;
+	i = -1;
+	while (++i < stk->s_list_count)
+		if (v == stk->s_list[i])
+			return (0);
+	return (check);
 }
 
 void ft_agamotto_eye(stack *to, stack *from, char direction, int range)

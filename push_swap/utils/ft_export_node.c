@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 00:21:55 by pac-man           #+#    #+#             */
-/*   Updated: 2021/07/30 00:22:13 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/25 00:22:25 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ node *ft_export_node(node *n)
 	tmp->value = n->value;
 	tmp->next = 0;
 	tmp->prev = 0;
-	free(n);
-	n = 0;
+	if (n)
+	{
+		free(n);
+		n = 0;
+	}
 	return (tmp);
 }
