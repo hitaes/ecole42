@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 18:44:37 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/26 01:18:47 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/26 13:45:38 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,5 @@ void	ft_free_stack(t_stack *stk)
 		stk->tail = tmp_n;
 		stk->count--;
 	}
+	stk->tail = 0;
 }
