@@ -26,6 +26,20 @@
 		"type_traits": "c",
 		"vector": "c",
 		"__hash_table": "c",
-		"ios": "c"
+		"ios": "c",
+		"shared.h": "c",
+		"__debug": "c",
+		"__functional_03": "c",
+		"__mutex_base": "c",
+		"__split_buffer": "c",
+		"array": "c",
+		"exception": "c",
+		"istream": "c",
+		"mutex": "c",
+		"ostream": "c",
+		"streambuf": "c",
+		"string": "c",
+		"string_view": "c",
+		"utility": "c"
 	}
 }
