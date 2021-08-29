@@ -6,13 +6,13 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 01:00:25 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/27 17:28:13 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/29 23:52:33 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shared.h"
 
-void	sa(t_stack *stk)
+int	sa(t_stack *stk, int fd)
 {
 	t_node	*tmp_head;
 	t_node	*tmp_head_next;
@@ -25,11 +25,13 @@ void	sa(t_stack *stk)
 		ft_remove_t_node(stk);
 		ft_append_t_node(stk, tmp_head);
 		ft_append_t_node(stk, tmp_head_next);
-		ft_putstr_fd("sa\n", 1);
+		if (fd == 1)
+			ft_putstr_fd("sa\n", fd);
 	}
+	return (1);
 }
 
-void	sb(t_stack *stk)
+int	sb(t_stack *stk, int fd)
 {
 	t_node	*tmp_head;
 	t_node	*tmp_head_next;
@@ -42,11 +44,13 @@ void	sb(t_stack *stk)
 		ft_remove_t_node(stk);
 		ft_append_t_node(stk, tmp_head);
 		ft_append_t_node(stk, tmp_head_next);
-		ft_putstr_fd("sb\n", 1);
+		if (fd == 1)
+			ft_putstr_fd("sb\n", fd);
 	}
+	return (1);
 }
 
-void	ss(t_stack *l_stk, t_stack *r_stk)
+int	ss(t_stack *l_stk, t_stack *r_stk, int fd)
 {
 	t_node	*tmp_l_stk;
 	t_node	*tmp_l_stk_next;
@@ -67,6 +71,8 @@ void	ss(t_stack *l_stk, t_stack *r_stk)
 		ft_remove_t_node(r_stk);
 		ft_append_t_node(r_stk, tmp_r_stk);
 		ft_append_t_node(r_stk, tmp_r_stk_next);
-		ft_putstr_fd("ss\n", 1);
+		if (fd == 1)
+			ft_putstr_fd("ss\n", fd);
 	}
+	return (1);
 }

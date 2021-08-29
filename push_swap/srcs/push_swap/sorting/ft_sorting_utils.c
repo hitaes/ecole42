@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 23:14:25 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/27 13:02:35 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/29 12:30:28 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,20 @@ void	ft_to_base(t_stack *stk, char direction)
 		start = ft_get_conditional_num(stk, 'a');
 		if ((stk->count / 2) + 1 <= ft_get_index(stk, start))
 			while (stk->head->value != start)
-				rra(stk);
+				rra(stk, STDOUT_FILENO);
 		else
 			while (stk->head->value != start)
-				ra(stk);
+				ra(stk, STDOUT_FILENO);
 	}
 	else
 	{
 		start = ft_get_conditional_num(stk, 'd');
 		if ((stk->count / 2) + 1 <= ft_get_index(stk, start))
 			while (stk->head->value != start)
-				rrb(stk);
+				rrb(stk, STDOUT_FILENO);
 		else
 			while (stk->head->value != start)
-				rb(stk);
+				rb(stk, STDOUT_FILENO);
 	}
 }
 

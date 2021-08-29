@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 02:12:38 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/27 13:06:15 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/29 12:30:13 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ int	ft_make_remaining(t_stack *s_a, t_stack *s_b)
 	{
 		if (s_a->head->value == s_a->s_index)
 			while (--s_counter)
-				ra(s_a);
+				ra(s_a, STDOUT_FILENO);
 		else
 		{
-			pb(s_a, s_b);
+			pb(s_a, s_b, STDOUT_FILENO);
 			p_counter++;
 		}
 	}

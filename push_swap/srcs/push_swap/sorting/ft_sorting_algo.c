@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 14:46:03 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/27 13:06:15 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/29 12:30:07 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,22 @@ void	ft_top_setter(t_stack *to, t_stack *from, int place, int from_index)
 		if (place < from_index)
 		{
 			while (to->count > place++)
-				rrr(from, to);
+				rrr(from, to, STDOUT_FILENO);
 		}
 		else
 			while (from->count > from_index++)
-				rrr(from, to);
+				rrr(from, to, STDOUT_FILENO);
 	}
 	else if ((from->count / 2) + 1 > from_index && (to->count / 2) + 1 > place)
 	{
 		if (place < from_index)
 		{
 			while (place--)
-				rr(from, to);
+				rr(from, to, STDOUT_FILENO);
 		}
 		else
 			while (from_index--)
-				rr(from, to);
+				rr(from, to, STDOUT_FILENO);
 	}
 }
 
@@ -54,22 +54,22 @@ void	ft_insert_el(t_stack *to, t_stack *from, int place, int v)
 	from_index = ft_get_index(from, v);
 	if ((from->count / 2) + 1 <= from_index)
 		while (from->count > from_index++)
-			rrb(from);
+			rrb(from, STDOUT_FILENO);
 	else
 		while (from_index--)
-			rb(from);
+			rb(from, STDOUT_FILENO);
 	place = ft_get_place(to, v, 'a');
 	if ((to->count / 2) + 1 <= place)
 	{
 		while (to->count > place++)
-			rra(to);
-		pa(from, to);
+			rra(to, STDOUT_FILENO);
+		pa(from, to, STDOUT_FILENO);
 	}
 	else
 	{
 		while (place--)
-			ra(to);
-		pa(from, to);
+			ra(to, STDOUT_FILENO);
+		pa(from, to, STDOUT_FILENO);
 	}
 }
 
@@ -82,22 +82,22 @@ void	ft_insert_el_r(t_stack *to, t_stack *from, int place, int v)
 	from_index = ft_get_index(from, v);
 	if ((from->count / 2) + 1 <= from_index)
 		while (from->count > from_index++)
-			rra(from);
+			rra(from, STDOUT_FILENO);
 	else
 		while (from_index--)
-			ra(from);
+			ra(from, STDOUT_FILENO);
 	place = ft_get_place(to, v, 'd');
 	if ((to->count / 2) + 1 <= place)
 	{
 		while (to->count > place++)
-			rrb(to);
-		pb(from, to);
+			rrb(to, STDOUT_FILENO);
+		pb(from, to, STDOUT_FILENO);
 	}
 	else
 	{
 		while (place--)
-			rb(to);
-		pb(from, to);
+			rb(to, STDOUT_FILENO);
+		pb(from, to, STDOUT_FILENO);
 	}
 }
 

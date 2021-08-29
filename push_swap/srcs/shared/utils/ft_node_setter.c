@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/19 00:56:14 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/27 14:54:54 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/29 22:19:46 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,15 @@ void	t_stack_init(t_stack *stk, t_node *new_t_node)
 
 void	t_node_setter(t_stack *s_a, int the_number_of_els, int *v_nums)
 {
-	int	i;
+	int		i;
+	t_node	*n;
 
 	i = -1;
 	while (++i < the_number_of_els)
-		t_stack_init(s_a, create_t_node(*(v_nums + i)));
+	{
+		n = create_t_node(*(v_nums + i));
+		if (!(n))
+			ft_free(s_a, STDERR_FILENO);
+		t_stack_init(s_a, n);
+	}
 }

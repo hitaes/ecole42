@@ -6,26 +6,30 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 00:24:32 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/27 14:48:09 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/30 01:07:22 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shared.h"
 
-void	validator_sorting(int count, int *v_nums)
+int	validator_sorting(t_stack *stk)
 {
-	int	i;
-	int	sorting_count;
+	int		i;
+	int		sorting_count;
+	t_node	*n;
 
 	i = -1;
 	sorting_count = 0;
-	while (count - 1 > ++i)
+	n = stk->head;
+	while (stk->count - 1 > ++i)
 	{
-		if (v_nums[i] > v_nums[i + 1])
+		if (n->value > n->next->value)
 			break ;
 		else
 			sorting_count++;
+		n = n->next;
 	}
-	if (sorting_count == count - 1)
-		ft_putstr_fd("OK\n", STDOUT_FILENO);
+	if (sorting_count == stk->count - 1)
+		return (1);
+	return (0);
 }

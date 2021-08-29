@@ -6,7 +6,7 @@
 #    By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/14 12:29:05 by taeskim           #+#    #+#              #
-#    Updated: 2021/08/27 17:25:47 by pac-man          ###   ########.fr        #
+#    Updated: 2021/08/30 01:19:17 by pac-man          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ D_SORTING			=		sorting/
 D_CHECKER			=		utils/
 
 
-CHECKER_SRC_LIST	=		$(D_CHECKER)ft_check_sort.c	\
+CHECKER_SRC_LIST	=		$(D_CHECKER)checker_utils.c		\
 							checker.c
 													
 PUSH_SWAP_SRC_LIST	=		$(D_SORTING)ft_sorting.c 		\
