@@ -6,14 +6,14 @@
 #    By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/20 11:09:40 by jseo              #+#    #+#              #
-#    Updated: 2021/08/27 11:56:36 by pac-man          ###   ########.fr        #
+#    Updated: 2021/08/31 10:43:57 by pac-man          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 echo -e "\033[1;33mAverage and Result of 500 Random Values Testing\033[0;0m\n"
 SUM="0"
 STAT="OK"
-TEST="50"
+TEST="100"
 for ((i = 0; i < $TEST; ++i))
 do
 	echo -e "\033[1;30mProcessing $(( i + 1 ))...\033[0;0m\x1b[1A\x1b[M"

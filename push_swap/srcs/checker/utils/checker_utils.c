@@ -6,11 +6,12 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 01:17:56 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/30 01:18:02 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/31 12:24:10 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
+#include <stdio.h>
 
 int	ft_do_checker(t_stack *s_a, t_stack *s_b, char *line)
 {

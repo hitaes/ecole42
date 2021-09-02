@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 18:44:37 by pac-man           #+#    #+#             */
-/*   Updated: 2021/08/29 22:19:32 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/08/30 11:40:59 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	ft_free(t_stack *stk, int std_state)
 		ft_free_str(stk->v_str, stk->v_str_count);
 	if (stk->v_nums)
 		ft_free_int(stk->v_nums);
-	(void)stk;
 	if (stk)
 		ft_free_stack(stk);
 	if (std_state == 0)
