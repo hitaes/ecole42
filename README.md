@@ -10,3 +10,7 @@
 ## 2. FdF
 ### Research
 1. 
+
+## 3. pipex
+### 공부한 내용
+https://pacmanx.notion.site/Pipex-a900b601e35249d8ad426f2fc30d22c2
