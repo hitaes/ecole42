@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		"*.vue": "html",
+		"pipex.h": "c",
+		"stdlib.h": "c"
+	}
+}

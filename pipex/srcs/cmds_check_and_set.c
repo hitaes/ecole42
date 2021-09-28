@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   cmds_check_and_set.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/02 15:00:08 by pac-man           #+#    #+#             */
-/*   Updated: 2021/09/28 16:20:51 by pac-man          ###   ########.fr       */
+/*   Created: 2021/09/11 23:35:30 by pac-man           #+#    #+#             */
+/*   Updated: 2021/09/13 09:46:16 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPE_X
-# define PIPE_X
+#include "pipex.h"
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <errno.h>
+void	cmds_check_and_set(cmds *tc, char **argv, char **envp)
+{
+	int	i;
 
-typedef struct t_cmds{
-	char *i;
-	char *o;
-	int cc;
-	int pi;
-} cmds;
+	i = -1;
 
-void	cmds_init(cmds *tmp_cmds, int argc, char **argv);
-void	cmds_check_and_set(cmds *tc, char **argv, char **envp);
-
-#endif
+	(void)tc;
+	(void)argv;
+	(void)envp;
+}
