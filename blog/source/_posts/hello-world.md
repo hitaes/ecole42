@@ -1,39 +1,33 @@
 ---
-title: Hello World
-tag: hello
+title: Pipex 함수 배우기
+tag: pipex
 ---
-Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
+## [1] 필요한 함수들
 
-## Quick Start
+### 1. open 
+Synopsis
+- int open(const char *pathname, int flags, mode_t mode)
 
-### Create a new post
+Description
+- pathname의 파일을 열게 됩니다. 만약 flags가 O_CREAT이고 파일이 존재하지 않는다면 파일을 만들어 냅니다.
+- 반환값은 file descriptors입니다.
+- $$
 
-``` bash
-$ hexo new "My New Post"
-```
 
-More info: [Writing](https://hexo.io/docs/writing.html)
-
-### Run server
-
-``` bash
-$ hexo server
-```
-
-More info: [Server](https://hexo.io/docs/server.html)
-
-### Generate static files
-
-``` bash
-$ hexo generate
-```
-
-More info: [Generating](https://hexo.io/docs/generating.html)
-
-### Deploy to remote sites
-
-``` bash
-$ hexo deploy
-```
-
-More info: [Deployment](https://hexo.io/docs/one-command-deployment.html)
+1. close
+2. read
+3. write
+4. malloc
+5. free
+6. access
+7. unlink
+8.  fork
+9.  wait
+10. waitpid
+11. dup
+12. dup2
+13. pipe
+14. execve
+15. perror
+16. sterreor
+17. exit
