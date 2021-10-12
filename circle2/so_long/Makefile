@@ -6,7 +6,7 @@
 #    By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/14 12:29:05 by taeskim           #+#    #+#              #
-#    Updated: 2021/10/10 01:12:57 by pac-man          ###   ########.fr        #
+#    Updated: 2021/10/12 18:57:25 by pac-man          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ LINE_CLEAR			=		"\x1b[1A\x1b[M"
 
 CC 					= 		gcc
 CFLAGS 				= 		-Wall -Wextra -Werror -Imlx
-MFLAGS				=		-L -lmlx -lz -framework OpenGL -framework AppKit
+MFLAGS				=		-L $(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 RM 					= 		rm -rf
 NAME				= 		so_long
 MLX					=		libmlx.a
@@ -31,12 +31,15 @@ LIBFT				=		libft.a
 
 HEADER_DIR			=		./includes/
 SO_LONG_DIR			=		./srcs/so_long/
-MLX_DIR				=		./minilibx_opengl_20191021/
 SHARED_DIR			=		./srcs/shared/
+MLX_DIR				=		./resources/minilibx_opengl_20191021/
 
 D_LIBFT				=		libft/
+D_MAP				=		map/
+D_UTILS				=		utils/
 											
-SO_LONG_SRC_LIST	=		main.c
+SO_LONG_SRC_LIST	=		$(D_MAP)map_validator.c 		\
+							main.c
 
 SHARED_SRC_LIST		=		$(D_LIBFT)ft_isdigit.c			\
 							$(D_LIBFT)ft_atoi.c				\
@@ -50,6 +53,9 @@ SHARED_SRC_LIST		=		$(D_LIBFT)ft_isdigit.c			\
 							$(D_LIBFT)ft_strjoin.c			\
 							$(D_LIBFT)ft_strcmp.c			\
 							$(D_LIBFT)ft_replace.c			\
+							$(D_UTILS)ft_error_disposal.c	\
+							$(D_UTILS)ft_map_init.c			\
+							$(D_UTILS)ft_free.c				\
 
 SO_LONG_SRCS 		=		$(addprefix $(SO_LONG_DIR), $(SO_LONG_SRC_LIST))
 SO_LONG_OBJS 		=		$(SO_LONG_SRCS:.c=.o)

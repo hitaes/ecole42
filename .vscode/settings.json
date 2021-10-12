@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		"*.vue": "html",
+		"mlx.h": "c",
+		"shared.h": "c"
+	}
+}
