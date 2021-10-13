@@ -6,51 +6,36 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 18:04:59 by pac-man           #+#    #+#             */
-/*   Updated: 2021/10/12 19:47:32 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/10/14 00:53:29 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/shared.h"
 
-void	coordinate_setter(t_map *m, int type, int c)
+void	block_setter(t_map *m, int type, int c, char *path)
 {
-	int		j;
-	t_block	*tmp;
-
-	j = -1;
-	tmp = (t_block *)malloc(sizeof(t_block) * (m->count + 1));
-	if (tmp == NULL)
-		ft_error_disposal();
-	while (++j < m->count)
-	{
-		tmp[j] = m->b_l[j];
-		tmp[j].index = j;
-	}
-	if (m->b_l)
-		ft_free(m->b_l);
-	tmp[j].type = type;
-	tmp[j].coord.x = 64 * m->size_x;
-	tmp[j].coord.y = 64 * m->size_y;
-	tmp[j].index = j;
-	m->b_l = tmp;
+	m->f[m->size_y][m->size_x].coord.x = PIXEL_X * m->size_x;
+	m->f[m->size_y][m->size_x].coord.y = PIXEL_Y * m->size_y;
+	m->f[m->size_y][m->size_x].type = type;
+	m->f[m->size_y][m->size_x].path = path;
 	(void)c;
 }
 
-void	block_setter(t_map *m)
+void	block_spliter(t_map *m)
 {
 	m->size_x = -1;
-	while ((m->l)[++(m->size_x)])
+	while ((m->l)[++m->size_x])
 	{
-		if ((m->l)[m->size_x] == 49)
-			coordinate_setter(m, 49, 0);
-		else if ((m->l)[m->size_x] == 80)
-			coordinate_setter(m, 80, m->p++);
-		else if ((m->l)[m->size_x] == 69)
-			coordinate_setter(m, 69, m->e++);
-		else if ((m->l)[m->size_x] == 67)
-			coordinate_setter(m, 67, m->c++);
-		else if ((m->l)[m->size_x] == 48)
-			coordinate_setter(m, 48, 0);
+		if ((m->l)[m->size_x] == WALL)
+			block_setter(m, WALL, 0, IMAGE_WALL);
+		else if ((m->l)[m->size_x] == PLAYER)
+			block_setter(m, PLAYER, m->p++, IMAGE_PLAYER);
+		else if ((m->l)[m->size_x] == EXIT)
+			block_setter(m, EXIT, m->e++, IMAGE_EXIT);
+		else if ((m->l)[m->size_x] == COIN)
+			block_setter(m, COIN, m->c++, IMAGE_COIN);
+		else if ((m->l)[m->size_x] == EMPTY)
+			block_setter(m, EMPTY, 0, IMAGE_EMPTY);
 		m->count++;
 	}
 	m->size_y++;
@@ -58,25 +43,30 @@ void	block_setter(t_map *m)
 
 void	component_checker(t_map *m)
 {
-	int	j;
+	int	c;
+	int	r;
 
-	j = -1;
-	while (++j < m->count)
+	c = -1;
+	r = -1;
+	while (++c < m->column)
 	{
-		if (m->b_l[j].type != 49)
+		while (++r < m->row)
 		{
-			if (m->b_l[j].coord.y == 0)
-				ft_error_disposal();
-			else if (m->b_l[j].coord.y == m->size_y)
-				ft_error_disposal();
-			else if (m->b_l[j].coord.x == 0)
-				ft_error_disposal();
-			else if (m->b_l[j].coord.x == m->size_x)
+			if (m->f[c][r].type != 49)
+			{
+				if (m->f[c][r].coord.y == 0)
+					ft_error_disposal();
+				else if (m->f[c][r].coord.y == m->column)
+					ft_error_disposal();
+				else if (m->f[c][r].coord.x == 0)
+					ft_error_disposal();
+				else if (m->f[c][r].coord.x == m->row)
+					ft_error_disposal();
+			}
+			if (m->p == 0 || m->c == 0 || m->e == 0
+				|| m->row * m->column != m->count)
 				ft_error_disposal();
 		}
-		if (m->p == 0 || m->c == 0 || m->e == 0
-			|| m->size_x * m->size_y != m->count)
-			ft_error_disposal();
 	}
 }
 
@@ -85,7 +75,7 @@ void	map_validator(t_map *m)
 	int		fd;
 
 	map_init(m);
-	fd = open(FILE_MAP, O_RDONLY);
+	fd = open(m->map_path, O_RDONLY);
 	if (fd == -1)
 		ft_error_disposal();
 	while (m->g_l != 0)
@@ -93,7 +83,9 @@ void	map_validator(t_map *m)
 		m->g_l = ft_get_next_line(fd, &(m->l));
 		if (m->g_l == -1)
 			ft_error_disposal();
-		block_setter(m);
+		block_spliter(m);
+		ft_free(m->l);
 	}
+	close(fd);
 	component_checker(m);
 }

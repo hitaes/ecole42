@@ -2,6 +2,8 @@
 	"files.associations": {
 		"*.vue": "html",
 		"mlx.h": "c",
-		"shared.h": "c"
+		"shared.h": "c",
+		"chrono": "c",
+		"unordered_map": "c"
 	}
 }

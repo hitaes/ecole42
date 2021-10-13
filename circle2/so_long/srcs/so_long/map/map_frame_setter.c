@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   map_frame_setter.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/09 23:05:44 by pac-man           #+#    #+#             */
-/*   Updated: 2021/10/14 00:56:57 by pac-man          ###   ########.fr       */
+/*   Created: 2021/10/13 14:11:25 by pac-man           #+#    #+#             */
+/*   Updated: 2021/10/14 00:52:20 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/shared.h"
+#include "../../../includes/shared.h"
 
-void	map_finder(int argc, char **argv)
+void	map_frame_setter(t_map *m)
 {
-	(void)argc;
-	(void)argv;
-}
+	int	i;
 
-int	main(int argc, char **argv)
-{
-	t_game	g;
-	t_map	m;
-
-	game_init(&g, &m);
-	map_finder(argc, argv);
-	map_frame_setter(g.m);
-	map_validator(g.m);
-	map_maker(&g);
-	mlx_hook(g.m->win, 2, 1L << 0, ft_keypress, &g);
-	mlx_loop_hook(g.m->mlx, map_maker, &g);
-	mlx_loop(g.m->mlx);
-	return (0);
+	i = -1;
+	get_row_column(m);
+	m->f = (t_block **)malloc(sizeof(t_block *) * m->column);
+	if (m->f == NULL)
+		ft_error_disposal();
+	while (++i < m->column)
+	{
+		m->f[i] = (t_block *)malloc(sizeof(t_block) * m->row);
+		if (m->f[i] == NULL)
+			ft_error_disposal();
+	}
 }

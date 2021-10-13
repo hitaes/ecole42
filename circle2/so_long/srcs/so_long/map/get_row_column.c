@@ -1,35 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_row_column.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/09 23:05:44 by pac-man           #+#    #+#             */
-/*   Updated: 2021/10/14 00:56:57 by pac-man          ###   ########.fr       */
+/*   Created: 2021/10/13 13:46:06 by pac-man           #+#    #+#             */
+/*   Updated: 2021/10/14 00:57:44 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/shared.h"
+#include "../../../includes/shared.h"
 
-void	map_finder(int argc, char **argv)
+void	get_row_column(t_map *m)
 {
-	(void)argc;
-	(void)argv;
-}
+	int		i;
+	int		l;
+	char	*line;
+	int		fd;
 
-int	main(int argc, char **argv)
-{
-	t_game	g;
-	t_map	m;
-
-	game_init(&g, &m);
-	map_finder(argc, argv);
-	map_frame_setter(g.m);
-	map_validator(g.m);
-	map_maker(&g);
-	mlx_hook(g.m->win, 2, 1L << 0, ft_keypress, &g);
-	mlx_loop_hook(g.m->mlx, map_maker, &g);
-	mlx_loop(g.m->mlx);
-	return (0);
+	i = -1;
+	l = 1;
+	line = 0;
+	fd = open(m->map_path, O_RDONLY);
+	if (fd == -1)
+		ft_error_disposal();
+	while (l != 0)
+	{
+		l = ft_get_next_line(fd, &line);
+		if (l == -1)
+			ft_error_disposal();
+		m->row = 0;
+		while (line[++i])
+			m->row++;
+		m->column++;
+		i = -1;
+		ft_free(line);
+	}
+	close(fd);
 }

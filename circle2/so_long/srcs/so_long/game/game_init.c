@@ -1,35 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/09 23:05:44 by pac-man           #+#    #+#             */
-/*   Updated: 2021/10/14 00:56:57 by pac-man          ###   ########.fr       */
+/*   Created: 2021/10/13 21:35:25 by pac-man           #+#    #+#             */
+/*   Updated: 2021/10/13 21:38:28 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/shared.h"
+#include "../../../includes/shared.h"
 
-void	map_finder(int argc, char **argv)
+void	game_init(t_game *g, t_map *m)
 {
-	(void)argc;
-	(void)argv;
-}
-
-int	main(int argc, char **argv)
-{
-	t_game	g;
-	t_map	m;
-
-	game_init(&g, &m);
-	map_finder(argc, argv);
-	map_frame_setter(g.m);
-	map_validator(g.m);
-	map_maker(&g);
-	mlx_hook(g.m->win, 2, 1L << 0, ft_keypress, &g);
-	mlx_loop_hook(g.m->mlx, map_maker, &g);
-	mlx_loop(g.m->mlx);
-	return (0);
+	g->i = -1;
+	g->j = -1;
+	g->m = m;
 }

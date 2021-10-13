@@ -6,7 +6,7 @@
 #    By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/14 12:29:05 by taeskim           #+#    #+#              #
-#    Updated: 2021/10/12 18:57:25 by pac-man          ###   ########.fr        #
+#    Updated: 2021/10/14 00:45:53 by pac-man          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,8 +37,15 @@ MLX_DIR				=		./resources/minilibx_opengl_20191021/
 D_LIBFT				=		libft/
 D_MAP				=		map/
 D_UTILS				=		utils/
+D_GAME				=		game/
 											
 SO_LONG_SRC_LIST	=		$(D_MAP)map_validator.c 		\
+							$(D_MAP)map_frame_setter.c		\
+							$(D_MAP)map_maker.c				\
+							$(D_MAP)map_init.c				\
+							$(D_MAP)get_row_column.c		\
+							$(D_GAME)game_init.c			\
+							$(D_GAME)game_end.c				\
 							main.c
 
 SHARED_SRC_LIST		=		$(D_LIBFT)ft_isdigit.c			\
@@ -54,8 +61,9 @@ SHARED_SRC_LIST		=		$(D_LIBFT)ft_isdigit.c			\
 							$(D_LIBFT)ft_strcmp.c			\
 							$(D_LIBFT)ft_replace.c			\
 							$(D_UTILS)ft_error_disposal.c	\
-							$(D_UTILS)ft_map_init.c			\
 							$(D_UTILS)ft_free.c				\
+							$(D_UTILS)ft_trace_setter.c		\
+							$(D_UTILS)ft_keypress.c			\
 
 SO_LONG_SRCS 		=		$(addprefix $(SO_LONG_DIR), $(SO_LONG_SRC_LIST))
 SO_LONG_OBJS 		=		$(SO_LONG_SRCS:.c=.o)
