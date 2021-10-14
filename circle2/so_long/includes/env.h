@@ -6,12 +6,13 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 13:28:57 by pac-man           #+#    #+#             */
-/*   Updated: 2021/10/14 00:53:09 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/10/14 01:54:21 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENV_H
 # define ENV_H
+# define FILE_PATH		"./resources/map/map.bar"
 # define IMAGE_WALL 	"./resources/images/wall.xpm"
 # define IMAGE_PLAYER 	"./resources/images/player.xpm"
 # define IMAGE_EXIT 	"./resources/images/exit.xpm"
