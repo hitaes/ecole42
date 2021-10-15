@@ -1,41 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_row_column.c                                   :+:      :+:    :+:   */
+/*   map_finder.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/13 13:46:06 by pac-man           #+#    #+#             */
-/*   Updated: 2021/10/14 01:57:09 by pac-man          ###   ########.fr       */
+/*   Created: 2021/10/15 00:39:01 by pac-man           #+#    #+#             */
+/*   Updated: 2021/10/15 01:13:31 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/shared.h"
 
-void	get_row_column(t_map *m)
+void	map_finder(t_game *g, int argc, char **argv)
 {
-	int		i;
-	int		l;
-	char	*line;
 	int		fd;
 
-	i = -1;
-	l = 1;
-	line = 0;
-	fd = open(m->map_path, O_RDONLY);
-	if (fd == -1)
-		ft_error_disposal();
-	while (l != 0)
+	fd = open(argv[1], O_RDONLY);
+	if (argc != 2)
+		ft_error_disposal(OPENERROR);
+	else
 	{
-		l = ft_get_next_line(fd, &line);
-		if (l == -1)
-			ft_error_disposal();
-		m->row = 0;
-		while (line[++i])
-			m->row++;
-		m->column++;
-		i = -1;
-		ft_free(line);
+		if (fd != -1 && !ft_strcmp(argv[1], "./resources/map/")
+			&& ft_strcmp("./resources/map/", argv[1]))
+			g->m->map_path = argv[1];
+		else
+			ft_error_disposal(NOTFOUNDERROR);
 	}
-	close(fd);
 }

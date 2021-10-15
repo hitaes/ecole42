@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 18:04:59 by pac-man           #+#    #+#             */
-/*   Updated: 2021/10/14 01:57:15 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/10/15 01:29:52 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	block_spliter(t_map *m)
 			block_setter(m, COIN, m->c++, IMAGE_COIN);
 		else if ((m->l)[m->size_x] == EMPTY)
 			block_setter(m, EMPTY, 0, IMAGE_EMPTY);
+		else
+			ft_error_disposal(OTHER);
 		m->count++;
 	}
 	m->size_y++;
@@ -53,20 +55,19 @@ void	component_checker(t_map *m)
 		while (++r < m->row)
 		{
 			if (m->f[c][r].type != 49)
-			{
-				if (m->f[c][r].coord.y == 0)
-					ft_error_disposal();
-				else if (m->f[c][r].coord.y == m->column)
-					ft_error_disposal();
-				else if (m->f[c][r].coord.x == 0)
-					ft_error_disposal();
-				else if (m->f[c][r].coord.x == m->row)
-					ft_error_disposal();
-			}
-			if (m->p == 0 || m->c == 0 || m->e == 0
-				|| m->row * m->column != m->count)
-				ft_error_disposal();
+				if (m->f[c][r].coord.y == 0 || m->f[c][r].coord.y == m->column
+					|| m->f[c][r].coord.x == 0 || m->f[c][r].coord.x == m->row)
+					ft_error_disposal(NOWALL);
+			if (m->p == 0 || m->p > 1)
+				ft_error_disposal(PLAYERERROR);
+			else if (m->c == 0)
+				ft_error_disposal(COINERROR);
+			else if (m->e == 0)
+				ft_error_disposal(EXITERROR);
+			else if (m->row * m->column != m->count)
+				ft_error_disposal(RECERROR);
 		}
+		r = -1;
 	}
 }
 
@@ -74,15 +75,14 @@ void	map_validator(t_map *m)
 {
 	int		fd;
 
-	map_init(m);
 	fd = open(m->map_path, O_RDONLY);
 	if (fd == -1)
-		ft_error_disposal();
+		ft_error_disposal(MALERROR);
 	while (m->g_l != 0)
 	{
 		m->g_l = ft_get_next_line(fd, &(m->l));
 		if (m->g_l == -1)
-			ft_error_disposal();
+			ft_error_disposal(GNLERROR);
 		block_spliter(m);
 		ft_free(m->l);
 	}

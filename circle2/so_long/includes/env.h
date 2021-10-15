@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 13:28:57 by pac-man           #+#    #+#             */
-/*   Updated: 2021/10/14 01:54:21 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/10/15 01:34:05 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,40 @@
 # define PIXEL_X		64
 # define PIXEL_Y		64
 
+/*
+=======================================================
+
+						Errors
+
+=======================================================
+*/
+# define OTHER			101
+# define NOWALL			102
+# define PLAYERERROR	103
+# define COINERROR		104
+# define EXITERROR		105
+# define RECERROR		106
+# define NOTFOUNDERROR	107
+# define MALERROR		108
+# define GNLERROR		109
+# define OPENERROR		110
+
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 4096
 # endif
 
-typedef struct 		s_coordinate {
-	int 			x;
-	int 			y;
-}					t_coordinate;
+typedef struct s_coordinate {
+	int			x;
+	int			y;
+}				t_coordinate;
 
-typedef struct		s_block {
+typedef struct s_block {
 	int				type;
 	char			*path;
 	t_coordinate	coord;
 }					t_block;
 
-typedef struct		s_map {
+typedef struct s_map {
 	int				p;
 	int				p_x;
 	int				p_y;
@@ -64,12 +82,12 @@ typedef struct		s_map {
 	int				map_init;
 	char			*map_path;
 	char			*l;
-	void	    	*mlx;
-    void	    	*win;
+	void			*mlx;
+	void			*win;
 	t_block			**f;
 }					t_map;
 
-typedef struct 		s_game {
+typedef struct s_game {
 	int				i;
 	int				j;
 	int				bits_per_pixel;

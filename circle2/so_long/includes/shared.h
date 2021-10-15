@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 00:30:44 by pac-man           #+#    #+#             */
-/*   Updated: 2021/10/14 00:46:17 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/10/15 01:06:10 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 // libft
 int			ft_isdigit(char c);
 long long	ft_atoi(const char *src);
-int			ft_strlen(char *s);
+int			ft_strlen(const char *s);
 void		*ft_memset(void *b, int c, int len);
 void		*ft_calloc(size_t count, size_t size);
 size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
@@ -35,19 +35,19 @@ int			ft_get_next_line(int fd, char **line);
 void		*replace(char **out, char *src);
 
 // map
-void		get_row_column(t_map *m);
+void		map_row_column(t_map *m);
 void		map_frame_setter(t_map *m);
 void		map_validator(t_map *m);
-void		map_init(t_map *m);
 int			map_maker(t_game *g);
 void		map_update(t_game *g, t_block *b);
+void		map_finder(t_game *g, int argc, char **argv);
 
 // game
 void		game_init(t_game *g, t_map *m);
 void		game_end(t_game *g);
 
 // utils
-void		ft_error_disposal(void);
+void		ft_error_disposal(int message);
 void		ft_free(void *ptr);
 int			ft_keypress(int keycode, t_game *g);
 void		ft_trace_setter(t_game *g);

@@ -4,6 +4,16 @@
 		"mlx.h": "c",
 		"shared.h": "c",
 		"chrono": "c",
-		"unordered_map": "c"
+		"unordered_map": "c",
+		"__string": "cpp",
+		"exception": "cpp",
+		"functional": "cpp",
+		"istream": "cpp",
+		"locale": "cpp",
+		"memory": "cpp",
+		"new": "cpp",
+		"ostream": "cpp",
+		"string": "cpp",
+		"utility": "cpp"
 	}
 }

@@ -6,7 +6,7 @@
 #    By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/14 12:29:05 by taeskim           #+#    #+#              #
-#    Updated: 2021/10/14 00:45:53 by pac-man          ###   ########.fr        #
+#    Updated: 2021/10/15 00:39:48 by pac-man          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,8 +42,8 @@ D_GAME				=		game/
 SO_LONG_SRC_LIST	=		$(D_MAP)map_validator.c 		\
 							$(D_MAP)map_frame_setter.c		\
 							$(D_MAP)map_maker.c				\
-							$(D_MAP)map_init.c				\
-							$(D_MAP)get_row_column.c		\
+							$(D_MAP)map_finder.c			\
+							$(D_MAP)map_row_column.c		\
 							$(D_GAME)game_init.c			\
 							$(D_GAME)game_end.c				\
 							main.c
