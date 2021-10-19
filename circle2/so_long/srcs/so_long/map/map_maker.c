@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 19:57:01 by pac-man           #+#    #+#             */
-/*   Updated: 2021/10/19 12:13:15 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/10/19 21:26:37 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,60 +27,6 @@ void	cnt_draw(t_map *m)
 	mlx_put_image_to_window(m->mlx, m->win, img, 128, 0);
 	mlx_string_put(m->mlx, m->win, 25, 25, 0x00FFFFFF, temp_string);
 	free(temp_string);
-}
-
-void	ani_draw(t_game *g, time_t gap)
-{
-	while (++(g->i) < g->m->column)
-	{
-		while (++(g->j) < g->m->row)
-		{
-			if (g->m->f[g->i][g->j].type == COIN)
-			{
-				if (gap % 2 == 0)
-				{
-					g->m->f[g->i][g->j].path = IMAGE_COIN2;
-					g->one = 0;
-					g->zero++;
-				}
-				else if (gap % 2 == 1)
-				{
-					g->m->f[g->i][g->j].path = IMAGE_COIN;
-					g->zero = 0;
-					g->one++;
-				}
-				g->img = mlx_xpm_file_to_image(g->m->mlx,
-						g->m->f[g->i][g->j].path, &g->m->size_x, &g->m->size_y);
-				mlx_put_image_to_window(g->m->mlx, g->m->win, g->img,
-					g->m->f[g->i][g->j].coord.x, g->m->f[g->i][g->j].coord.y);
-			}
-		}
-		g->j = -1;
-	}
-	g->i = -1;
-}
-
-void	mon_pat(t_game *g)
-{
-	while (++(g->i) < g->m->column)
-	{
-		while (++(g->j) < g->m->row)
-		{
-			if (g->m->f[g->i][g->j].type == MONSTER)
-			{
-				if (g->one == 30)
-					g->m->f[g->i][g->j].coord.x -= 64;
-				else if (g->zero == 30)
-					g->m->f[g->i][g->j].coord.x += 64;
-				g->img = mlx_xpm_file_to_image(g->m->mlx,
-						g->m->f[g->i][g->j].path, &g->m->size_x, &g->m->size_y);
-				mlx_put_image_to_window(g->m->mlx, g->m->win, g->img,
-					g->m->f[g->i][g->j].coord.x, g->m->f[g->i][g->j].coord.y);
-			}
-		}
-		g->j = -1;
-	}
-	g->i = -1;
 }
 
 void	map_update(t_game *g, t_block *b)
@@ -131,6 +77,7 @@ int	map_maker(t_game *g)
 	}
 	else
 	{
+		interval(g, time(NULL) - g->start);
 		if (g->m->f[g->m->p_y][g->m->p_x].type == WALL)
 		{
 			g->m->f[g->m->r_y][g->m->r_x].path = IMAGE_PLAYER;
@@ -141,10 +88,9 @@ int	map_maker(t_game *g)
 			map_update(g, &(g->m->f[g->m->r_y][g->m->r_x]));
 		map_update(g, &(g->m->f[g->m->p_y][g->m->p_x]));
 		if ((g->m->c == 0 && g->m->f[g->m->p_y][g->m->p_x].type == EXIT)
-			|| g->m->f[g->m->p_y][g->m->p_x].type == MONSTER)
+			|| (g->m->p_x == g->m->m_x && g->m->p_y == g->m->m_y))
 			game_end(g);
+		draw_sprite(g);
 	}
-	ani_draw(g, time(NULL) - g->start);
-	mon_pat(g);
 	return (0);
 }

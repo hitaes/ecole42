@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 00:30:44 by pac-man           #+#    #+#             */
-/*   Updated: 2021/10/18 23:35:17 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/10/19 21:29:14 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@ void		map_validator(t_map *m);
 int			map_maker(t_game *g);
 void		map_update(t_game *g, t_block *b);
 void		map_finder(t_game *g, int argc, char **argv);
+void		draw_mon(t_game *g, int state);
+void		draw_coin(t_game *g, int state);
+void		interval(t_game *g, time_t gap);
+void		draw_sprite(t_game *g);
 
 // game
 void		game_init(t_game *g, t_map *m);
