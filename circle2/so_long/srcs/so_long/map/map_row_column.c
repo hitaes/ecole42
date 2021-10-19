@@ -24,12 +24,12 @@ void	map_row_column(t_map *m)
 	line = 0;
 	fd = open(m->map_path, O_RDONLY);
 	if (fd == -1)
-		ft_error_disposal(OPENERROR);
+		ft_error_disposal(m, OPENERROR);
 	while (l != 0)
 	{
 		l = ft_get_next_line(fd, &line);
 		if (l == -1)
-			ft_error_disposal(GNLERROR);
+			ft_error_disposal(m, GNLERROR);
 		m->row = 0;
 		while (line[++i])
 			m->row++;

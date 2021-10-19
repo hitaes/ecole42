@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_end.c                                         :+:      :+:    :+:   */
+/*   ft_free_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/14 00:41:14 by pac-man           #+#    #+#             */
-/*   Updated: 2021/10/18 19:59:07 by pac-man          ###   ########.fr       */
+/*   Created: 2021/10/18 19:09:32 by pac-man           #+#    #+#             */
+/*   Updated: 2021/10/18 20:00:10 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/shared.h"
 
-void	game_end(t_game *g)
+void	ft_free_map(t_map *m)
 {
-	ft_free_map(g->m);
-	mlx_destroy_window(g->m->mlx, g->m->win);
-	exit(0);
+	int	c;
+
+	c = -1;
+	if (m->f)
+	{
+		while (++c < m->column)
+		{
+			free(m->f[c]);
+			m->f[c] = 0;
+		}
+		free(m->f);
+		m->f = 0;
+	}
 }

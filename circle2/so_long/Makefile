@@ -6,7 +6,7 @@
 #    By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/14 12:29:05 by taeskim           #+#    #+#              #
-#    Updated: 2021/10/15 00:39:48 by pac-man          ###   ########.fr        #
+#    Updated: 2021/10/18 23:35:11 by pac-man          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,10 +60,12 @@ SHARED_SRC_LIST		=		$(D_LIBFT)ft_isdigit.c			\
 							$(D_LIBFT)ft_strjoin.c			\
 							$(D_LIBFT)ft_strcmp.c			\
 							$(D_LIBFT)ft_replace.c			\
+							$(D_LIBFT)ft_itoa.c				\
 							$(D_UTILS)ft_error_disposal.c	\
 							$(D_UTILS)ft_free.c				\
 							$(D_UTILS)ft_trace_setter.c		\
 							$(D_UTILS)ft_keypress.c			\
+							$(D_UTILS)ft_free_map.c			\
 
 SO_LONG_SRCS 		=		$(addprefix $(SO_LONG_DIR), $(SO_LONG_SRC_LIST))
 SO_LONG_OBJS 		=		$(SO_LONG_SRCS:.c=.o)

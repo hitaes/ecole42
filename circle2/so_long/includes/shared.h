@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 00:30:44 by pac-man           #+#    #+#             */
-/*   Updated: 2021/10/15 01:06:10 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/10/18 23:35:17 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <limits.h>
 # include <stdio.h>
 # include <fcntl.h>
+# include <time.h>
 # include "env.h"
 # include "../resources/minilibx_opengl_20191021/mlx.h"
 
@@ -33,6 +34,7 @@ char		*ft_strjoin(char *s1, char *s2);
 int			ft_strcmp(const char *s1, const char *s2);
 int			ft_get_next_line(int fd, char **line);
 void		*replace(char **out, char *src);
+char		*ft_itoa(int n);
 
 // map
 void		map_row_column(t_map *m);
@@ -47,9 +49,11 @@ void		game_init(t_game *g, t_map *m);
 void		game_end(t_game *g);
 
 // utils
-void		ft_error_disposal(int message);
+void		ft_error_disposal(t_map *m, int message);
 void		ft_free(void *ptr);
 int			ft_keypress(int keycode, t_game *g);
 void		ft_trace_setter(t_game *g);
+void		ft_free_map(t_map *m);
+int			ft_collision_check(t_game *g);
 
 #endif

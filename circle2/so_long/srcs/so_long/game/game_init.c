@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 21:35:25 by pac-man           #+#    #+#             */
-/*   Updated: 2021/10/14 22:15:46 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/10/19 00:46:25 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ void	game_init(t_game *g, t_map *m)
 {
 	g->i = -1;
 	g->j = -1;
-	g->bits_per_pixel = 0;
 	g->m = m;
+	g->start = time(NULL);
+	g->now = g->start;
+	m->cnt_action = 0;
 	m->p = 0;
 	m->p_x = 0;
 	m->p_y = 0;

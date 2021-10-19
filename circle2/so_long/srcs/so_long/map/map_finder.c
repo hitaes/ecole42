@@ -18,13 +18,13 @@ void	map_finder(t_game *g, int argc, char **argv)
 
 	fd = open(argv[1], O_RDONLY);
 	if (argc != 2)
-		ft_error_disposal(OPENERROR);
+		ft_error_disposal(g->m, OPENERROR);
 	else
 	{
 		if (fd != -1 && !ft_strcmp(argv[1], "./resources/map/")
 			&& ft_strcmp("./resources/map/", argv[1]))
 			g->m->map_path = argv[1];
 		else
-			ft_error_disposal(NOTFOUNDERROR);
+			ft_error_disposal(g->m, NOTFOUNDERROR);
 	}
 }

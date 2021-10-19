@@ -20,11 +20,11 @@ void	map_frame_setter(t_map *m)
 	map_row_column(m);
 	m->f = (t_block **)malloc(sizeof(t_block *) * m->column);
 	if (m->f == NULL)
-		ft_error_disposal(MALERROR);
+		ft_error_disposal(m, MALERROR);
 	while (++i < m->column)
 	{
 		m->f[i] = (t_block *)malloc(sizeof(t_block) * m->row);
 		if (m->f[i] == NULL)
-			ft_error_disposal(MALERROR);
+			ft_error_disposal(m, MALERROR);
 	}
 }
