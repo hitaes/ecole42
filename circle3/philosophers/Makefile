@@ -31,7 +31,8 @@ HEADER		=	./includes/
 PHIL_DIR	=	./srcs/
 D_UTILS		=	./utils/
 D_LIBFT		=	./libft/
-SRC_LIST	=	philo.C				\
+SRC_LIST	=	philo.c						\
+				$(D_LIBFT)ft_memset.c		\
 
 SRCS		=	$(addprefix $(PHIL_DIR), $(SRC_LIST))
 OBJS		=	$(SRCS:.c=.o)
@@ -44,10 +45,10 @@ OBJS		=	$(SRCS:.c=.o)
 				@echo $(YELLOW) "Compiling...\t" $< $(EOC) $(LINE_CLEAR)
 				@$(CC) $(CFLAGS) -I $(HEADER) -o $@ -c $<
 
-$(NAME)		:	$(OBJ)
+$(NAME)		:	$(OBJS)
 				@echo $(GREEN) "Source files are compiled!\n" $(EOC)
 				@echo $(WHITE) "Building $(NAME) for" $(YELLOW) "Mandatory" $(WHITE) "..." $(EOC)
-				@$(CC) $(CFALGS) -I $(HEADER) -o $(NAME) $(OBJ)
+				@$(CC) $(CFALGS) -I $(HEADER) -o $(NAME) $(OBJS)
 				@echo $(GREEN) "$(NAME) is created!\n" $(EOC)
 
 # =============================================================================

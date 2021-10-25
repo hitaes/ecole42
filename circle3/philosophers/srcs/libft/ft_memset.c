@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/21 13:06:36 by pac-man           #+#    #+#             */
-/*   Updated: 2021/10/24 12:26:10 by pac-man          ###   ########.fr       */
+/*   Created: 2021/10/21 16:15:51 by pac-man           #+#    #+#             */
+/*   Updated: 2021/10/21 16:56:00 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "../../includes/philo.h"
 
-int main(int argc, char **argv)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	// t_op op;
+	size_t i;
 
-	(void)argc;
-	(void)argv;
-	// ft_memset(&op, 0, sizeof(op))
-	pid_t pid;
-	pid = fork();
-	if (pid == 0)
+	i = -1;
+	while (++i < n)
 	{
-		printf("✅this is child %d\n", pid);
+		printf("✅%s, %d\n", ((unsigned char *)s), (unsigned char)c);
+		((unsigned char *)s)[i] = (unsigned char)c;
 	}
-	else
-	{
-		printf("✅this is parent %d\n", pid);
-	}
-	return (0);
+	return (s);
 }
