@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/05 16:39:22 by pacman            #+#    #+#             */
-/*   Updated: 2021/11/09 18:24:07 by pacman           ###   ########.fr       */
+/*   Created: 2021/11/09 17:17:32 by pacman            #+#    #+#             */
+/*   Updated: 2021/11/09 17:18:49 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "../../includes/philo.h"
 
-int	main(int argc, char **argv)
+long long	ft_atoi(const char *src)
 {
-	t_op	op;
-	int		r_v;
+	long long	sign;
+	long long	num;
 
-	if (argc != 5 && argc != 6)
-		ft_error_disposal(WRONG_ARGS);
-	r_v = ft_philo_init(&op, argc, argv);
-	if (r_v == 1)
-		ft_error_disposal(INIT_FAILURE);
-	return (0);
+	sign = 1;
+	num = 0;
+	while (*src == ' ' || (*src >= '\t' && *src <= '\r'))
+		src++;
+	if (*src == '+' || *src == '-')
+	{
+		if (*src == '-')
+			sign = -1;
+		src++;
+	}
+	while (*src >= '0' && *src <= '9')
+	{
+		num = (num * 10) + (*src - '0');
+		src++;
+	}
+	return (sign * num);
 }

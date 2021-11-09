@@ -31,8 +31,13 @@ HEADER		=	./includes/
 PHIL_DIR	=	./srcs/
 D_UTILS		=	./utils/
 D_LIBFT		=	./libft/
-SRC_LIST	=	philo.c						\
-				$(D_LIBFT)ft_memset.c		\
+SRC_LIST	=	philo.c							\
+				$(D_LIBFT)ft_memset.c			\
+				$(D_LIBFT)ft_putstr_fd.c		\
+				$(D_LIBFT)ft_strlen.c			\
+				$(D_LIBFT)ft_atoi.c				\
+				$(D_UTILS)ft_error_disposal.c	\
+				$(D_UTILS)ft_philo_init.c		\
 
 SRCS		=	$(addprefix $(PHIL_DIR), $(SRC_LIST))
 OBJS		=	$(SRCS:.c=.o)
