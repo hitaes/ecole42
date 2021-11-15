@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/09 16:53:41 by pacman            #+#    #+#             */
-/*   Updated: 2021/11/10 17:28:54 by pacman           ###   ########.fr       */
+/*   Created: 2021/11/10 14:04:59 by pacman            #+#    #+#             */
+/*   Updated: 2021/11/10 14:05:25 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philo.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	ft_isdigit(char c)
 {
-	if (!s)
-		return ;
-	write(fd, s, ft_strlen(s));
+	return (c >= '0' && c <= '9');
 }

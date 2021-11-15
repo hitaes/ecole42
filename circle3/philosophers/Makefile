@@ -36,8 +36,10 @@ SRC_LIST	=	philo.c							\
 				$(D_LIBFT)ft_putstr_fd.c		\
 				$(D_LIBFT)ft_strlen.c			\
 				$(D_LIBFT)ft_atoi.c				\
+				$(D_LIBFT)ft_isdigit.c			\
 				$(D_UTILS)ft_error_disposal.c	\
-				$(D_UTILS)ft_philo_init.c		\
+				$(D_UTILS)ft_init.c				\
+				$(D_UTILS)ft_parser.c			\
 
 SRCS		=	$(addprefix $(PHIL_DIR), $(SRC_LIST))
 OBJS		=	$(SRCS:.c=.o)
