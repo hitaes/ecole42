@@ -21,6 +21,8 @@
 		"cstddef": "cpp",
 		"ios": "cpp",
 		"limits": "cpp",
-		"type_traits": "cpp"
+		"type_traits": "cpp",
+		"philo.h": "c",
+		"time.h": "c"
 	}
 }

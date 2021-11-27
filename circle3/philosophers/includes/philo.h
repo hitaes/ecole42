@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 16:14:11 by pac-man           #+#    #+#             */
-/*   Updated: 2021/11/11 00:51:28 by pacman           ###   ########.fr       */
+/*   Updated: 2021/11/27 22:00:05 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <pthread.h>
+# include <sys/time.h>
 
 // =============================================================================
 // INDEX
@@ -33,22 +34,42 @@
 // =============================================================================
 
 # define ERROR_PARSING			100
-# define ERROR_WRONG_ARGS		99
+# define ERROR_THREAD			99
 # define ERROR_INIT_FAILURE		98
+
+struct	s_op;
 
 typedef enum e_state
 {
 	_THINKING,
 	_EATING,
-	_SLEEPING
+	_SLEEPING,
+	_DIED,
+	_DONE,
 }			t_state;
+
+typedef struct s_philo
+{
+	int				id;
+	int				eat_count;
+	int				left_fork_id;
+	int				right_fork_id;
+	long long		last_meal;
+	t_state			state;
+	struct s_op		*op;
+}			t_philo;
 
 typedef struct s_op
 {
 	int				d_settings[5];
-	t_state			*states;
-	pthread_mutex_t	mutex_lock;
-	pthread_cond_t	*cond_vars;
+	int				f_philo;
+	int				is_dead;
+	long long		st;
+	t_philo			*philos;
+	pthread_mutex_t	nb_aia;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	death_checker;
+	pthread_mutex_t	print;
 }					t_op;
 
 // =============================================================================
@@ -65,8 +86,14 @@ int			ft_isdigit(char c);
 // UTILS
 // =============================================================================
 
-void		ft_error_disposal(int err_num);
-int			ft_init(t_op *op, int argc, char **argv);
-int			ft_parser(int argc, char **argv);
+void		ft_error_disposal(char *s);
+int			ft_parser(t_op *op, int argc, char **argv);
+int			ft_init(t_op *op);
+long long	ft_get_time(void);
+void		pick_up(t_philo *p);
+void		put_down(t_philo *p);
+void		eating(t_philo *p);
+void		sleeping_then_thinking(t_philo *p);
+void		print_state(t_philo *p, char *s);
 
 #endif

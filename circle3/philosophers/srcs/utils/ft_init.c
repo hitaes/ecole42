@@ -6,34 +6,58 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 17:12:27 by pacman            #+#    #+#             */
-/*   Updated: 2021/11/11 00:48:25 by pacman           ###   ########.fr       */
+/*   Updated: 2021/11/27 21:39:47 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philo.h"
 
-int	ft_init(t_op *op, int argc, char **argv)
+int	mutex_init(t_op *op)
 {
 	int	i;
 
 	i = -1;
-	while (++i < argc - 1)
-		op->d_settings[i] = ft_atoi(argv[i + 1]);
-	if (op->d_settings[NB_PHILOS] < 2 || op->d_settings[TIME_DIE] < 0
-		|| op->d_settings[TIME_EAT] < 0 || op->d_settings[TIME_NAP] < 0
-		|| op->d_settings[NB_SERVINGS] < 0)
+	while (++i < op->d_settings[NB_PHILOS])
+	{
+		if (pthread_mutex_init(&(op->forks[i]), NULL))
+			return (1);
+	}
+	if (pthread_mutex_init(&op->print, NULL)
+		|| pthread_mutex_init(&op->death_checker, NULL)
+		|| pthread_mutex_init(&op->nb_aia, NULL))
 		return (1);
-	op->states = (t_state *)malloc(sizeof(t_state) * op->d_settings[NB_PHILOS]);
-	op->cond_vars = (pthread_cond_t *)malloc(sizeof(pthread_cond_t)
-			* op->d_settings[NB_PHILOS]);
-	if (!op->states || !op->cond_vars)
-		return (1);
+	pthread_mutex_lock(&(op->death_checker));
+	return (0);
+}
+
+void	philo_init(t_op *op)
+{
+	int	i;
+
 	i = -1;
 	while (++i < op->d_settings[NB_PHILOS])
 	{
-		op->states[i] = _THINKING;
-		pthread_cond_init(&(op->cond_vars[i]), NULL);
+		op->philos[i].id = i;
+		op->philos[i].eat_count = 0;
+		op->philos[i].state = _THINKING;
+		op->philos[i].left_fork_id = i;
+		op->philos[i].right_fork_id = (i + 1) % op->d_settings[NB_PHILOS];
+		op->philos[i].last_meal = op->st;
+		op->philos[i].op = op;
 	}
-	pthread_mutex_init(&(op->mutex_lock), NULL);
+}
+
+int	ft_init(t_op *op)
+{
+	int	i;
+
+	i = -1;
+	op->philos = (t_philo *)malloc
+		(op->d_settings[NB_PHILOS] * sizeof(*(op->philos)));
+	op->forks = (pthread_mutex_t *)malloc
+		(op->d_settings[NB_PHILOS] * sizeof(pthread_mutex_t));
+	if (!op->philos || !op->forks || mutex_init(op))
+		return (1);
+	philo_init(op);
 	return (0);
 }

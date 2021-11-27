@@ -40,6 +40,8 @@ SRC_LIST	=	philo.c							\
 				$(D_UTILS)ft_error_disposal.c	\
 				$(D_UTILS)ft_init.c				\
 				$(D_UTILS)ft_parser.c			\
+				$(D_UTILS)ft_get_time.c			\
+				$(D_UTILS)ft_philo_utils.c	\
 
 SRCS		=	$(addprefix $(PHIL_DIR), $(SRC_LIST))
 OBJS		=	$(SRCS:.c=.o)
@@ -68,7 +70,7 @@ all			:	$(NAME)
 .PHONY		:	clean
 clean		:
 				@echo $(YELLOW) "Cleaning object files..." $(EOC)
-				@$(RM) $(OBJ)
+				@$(RM) $(OBJS)
 				@echo $(RED) "Object files are cleaned!\n" $(EOC)
 
 .PHONY		:	fclean

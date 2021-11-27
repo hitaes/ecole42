@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error_disposal.c                                :+:      :+:    :+:   */
+/*   ft_get_time.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/09 16:48:07 by pacman            #+#    #+#             */
-/*   Updated: 2021/11/27 21:59:34 by pacman           ###   ########.fr       */
+/*   Created: 2021/11/17 20:18:08 by pacman            #+#    #+#             */
+/*   Updated: 2021/11/27 15:57:57 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philo.h"
 
-void	ft_error_disposal(char *s)
+long long	ft_get_time(void)
 {
-	ft_putstr_fd(s, STDERR_FILENO);
+	static struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return ((tv.tv_sec * (long long)1000) + (tv.tv_usec / 1000));
 }

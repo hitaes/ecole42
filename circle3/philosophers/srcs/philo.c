@@ -6,97 +6,115 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 16:39:22 by pacman            #+#    #+#             */
-/*   Updated: 2021/11/11 00:56:33 by pacman           ###   ########.fr       */
+/*   Updated: 2021/11/27 22:00:28 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int	left_of(t_op *op, int i)
+void	clear_op(t_op *op, int con)
 {
-	return ((i + op->d_settings[NB_PHILOS] - 1) % op->d_settings[NB_PHILOS]);
-}
+	int	i;
 
-int	right_of(t_op *op, int i)
-{
-	return ((i + 1) % op->d_settings[NB_PHILOS]);
-}
-
-void	think(t_op *op, int id)
-{
-	printf("%d: Now, I'm thinking\n",  id);
-	usleep(op->d_settings[TIME_NAP] * 10000);
-}
-
-void	eat(t_op *op, int id)
-{
-	printf("%d: Now, I'm eating\n",  id);
-	usleep(op->d_settings[TIME_EAT] * 10000);
-}
-
-void	test(t_op *op, int i)
-{
-	if (op->states[i] == _SLEEPING && op->states[i] != _EATING && op->states[i] != _EATING)
+	i = -1;
+	if (con == 2)
 	{
-		op->states[i] = _EATING;
-		pthread_cond_signal(&(op->cond_vars[i]));
+		while (++i < op->d_settings[NB_PHILOS])
+		{
+			pthread_mutex_destroy(op->philos[i]);
+			pthread_mutex_destroy(&(op->forks[i]));
+		}
+	}
+	if (op->philos)
+	{
+		free(op->philos);
+		op->philos = 0;
+	}
+	if (op->forks)
+	{
+		free(op->forks);
+		op->forks = 0;
 	}
 }
 
-void	pickup(t_op *op, int i)
+void	*philosopher(void *philo)
 {
-	pthread_mutex_lock(&(op->mutex_lock));
-	op->states[i] = _SLEEPING;
-	while (op->states[i] != _EATING)
+	t_philo	*p;
+
+	p = (t_philo *)philo;
+	if (!(p->id % 2))
+		usleep(1000);
+	while (p->state <= _SLEEPING)
 	{
-		pthread_cond_wait(&(op->cond_vars[i]), &(op->mutex_lock));
+		pick_up(p);
+		eating(p);
+		put_down(p);
+		sleeping_then_thinking(p);
 	}
-	pthread_mutex_unlock(&(op->mutex_lock));
+	return (NULL);
 }
 
-void	putdown(t_op *op, int i)
+	// ✅출력을 뮤텍스로 묶기
+	// ✅detach
+	// ✅교착상태 해결 하는 부분이 필요하다.
+	// ✅ timestamp는 시간 마다 찍는거
+	// 끝나는 케이스 eat count 챙기기
+	// 끝나는 케이스 죽는 케이스 트레킹하기
+	// 종료시 free해주기
+	// 0으로 입력되는 이가 무엇
+void	*monitor(void *philo)
 {
-	pthread_mutex_lock(&(op->mutex_lock));
+	t_philo		*p;
+	long long	ct;
 
-	op->states[i] = _THINKING;
-	test(op, left_of(op, i));
-	test(op, right_of(op, i));
-
-	pthread_mutex_unlock(&(op->mutex_lock));
+	p = (t_philo *)philo;
+	while (p->state <= _SLEEPING && !p->op->is_dead)
+	{
+		ct = ft_get_time() - p->last_meal;
+		if (ct > p->op->d_settings[TIME_DIE])
+		{
+			p->state = _DIED;
+			print_state(p, "died");
+			pthread_mutex_unlock(&p->op->death_checker);
+			break ;
+		}
+	}
+	return (NULL);
 }
 
-void	*philosopher(t_op *op, void *param)
+int	thread_start(t_op *op)
 {
-	int	id;
+	int			i;
+	pthread_t	tid;
 
-	id = *((int *)param);
-	while (1)
+	i = -1;
+	while (++i < op->d_settings[NB_PHILOS])
 	{
-		think(op, id);
-		pickup(op, id);
-		eat(op, id);
-		putdown(op, id);
+		if (pthread_create(&(tid), NULL, philosopher, &(op->philos[i]))
+			|| pthread_detach(tid))
+			return (1);
+		if (pthread_create(&(tid), NULL, monitor, &(op->philos[i]))
+			|| pthread_detach(tid))
+			return (1);
 	}
+	return (0);
 }
 
 int	main(int argc, char **argv)
 {
 	t_op		op;
-	pthread_t	tid;
 	int			i;
 
 	i = -1;
 	ft_memset(&op, 0, sizeof(t_op));
-	if (ft_parser(argc, argv))
-		ft_error_disposal(ERROR_PARSING);
-	else if (argc != 5 && argc != 6)
-		ft_error_disposal(ERROR_WRONG_ARGS);
-	else if (ft_init(&op, argc, argv))
-		ft_error_disposal(ERROR_INIT_FAILURE);
-	while (++i < op.d_settings[NB_PHILOS])
-		pthread_create(&tid, NULL, philosopher, (void *)&i);
-	i = -1;
-	while (++i < op.d_settings[NB_PHILOS])
-		pthread_join(tid, NULL);
+	if (ft_parser(&op, argc, argv))
+		ft_error_disposal("ERROR_PARSING");
+	else if (ft_init(&op))
+		ft_error_disposal("ERROR_INIT_FAILURE");
+	else if (thread_start(&op))
+		ft_error_disposal("ERROR_THREAD");
+	pthread_mutex_lock(&(op.death_checker));
+	pthread_mutex_unlock(&(op.death_checker));
+	clear_op(&op, 2);
 	return (0);
 }
