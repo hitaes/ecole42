@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 17:12:27 by pacman            #+#    #+#             */
-/*   Updated: 2021/11/29 20:08:40 by pacman           ###   ########.fr       */
+/*   Updated: 2021/11/29 23:40:03 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,34 +30,33 @@ int	mutex_init(t_op *op)
 	return (0);
 }
 
-void	philo_init(t_op *op)
+int	philo_init(t_op *op, t_philo **philos)
 {
 	int	i;
 
 	i = -1;
+	*philos = (t_philo *)malloc
+		(op->d_settings[NB_PHILOS] * sizeof(t_philo));
+	if (!philos)
+		return (1);
 	while (++i < op->d_settings[NB_PHILOS])
 	{
-		op->philos[i].id = i;
-		op->philos[i].eat_count = 0;
-		op->philos[i].state = _THINKING;
-		op->philos[i].left_fork_id = i;
-		op->philos[i].right_fork_id = (i + 1) % op->d_settings[NB_PHILOS];
-		op->philos[i].last_meal = op->st;
-		op->philos[i].op = op;
+		(*philos)[i].id = i;
+		(*philos)[i].eat_count = 0;
+		(*philos)[i].state = _THINKING;
+		(*philos)[i].left_fork_id = i;
+		(*philos)[i].right_fork_id = (i + 1) % op->d_settings[NB_PHILOS];
+		(*philos)[i].last_meal = op->st;
+		(*philos)[i].op = op;
 	}
+	return (0);
 }
 
-int	ft_init(t_op *op)
+int	ft_init(t_op *op, t_philo **philos)
 {
-	int	i;
-
-	i = -1;
-	op->philos = (t_philo *)malloc
-		(op->d_settings[NB_PHILOS] * sizeof(*(op->philos)));
 	op->forks = (pthread_mutex_t *)malloc
 		(op->d_settings[NB_PHILOS] * sizeof(pthread_mutex_t));
-	if (!op->philos || !op->forks || mutex_init(op))
+	if (!op->forks || mutex_init(op) || philo_init(op, philos))
 		return (1);
-	philo_init(op);
 	return (0);
 }

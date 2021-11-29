@@ -6,32 +6,32 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 16:39:22 by pacman            #+#    #+#             */
-/*   Updated: 2021/11/29 22:05:23 by pacman           ###   ########.fr       */
+/*   Updated: 2021/11/30 00:12:38 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	clear_op(t_op *op)
-{
-	int	i;
+// void	clear_op(t_op *op)
+// {
+// 	int	i;
 
-	i = -1;
-	while (++i < op->d_settings[NB_PHILOS])
-	{
-		pthread_mutex_destroy(&(op->forks[i]));
-	}
-	if (op->philos)
-	{
-		free(op->philos);
-		op->philos = 0;
-	}
-	if (op->forks)
-	{
-		free(op->forks);
-		op->forks = 0;
-	}
-}
+// 	i = -1;
+// 	while (++i < op->d_settings[NB_PHILOS])
+// 	{
+// 		pthread_mutex_destroy(&(op->forks[i]));
+// 	}
+// 	if (op->philos)
+// 	{
+// 		free(op->philos);
+// 		op->philos = 0;
+// 	}
+// 	if (op->forks)
+// 	{
+// 		free(op->forks);
+// 		op->forks = 0;
+// 	}
+// }
 
 void	*philosopher(void *philo)
 {
@@ -70,18 +70,18 @@ void	*monitor(void *philo)
 	return (NULL);
 }
 
-int	thread_start(t_op *op)
+int	thread_start(t_philo *philos)
 {
 	int			i;
 	pthread_t	tid;
 
 	i = -1;
-	while (++i < op->d_settings[NB_PHILOS])
+	while (++i < philos->op->d_settings[NB_PHILOS])
 	{
-		if (pthread_create(&(tid), NULL, philosopher, &(op->philos[i]))
+		if (pthread_create(&(tid), NULL, philosopher, &(philos[i]))
 			|| pthread_detach(tid))
 			return (1);
-		if (pthread_create(&(tid), NULL, monitor, &(op->philos[i]))
+		if (pthread_create(&(tid), NULL, monitor, &(philos[i]))
 			|| pthread_detach(tid))
 			return (1);
 	}
@@ -91,15 +91,15 @@ int	thread_start(t_op *op)
 int	main(int argc, char **argv)
 {
 	t_op		op;
-	int			i;
+	t_philo		*philos;
 
-	i = -1;
 	ft_memset(&op, 0, sizeof(t_op));
+	philos = 0;
 	if (ft_parser(&op, argc, argv))
 		ft_error_disposal("ERROR_PARSING");
-	else if (ft_init(&op))
+	else if (ft_init(&op, &philos))
 		ft_error_disposal("ERROR_INIT_FAILURE");
-	else if (thread_start(&op))
+	else if (thread_start(philos))
 		ft_error_disposal("ERROR_THREAD");
 	pthread_mutex_lock(&(op.death_checker));
 	pthread_mutex_unlock(&(op.death_checker));

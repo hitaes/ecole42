@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 16:14:11 by pac-man           #+#    #+#             */
-/*   Updated: 2021/11/29 22:03:18 by pacman           ###   ########.fr       */
+/*   Updated: 2021/11/29 23:38:36 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,18 @@ typedef enum e_state
 	_DONE,
 }			t_state;
 
+typedef struct s_op
+{
+	int				d_settings[5];
+	int				f_philo;
+	int				is_dead;
+	long long		st;
+	pthread_mutex_t	nb_aia;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	death_checker;
+	pthread_mutex_t	print;
+}					t_op;
+
 typedef struct s_philo
 {
 	int				id;
@@ -56,21 +68,8 @@ typedef struct s_philo
 	int				right_fork_id;
 	long long		last_meal;
 	t_state			state;
-	struct s_op		*op;
+	t_op			*op;
 }			t_philo;
-
-typedef struct s_op
-{
-	int				d_settings[5];
-	int				f_philo;
-	int				is_dead;
-	long long		st;
-	t_philo			*philos;
-	pthread_mutex_t	nb_aia;
-	pthread_mutex_t	*forks;
-	pthread_mutex_t	death_checker;
-	pthread_mutex_t	print;
-}					t_op;
 
 // =============================================================================
 // LIBFT
@@ -88,7 +87,7 @@ int			ft_isdigit(char c);
 
 void		ft_error_disposal(char *s);
 int			ft_parser(t_op *op, int argc, char **argv);
-int			ft_init(t_op *op);
+int			ft_init(t_op *op, t_philo **philos);
 long long	ft_get_time(void);
 void		pick_up(t_philo *p);
 void		put_down(t_philo *p);

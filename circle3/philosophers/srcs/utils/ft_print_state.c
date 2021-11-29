@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 22:01:15 by pacman            #+#    #+#             */
-/*   Updated: 2021/11/29 22:01:32 by pacman           ###   ########.fr       */
+/*   Updated: 2021/11/30 00:10:08 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,5 @@ void	print_state(t_philo *p, char *s)
 		return ;
 	}
 	printf("%llu %d %s\n", ft_get_time() - p->op->st, p->id + 1, s);
-	if (p->state == _DIED)
-		p->op->is_dead++;
 	pthread_mutex_unlock(&p->op->print);
 }
