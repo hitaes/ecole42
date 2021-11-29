@@ -41,7 +41,8 @@ SRC_LIST	=	philo.c							\
 				$(D_UTILS)ft_init.c				\
 				$(D_UTILS)ft_parser.c			\
 				$(D_UTILS)ft_get_time.c			\
-				$(D_UTILS)ft_philo_utils.c	\
+				$(D_UTILS)ft_philo_utils.c		\
+				${D_UTILS}ft_print_state.c		\
 
 SRCS		=	$(addprefix $(PHIL_DIR), $(SRC_LIST))
 OBJS		=	$(SRCS:.c=.o)

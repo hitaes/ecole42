@@ -6,24 +6,20 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 16:39:22 by pacman            #+#    #+#             */
-/*   Updated: 2021/11/27 22:00:28 by pacman           ###   ########.fr       */
+/*   Updated: 2021/11/29 22:05:23 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	clear_op(t_op *op, int con)
+void	clear_op(t_op *op)
 {
 	int	i;
 
 	i = -1;
-	if (con == 2)
+	while (++i < op->d_settings[NB_PHILOS])
 	{
-		while (++i < op->d_settings[NB_PHILOS])
-		{
-			pthread_mutex_destroy(op->philos[i]);
-			pthread_mutex_destroy(&(op->forks[i]));
-		}
+		pthread_mutex_destroy(&(op->forks[i]));
 	}
 	if (op->philos)
 	{
@@ -43,7 +39,7 @@ void	*philosopher(void *philo)
 
 	p = (t_philo *)philo;
 	if (!(p->id % 2))
-		usleep(1000);
+		take_your_time(p, TIME_EAT);
 	while (p->state <= _SLEEPING)
 	{
 		pick_up(p);
@@ -54,14 +50,6 @@ void	*philosopher(void *philo)
 	return (NULL);
 }
 
-	// ✅출력을 뮤텍스로 묶기
-	// ✅detach
-	// ✅교착상태 해결 하는 부분이 필요하다.
-	// ✅ timestamp는 시간 마다 찍는거
-	// 끝나는 케이스 eat count 챙기기
-	// 끝나는 케이스 죽는 케이스 트레킹하기
-	// 종료시 free해주기
-	// 0으로 입력되는 이가 무엇
 void	*monitor(void *philo)
 {
 	t_philo		*p;
@@ -115,6 +103,6 @@ int	main(int argc, char **argv)
 		ft_error_disposal("ERROR_THREAD");
 	pthread_mutex_lock(&(op.death_checker));
 	pthread_mutex_unlock(&(op.death_checker));
-	clear_op(&op, 2);
+	// clear_op(&op);
 	return (0);
 }
