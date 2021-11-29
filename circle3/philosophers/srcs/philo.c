@@ -6,32 +6,33 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 16:39:22 by pacman            #+#    #+#             */
-/*   Updated: 2021/11/30 00:12:38 by pacman           ###   ########.fr       */
+/*   Updated: 2021/11/30 00:46:00 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-// void	clear_op(t_op *op)
-// {
-// 	int	i;
+void	clear_op(t_op *op, t_philo *philos)
+{
+	int	i;
 
-// 	i = -1;
-// 	while (++i < op->d_settings[NB_PHILOS])
-// 	{
-// 		pthread_mutex_destroy(&(op->forks[i]));
-// 	}
-// 	if (op->philos)
-// 	{
-// 		free(op->philos);
-// 		op->philos = 0;
-// 	}
-// 	if (op->forks)
-// 	{
-// 		free(op->forks);
-// 		op->forks = 0;
-// 	}
-// }
+	i = -1;
+	while (++i < op->d_settings[NB_PHILOS])
+		pthread_mutex_destroy(&(op->forks[i]));
+	pthread_mutex_destroy(&(op->nb_aia));
+	pthread_mutex_destroy(&(op->death_checker));
+	pthread_mutex_destroy(&(op->print));
+	if (op->forks)
+	{
+		free(op->forks);
+		op->forks = 0;
+	}
+	if (philos)
+	{
+		free(philos);
+		philos = 0;
+	}
+}
 
 void	*philosopher(void *philo)
 {
@@ -101,8 +102,11 @@ int	main(int argc, char **argv)
 		ft_error_disposal("ERROR_INIT_FAILURE");
 	else if (thread_start(philos))
 		ft_error_disposal("ERROR_THREAD");
-	pthread_mutex_lock(&(op.death_checker));
-	pthread_mutex_unlock(&(op.death_checker));
-	// clear_op(&op);
+	else
+	{
+		pthread_mutex_lock(&(op.death_checker));
+		pthread_mutex_unlock(&(op.death_checker));
+	}
+	clear_op(&op, philos);
 	return (0);
 }
