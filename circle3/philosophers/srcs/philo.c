@@ -6,26 +6,26 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 16:39:22 by pacman            #+#    #+#             */
-/*   Updated: 2021/11/30 00:46:00 by pacman           ###   ########.fr       */
+/*   Updated: 2021/11/30 12:29:41 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	clear_op(t_op *op, t_philo *philos)
+void	clear(t_philo *philos)
 {
 	int	i;
 
 	i = -1;
-	while (++i < op->d_settings[NB_PHILOS])
-		pthread_mutex_destroy(&(op->forks[i]));
-	pthread_mutex_destroy(&(op->nb_aia));
-	pthread_mutex_destroy(&(op->death_checker));
-	pthread_mutex_destroy(&(op->print));
-	if (op->forks)
+	while (++i < philos->op->d_settings[NB_PHILOS])
+		pthread_mutex_destroy(&(philos->op->forks[i]));
+	pthread_mutex_destroy(&(philos->op->nb_aia));
+	pthread_mutex_destroy(&(philos->op->death_checker));
+	pthread_mutex_destroy(&(philos->op->print));
+	if (philos->op->forks)
 	{
-		free(op->forks);
-		op->forks = 0;
+		free(philos->op->forks);
+		philos->op->forks = 0;
 	}
 	if (philos)
 	{
@@ -97,16 +97,16 @@ int	main(int argc, char **argv)
 	ft_memset(&op, 0, sizeof(t_op));
 	philos = 0;
 	if (ft_parser(&op, argc, argv))
-		ft_error_disposal("ERROR_PARSING");
+		ft_error_disposal(ERROR_PARSING, philos);
 	else if (ft_init(&op, &philos))
-		ft_error_disposal("ERROR_INIT_FAILURE");
+		ft_error_disposal(ERROR_INIT_FAILURE, philos);
 	else if (thread_start(philos))
-		ft_error_disposal("ERROR_THREAD");
+		ft_error_disposal(ERROR_THREAD, philos);
 	else
 	{
 		pthread_mutex_lock(&(op.death_checker));
 		pthread_mutex_unlock(&(op.death_checker));
+		clear(philos);
 	}
-	clear_op(&op, philos);
 	return (0);
 }

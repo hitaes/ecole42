@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 16:14:11 by pac-man           #+#    #+#             */
-/*   Updated: 2021/11/30 00:44:51 by pacman           ###   ########.fr       */
+/*   Updated: 2021/11/30 12:29:56 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 // =============================================================================
 
 # define ERROR_PARSING			100
-# define ERROR_THREAD			99
-# define ERROR_INIT_FAILURE		98
+# define ERROR_INIT_FAILURE		99
+# define ERROR_THREAD			98
 
 struct	s_op;
 
@@ -85,7 +85,7 @@ int			ft_isdigit(char c);
 // UTILS
 // =============================================================================
 
-void		ft_error_disposal(char *s);
+void		ft_error_disposal(int error, t_philo *philos);
 int			ft_parser(t_op *op, int argc, char **argv);
 int			ft_init(t_op *op, t_philo **philos);
 long long	ft_get_time(void);
@@ -95,5 +95,6 @@ void		eating(t_philo *p);
 void		sleeping_then_thinking(t_philo *p);
 void		print_state(t_philo *p, char *s);
 void		take_your_time(t_philo *p, int opt);
+void		clear(t_philo *philos);
 
 #endif
