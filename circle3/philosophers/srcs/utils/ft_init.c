@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 17:12:27 by pacman            #+#    #+#             */
-/*   Updated: 2021/11/30 00:44:01 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/01 00:45:09 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,18 @@ int	philo_init(t_op *op, t_philo **philos)
 	return (0);
 }
 
-int	ft_init(t_op *op, t_philo **philos)
+int	fork_init(t_op *op)
 {
 	op->forks = (pthread_mutex_t *)malloc
 		(op->d_settings[NB_PHILOS] * sizeof(pthread_mutex_t));
-	if (mutex_init(op) || !op->forks || philo_init(op, philos))
+	if (!(op->forks))
+		return (1);
+	return (0);
+}
+
+int	ft_init(t_op *op, t_philo **philos)
+{
+	if (fork_init(op) || philo_init(op, philos) || mutex_init(op))
 		return (1);
 	return (0);
 }

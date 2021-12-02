@@ -6,30 +6,22 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:17:14 by pacman            #+#    #+#             */
-/*   Updated: 2021/11/29 22:05:36 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/02 03:29:15 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philo.h"
 
-void	take_your_time(t_philo *p, int opt)
-{
-	if (opt )
-	while (ft_get_time() - p->last_meal < p->op->d_settings[opt])
-		usleep(p->op->d_settings[NB_PHILOS] * 10);
-}
-
 void	pick_up(t_philo *p)
 {
 	pthread_mutex_lock(&(p->op->forks[p->left_fork_id]));
-	print_state(p, "has taken a fork");
+	print_state(p, "has picked up a fork");
 	pthread_mutex_lock(&(p->op->forks[p->right_fork_id]));
-	print_state(p, "has taken a fork");
+	print_state(p, "has picked up a fork");
 }
 
 void	put_down(t_philo *p)
 {
-	take_your_time(p, TIME_EAT);
 	pthread_mutex_unlock(&(p->op->forks[p->left_fork_id]));
 	pthread_mutex_unlock(&(p->op->forks[p->right_fork_id]));
 }
@@ -38,7 +30,7 @@ void	eating(t_philo *p)
 {
 	p->state = _EATING;
 	p->eat_count++;
-	print_state(p, "is eating");
+	print_state(p, "is eating😙");
 	p->last_meal = ft_get_time();
 	if (p->eat_count == p->op->d_settings[NB_SERVINGS])
 	{
@@ -47,8 +39,8 @@ void	eating(t_philo *p)
 		p->op->f_philo++;
 		pthread_mutex_unlock(&(p->op->nb_aia));
 	}
-	if (p->op->f_philo == p->op->d_settings[NB_PHILOS])
-		pthread_mutex_unlock(&(p->op->death_checker));
+	while (ft_get_time() - p->last_meal < p->op->d_settings[TIME_EAT])
+		usleep(p->op->d_settings[NB_PHILOS]);
 }
 
 void	sleeping_then_thinking(t_philo *p)
@@ -57,7 +49,7 @@ void	sleeping_then_thinking(t_philo *p)
 	print_state(p, "is sleeping");
 	while (ft_get_time() - p->last_meal
 		< p->op->d_settings[TIME_NAP] + p->op->d_settings[TIME_EAT])
-		usleep(50);
+		usleep(p->op->d_settings[NB_PHILOS] * 10);
 	p->state = _THINKING;
 	print_state(p, "is thinking");
 }

@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 16:39:22 by pacman            #+#    #+#             */
-/*   Updated: 2021/11/30 12:29:41 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/02 12:15:33 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	*philosopher(void *philo)
 
 	p = (t_philo *)philo;
 	if (!(p->id % 2))
-		take_your_time(p, TIME_EAT);
+		usleep(100);
 	while (p->state <= _SLEEPING)
 	{
 		pick_up(p);
@@ -54,20 +54,27 @@ void	*philosopher(void *philo)
 void	*monitor(void *philo)
 {
 	t_philo		*p;
-	long long	ct;
+	int			i;
 
+	usleep(1000);
 	p = (t_philo *)philo;
-	while (p->state <= _SLEEPING && !p->op->is_dead)
+	i = -1;
+	while (++i < p->op->d_settings[NB_PHILOS])
 	{
-		ct = ft_get_time() - p->last_meal;
-		if (ct > p->op->d_settings[TIME_DIE])
+		if (p[i].state <= _SLEEPING && !p[i].op->is_dead)
 		{
-			p->state = _DIED;
-			print_state(p, "died");
-			pthread_mutex_unlock(&p->op->death_checker);
-			break ;
+			if (ft_get_time() - p->last_meal > p[i].op->d_settings[TIME_DIE])
+			{
+				p[i].state = _DIED;
+				print_state(&(p[i]), "died");
+				pthread_mutex_unlock(&(p[i].op->death_checker));
+				return (&(p[i]));
+			}
+			i++;
 		}
 	}
+	if (p->op->f_philo == p->op->d_settings[NB_PHILOS])
+		return (&(p[i]));
 	return (NULL);
 }
 
@@ -80,9 +87,6 @@ int	thread_start(t_philo *philos)
 	while (++i < philos->op->d_settings[NB_PHILOS])
 	{
 		if (pthread_create(&(tid), NULL, philosopher, &(philos[i]))
-			|| pthread_detach(tid))
-			return (1);
-		if (pthread_create(&(tid), NULL, monitor, &(philos[i]))
 			|| pthread_detach(tid))
 			return (1);
 	}
@@ -104,6 +108,8 @@ int	main(int argc, char **argv)
 		ft_error_disposal(ERROR_THREAD, philos);
 	else
 	{
+		while (!monitor(philos))
+			;
 		pthread_mutex_lock(&(op.death_checker));
 		pthread_mutex_unlock(&(op.death_checker));
 		clear(philos);
