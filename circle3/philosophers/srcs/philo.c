@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 16:39:22 by pacman            #+#    #+#             */
-/*   Updated: 2021/12/02 21:49:25 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/03 00:00:52 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,12 @@ void	*philosopher(void *philo)
 
 	p = (t_philo *)philo;
 	if (!(p->id % 2))
-		usleep(p->op->d_settings[NB_PHILOS] * 10);
+	{
+		if (p->op->d_settings[NB_PHILOS] <= 4)
+			usleep(100);
+		else 
+			usleep(p->op->d_settings[NB_PHILOS] * 10);
+	}
 	while (p->state <= _SLEEPING)
 	{
 		pick_up(p);
