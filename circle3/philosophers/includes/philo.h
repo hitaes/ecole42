@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 16:14:11 by pac-man           #+#    #+#             */
-/*   Updated: 2021/12/01 14:29:26 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/02 20:20:04 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,11 @@ long long	ft_get_time(void);
 void		pick_up(t_philo *p);
 void		put_down(t_philo *p);
 void		eating(t_philo *p);
-void		sleeping_then_thinking(t_philo *p);
 void		print_state(t_philo *p, char *s);
 void		take_your_time(t_philo *p, int opt);
 void		clear(t_philo *philos);
+// void		sleeping_then_thinking(t_philo *p);
+void		sleeping(t_philo *p);
+void		thinking(t_philo *p);
 
 #endif

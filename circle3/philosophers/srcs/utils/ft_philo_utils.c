@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:17:14 by pacman            #+#    #+#             */
-/*   Updated: 2021/12/02 12:39:25 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/02 20:31:18 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,17 @@ void	eating(t_philo *p)
 		usleep(p->op->d_settings[NB_PHILOS]);
 }
 
-void	sleeping_then_thinking(t_philo *p)
+void	sleeping(t_philo *p)
 {
 	p->state = _SLEEPING;
 	print_state(p, "is sleeping");
 	while (ft_get_time() - p->last_meal
 		< p->op->d_settings[TIME_NAP] + p->op->d_settings[TIME_EAT])
 		usleep(p->op->d_settings[NB_PHILOS] * 10);
+}
+
+void	thinking(t_philo *p)
+{
 	p->state = _THINKING;
 	print_state(p, "is thinking");
 }

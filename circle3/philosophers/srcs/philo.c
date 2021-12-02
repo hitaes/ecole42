@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 16:39:22 by pacman            #+#    #+#             */
-/*   Updated: 2021/12/02 12:15:33 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/02 20:26:11 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	*philosopher(void *philo)
 		pick_up(p);
 		eating(p);
 		put_down(p);
-		sleeping_then_thinking(p);
+		sleeping(p);
+		thinking(p);
 	}
 	return (NULL);
 }
@@ -85,11 +86,9 @@ int	thread_start(t_philo *philos)
 
 	i = -1;
 	while (++i < philos->op->d_settings[NB_PHILOS])
-	{
 		if (pthread_create(&(tid), NULL, philosopher, &(philos[i]))
 			|| pthread_detach(tid))
 			return (1);
-	}
 	return (0);
 }
 
