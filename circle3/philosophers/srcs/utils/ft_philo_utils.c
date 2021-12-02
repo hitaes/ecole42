@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:17:14 by pacman            #+#    #+#             */
-/*   Updated: 2021/12/02 03:29:15 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/02 12:39:25 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	pick_up(t_philo *p)
 {
 	pthread_mutex_lock(&(p->op->forks[p->left_fork_id]));
-	print_state(p, "has picked up a fork");
+	print_state(p, "has taken a fork");
 	pthread_mutex_lock(&(p->op->forks[p->right_fork_id]));
-	print_state(p, "has picked up a fork");
+	print_state(p, "has taken a fork");
 }
 
 void	put_down(t_philo *p)
@@ -30,7 +30,7 @@ void	eating(t_philo *p)
 {
 	p->state = _EATING;
 	p->eat_count++;
-	print_state(p, "is eating😙");
+	print_state(p, "is eating");
 	p->last_meal = ft_get_time();
 	if (p->eat_count == p->op->d_settings[NB_SERVINGS])
 	{
