@@ -23,6 +23,7 @@
 		"limits": "cpp",
 		"type_traits": "cpp",
 		"philo.h": "c",
-		"time.h": "c"
+		"time.h": "c",
+		"unistd.h": "c"
 	}
 }
