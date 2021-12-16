@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 00:57:56 by pac-man           #+#    #+#             */
-/*   Updated: 2021/10/20 18:06:36 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/12/16 11:01:27 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ typedef struct s_arg
 {
 	int		count;
 	char	**path;
+	char	**command;
+	int		pipe[2];
+	int		pipe_last[2];
 }			t_arg;
 
 // =============================================================================
@@ -55,9 +58,8 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 // =============================================================================
 
 size_t	char_frequency(char *s, char c);
-void	error_disposal(t_arg *t, int message);
-void	arg_init(t_arg *t, char **envp);
-char	*substr(t_arg *t, char *s, int from, int to);
+void	arg_init(t_arg *t, char **envp, char **argv, int argc);
+char	*substr(char *s, int from, int to);
 void	str_slicer(t_arg *t, char *s);
 
 #endif

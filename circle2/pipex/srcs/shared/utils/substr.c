@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   substr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 17:57:10 by pac-man           #+#    #+#             */
-/*   Updated: 2021/10/20 17:57:57 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/12/16 11:01:04 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/pipex.h"
 
-char	*substr(t_arg *t, char *s, int from, int to)
+char	*substr(char *s, int from, int to)
 {
 	char	*tmp_s;
 	char	*tmp;
@@ -21,7 +21,7 @@ char	*substr(t_arg *t, char *s, int from, int to)
 	tmp_s += from;
 	tmp = (char *)malloc(sizeof(char) * (to - from));
 	if (!tmp)
-		error_disposal(t, MALERROR);
+		ft_putstr_fd("Error : [substr: Malloc Error]\n", STDERR_FILENO);
 	tmp_s[to - from] = 0;
 	tmp = tmp_s;
 	return (tmp);

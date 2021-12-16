@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str_slicer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 17:58:44 by pac-man           #+#    #+#             */
-/*   Updated: 2021/10/20 18:03:15 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/12/16 11:01:23 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	str_slicer(t_arg *t, char *s)
 		{
 			if (s[to] == ':' && i == ++index)
 			{
-				t->path[i] = substr(t, s, from, to);
+				t->path[i] = substr(s, from, to);
 				break ;
 			}
 		}

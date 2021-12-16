@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+         #
+#    By: pacman <pacman@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/20 00:56:50 by pac-man           #+#    #+#              #
-#    Updated: 2021/10/20 17:59:53 by pac-man          ###   ########.fr        #
+#    Updated: 2021/12/16 10:59:27 by pacman           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,6 @@ SHARED_SRC_LIST		=		$(D_LIBFT)ft_strncmp.c				\
 							$(D_LIBFT)ft_strdup.c				\
 							$(D_LIBFT)ft_strlcpy.c				\
 							$(D_UTILS)char_frequency.c			\
-							$(D_UTILS)error_disposal.c			\
 							$(D_UTILS)arg_init.c				\
 							$(D_UTILS)substr.c					\
 							$(D_UTILS)str_slicer.c				\
