@@ -6,11 +6,22 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 17:27:43 by pac-man           #+#    #+#             */
-/*   Updated: 2021/12/16 11:03:42 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/17 01:26:46 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/pipex.h"
+
+void	t_arg_init(t_arg *t)
+{
+	t->command = 0;
+	t->count = 0;
+	t->path = 0;
+	t->pipe[0] = -1;
+	t->pipe[1] = -1;
+	t->pipe_last[0] = -1;
+	t->pipe_last[1] = -1;
+}
 
 void	arg_init(t_arg *t, char **envp, char **argv, int argc)
 {
@@ -19,8 +30,6 @@ void	arg_init(t_arg *t, char **envp, char **argv, int argc)
 	i = 0;
 	while (*envp && ft_strncmp(*envp, "PATH", 4))
 		++envp;
-	// if (!(*envp))
-	// 	ft_putstr_fd("Error : [t->envp: envp Error]\n", STDERR_FILENO);
 	t->count = char_frequency(*envp, ':');
 	t->path = (char **)malloc(sizeof(char *) * t->count + 1);
 	if (t->path == NULL)

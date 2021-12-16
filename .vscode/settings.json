@@ -24,6 +24,7 @@
 		"type_traits": "cpp",
 		"philo.h": "c",
 		"time.h": "c",
-		"unistd.h": "c"
+		"unistd.h": "c",
+		"stdio.h": "c"
 	}
 }

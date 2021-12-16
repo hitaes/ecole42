@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 00:57:56 by pac-man           #+#    #+#             */
-/*   Updated: 2021/12/16 11:01:27 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/17 01:45:23 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdlib.h>
 # include <sys/wait.h>
 # include <stdio.h>
+# include <errno.h>
 
 // =============================================================================
 // STRUCT
@@ -34,12 +35,6 @@ typedef struct s_arg
 	int		pipe[2];
 	int		pipe_last[2];
 }			t_arg;
-
-// =============================================================================
-// ERRORS
-// =============================================================================
-# define MALERROR 0
-# define ENVPATHERROR 1
 
 // =============================================================================
 // LIBFT
@@ -61,5 +56,7 @@ size_t	char_frequency(char *s, char c);
 void	arg_init(t_arg *t, char **envp, char **argv, int argc);
 char	*substr(char *s, int from, int to);
 void	str_slicer(t_arg *t, char *s);
+void	t_arg_init(t_arg *t);
+void	pipe_process(t_arg *t);
 
 #endif
