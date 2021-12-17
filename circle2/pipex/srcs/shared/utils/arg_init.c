@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 17:27:43 by pac-man           #+#    #+#             */
-/*   Updated: 2021/12/17 01:26:46 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/17 12:33:26 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	t_arg_init(t_arg *t)
 	t->command = 0;
 	t->count = 0;
 	t->path = 0;
-	t->pipe[0] = -1;
-	t->pipe[1] = -1;
-	t->pipe_last[0] = -1;
-	t->pipe_last[1] = -1;
+	t->pipe_odd[0] = -1;
+	t->pipe_odd[1] = -1;
+	t->pipe_even[0] = -1;
+	t->pipe_even[1] = -1;
 }
 
 void	arg_init(t_arg *t, char **envp, char **argv, int argc)
