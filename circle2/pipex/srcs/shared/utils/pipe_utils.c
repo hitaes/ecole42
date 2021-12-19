@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 01:20:07 by pacman            #+#    #+#             */
-/*   Updated: 2021/12/17 14:28:55 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/18 22:08:15 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,20 @@ void	pipe_open(int pp[2])
 
 void	infile_to_pipe(t_arg *t)
 {
-	int	fd;
-	char buff[100];
+	int		fd;
 
 	pipe_open(t->pipe_odd);
 	fd = file_open(t);
-	printf("%d\n", fd);
-	printf("%d\n", t->pipe_odd[1]);
 	if (dup2(fd, t->pipe_odd[1]) == -1)
 		ft_putstr_fd("Error : [DUP2: due2 failed]\n", STDERR_FILENO);
-	read(t->pipe_odd[0], buff, 14);
-	printf("this is the output of buff : %s\n", buff);
 	close(fd);
+}
+
+void	outfile_to_pipe(t_arg *t)
+{
+	int	fd;
+
+	
 }
 
 void	command_process(t_arg *t)
@@ -55,7 +57,7 @@ void	command_process(t_arg *t)
 		ft_putstr_fd("Error : [fork: fork failed]\n", STDERR_FILENO);
 	if (pid == 0)
 	{
-		// printf("this is child process : %d, pipe: %d\n", pid, t->pipe_odd[1]);
+		
 	}
 	else
 	{
@@ -84,9 +86,8 @@ void	pipe_process(t_arg *t)
 	infile_to_pipe(t);
 	// while (t->command[i])
 	// {
-		command_process(t);
-		
+	command_process(t);
 	// 	i++;
 	// }
-	// outfile_to_pipe(t);
+	outfile_to_pipe(t);
 }

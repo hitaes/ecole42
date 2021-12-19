@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 00:57:56 by pac-man           #+#    #+#             */
-/*   Updated: 2021/12/17 14:08:58 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/17 23:46:56 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <string.h>
-# include <errno.h>
 # include <stdlib.h>
 # include <sys/wait.h>
 # include <stdio.h>
