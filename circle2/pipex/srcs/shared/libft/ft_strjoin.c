@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/20 00:59:49 by pac-man           #+#    #+#             */
-/*   Updated: 2021/12/20 18:25:00 by pacman           ###   ########.fr       */
+/*   Created: 2021/08/27 14:58:15 by pac-man           #+#    #+#             */
+/*   Updated: 2021/12/20 18:07:52 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../../../includes/pipex.h"
 
-int	main(int argc, char **argv, char **envp)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	t_arg	t;
+	char	*s;
+	size_t	i;
+	size_t	j;
 
-	t_arg_init(&t);
-	arg_init(&t, envp, argv, argc - 1);
-	pipe_process(&t);
-	// int i = 0;
-	// while (t.command[i])
-	// {
-	// 	printf("t.command%d, %s\n", i, t.command[i]);
-	// 	i++;
-	// }
-	// i = 0;
-	// while (t.path[i])
-	// {
-	// 	printf("t.path%d, %s\n", i, t.path[i]);
-	// 	i++;
-	// }
-	// printf("%d\n", t.curr_index);
+	if (!s1 || !s2)
+		return (NULL);
+	i = ft_strlen(s1);
+	j = ft_strlen(s2);
+	s = (char *)malloc(i + j + 1);
+	if (!s)
+		return (NULL);
+	ft_strlcpy(s, s1, i + 1);
+	ft_strlcpy(s + i, s2, j + 1);
+	return (s);
 }

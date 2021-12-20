@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 00:57:56 by pac-man           #+#    #+#             */
-/*   Updated: 2021/12/17 23:46:56 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/20 18:05:36 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@
 typedef struct s_arg
 {
 	int		count;
+	int		max_index;
+	int		curr_index;
+	char	**envp;
 	char	**path;
 	char	**command;
 	int		pipe_odd[2];
@@ -46,6 +49,7 @@ size_t	ft_strlen(char *s);
 bool	ft_calloc(void **ptr, size_t cnt, size_t n);
 char	*ft_strdup(char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+char	*ft_strjoin(char *s1, char *s2);
 
 // =============================================================================
 // UTILS

@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 17:27:43 by pac-man           #+#    #+#             */
-/*   Updated: 2021/12/17 12:33:26 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/20 17:27:12 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ void	t_arg_init(t_arg *t)
 	t->pipe_odd[1] = -1;
 	t->pipe_even[0] = -1;
 	t->pipe_even[1] = -1;
+	t->max_index = 0;
+	t->curr_index = 0;
+	t->envp = 0;
 }
 
 void	arg_init(t_arg *t, char **envp, char **argv, int argc)
@@ -28,14 +31,15 @@ void	arg_init(t_arg *t, char **envp, char **argv, int argc)
 	int	i;
 
 	i = 0;
+	t->envp = envp;
 	while (*envp && ft_strncmp(*envp, "PATH", 4))
 		++envp;
 	t->count = char_frequency(*envp, ':');
 	t->path = (char **)malloc(sizeof(char *) * t->count + 1);
+	t->max_index = argc - 1;
 	if (t->path == NULL)
 		ft_putstr_fd("Error : [t->Path: Malloc Error]\n", STDERR_FILENO);
 	str_slicer(t, *envp);
-	t->path[t->count] = 0;
 	t->command = (char **)malloc(sizeof(char *) * argc + 1);
 	if (!t->command)
 		ft_putstr_fd("Error : [t->command: Malloc Error]\n", STDERR_FILENO);

@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 17:58:44 by pac-man           #+#    #+#             */
-/*   Updated: 2021/12/16 11:01:23 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/20 18:10:41 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	str_slicer(t_arg *t, char *s)
 		{
 			if (s[to] == ':' && i == ++index)
 			{
-				t->path[i] = substr(s, from, to);
+				t->path[i] = ft_strjoin(substr(s, from, to), "/");
 				break ;
 			}
 		}

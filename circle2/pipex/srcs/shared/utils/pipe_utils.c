@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 01:20:07 by pacman            #+#    #+#             */
-/*   Updated: 2021/12/18 22:08:15 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/20 18:27:57 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ int	file_open(t_arg *t)
 {
 	int	fd;
 
-	fd = open(t->command[0], O_RDONLY);
+	fd = open(t->command[t->curr_index], O_RDONLY);
 	if (fd < 0)
 		ft_putstr_fd("Error : [OPEN: open failed]\n", STDERR_FILENO);
+	t->curr_index++;
 	return (fd);
 }
 
@@ -34,7 +35,7 @@ void	infile_to_pipe(t_arg *t)
 
 	pipe_open(t->pipe_odd);
 	fd = file_open(t);
-	if (dup2(fd, t->pipe_odd[1]) == -1)
+	if (dup2(fd, STDIN_FILENO) == -1)
 		ft_putstr_fd("Error : [DUP2: due2 failed]\n", STDERR_FILENO);
 	close(fd);
 }
@@ -43,12 +44,13 @@ void	outfile_to_pipe(t_arg *t)
 {
 	int	fd;
 
-	
+	(void)t;
+	(void)fd;
 }
 
 void	command_process(t_arg *t)
 {
-	pid_t	pid;
+	int		pid;
 	int		status;
 
 	pid = fork();
@@ -57,7 +59,41 @@ void	command_process(t_arg *t)
 		ft_putstr_fd("Error : [fork: fork failed]\n", STDERR_FILENO);
 	if (pid == 0)
 	{
-		
+		if (t->curr_index == 1)
+		{
+			int i;
+			char *tmp_path;
+
+			i = 0;
+			tmp_path = 0;
+			while (t->path[i])
+			{
+				tmp_path = ft_strjoin(t->path[i], t->command[t->curr_index]);
+				if (!access(tmp_path, X_OK))
+					execve(tmp_path, &t->command[t->curr_index], t->envp);
+				free(tmp_path);
+				tmp_path = 0;
+				i++;
+			}
+			// int i;
+
+			// i = 0;
+			// while (t->path[i])
+			// {
+				
+			// 	// execv(t->path[i], &t->command[t->curr_index]);
+				
+			// 	printf("✅t->path[i]: %s &t->command[t->curr_index]: %s\n", t->path[i], t->command[t->curr_index]);
+			// 	// printf("t->path[i]: %s\n , &t->command[t->curr_index]: %s\n", t->path[i], t->command[t->curr_index]);
+			// 	// break ;
+			// 	// i++;
+			// 	i++;
+			// }
+		}
+		else
+		{
+			
+		}
 	}
 	else
 	{
@@ -80,14 +116,11 @@ void	command_process(t_arg *t)
 
 void	pipe_process(t_arg *t)
 {
-	int	i;
-
-	i = 0;
 	infile_to_pipe(t);
-	// while (t->command[i])
+	// while (t->curr_index <= t->max_index)
 	// {
 	command_process(t);
-	// 	i++;
+	// 	t->curr_index++;
 	// }
-	outfile_to_pipe(t);
+	// outfile_to_pipe(t);
 }
