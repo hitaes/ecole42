@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 00:57:56 by pac-man           #+#    #+#             */
-/*   Updated: 2021/12/20 18:05:36 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/22 02:39:56 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ typedef struct s_arg
 {
 	int		count;
 	int		max_index;
-	int		curr_index;
-	char	**envp;
 	char	**path;
 	char	**command;
 	int		pipe_odd[2];
@@ -61,5 +59,6 @@ char	*substr(char *s, int from, int to);
 void	str_slicer(t_arg *t, char *s);
 void	t_arg_init(t_arg *t);
 void	pipe_process(t_arg *t);
+char	*command_checker(t_arg *t, int i);
 
 #endif

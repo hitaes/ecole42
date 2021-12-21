@@ -6,20 +6,19 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 01:20:07 by pacman            #+#    #+#             */
-/*   Updated: 2021/12/20 18:27:57 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/22 08:17:47 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/pipex.h"
 
-int	file_open(t_arg *t)
+int	file_open(char *file, int mode)
 {
 	int	fd;
 
-	fd = open(t->command[t->curr_index], O_RDONLY);
+	fd = open(file, mode);
 	if (fd < 0)
 		ft_putstr_fd("Error : [OPEN: open failed]\n", STDERR_FILENO);
-	t->curr_index++;
 	return (fd);
 }
 
@@ -29,26 +28,78 @@ void	pipe_open(int pp[2])
 		ft_putstr_fd("Error : [PIPE: pipe failed]\n", STDERR_FILENO);
 }
 
-void	infile_to_pipe(t_arg *t)
+void	infile_to_pipe(t_arg *t, int i)
 {
 	int		fd;
 
-	pipe_open(t->pipe_odd);
-	fd = file_open(t);
+	fd = file_open(t->command[i], O_RDONLY);
 	if (dup2(fd, STDIN_FILENO) == -1)
 		ft_putstr_fd("Error : [DUP2: due2 failed]\n", STDERR_FILENO);
 	close(fd);
+	if (dup2(t->pipe_even[1], STDOUT_FILENO) == -1)
+		ft_putstr_fd("Error : [DUP2: due2 failed]\n", STDERR_FILENO);
 }
 
-void	outfile_to_pipe(t_arg *t)
+void	outfile_to_pipe(t_arg *t, int i)
 {
-	int	fd;
+	int		fd;
 
-	(void)t;
-	(void)fd;
+	fd = file_open(t->command[i], O_CREAT);
+	if (i % 2)
+	{
+		close(t->pipe_odd[1]);
+		if (dup2(t->pipe_odd[0], STDIN_FILENO) == -1)
+			ft_putstr_fd("Error : [DUP2: due2 failed]\n", STDERR_FILENO);
+	}
+	else
+	{
+		close(t->pipe_even[1]);
+		if (dup2(t->pipe_even[0], STDIN_FILENO) == -1)
+			ft_putstr_fd("Error : [DUP2: due2 failed]\n", STDERR_FILENO);
+	}
+	if (dup2(fd, STDOUT_FILENO) == -1)
+		ft_putstr_fd("Error : [DUP2: due2 failed]\n", STDERR_FILENO);
 }
 
-void	command_process(t_arg *t)
+void	child_process(t_arg *t, int i)
+{
+	char	*command;
+
+	command = 0;
+	if (i == 0)
+		infile_to_pipe(t, i);
+	else if (i == t->max_index - 1)
+		outfile_to_pipe(t, i);
+	else
+	{
+		if (i % 2)
+		{
+			if (dup2(t->pipe_even[0], STDIN_FILENO) == -1)
+				ft_putstr_fd("Error : [DUP2: due2 failed]\n", STDERR_FILENO);
+			close(t->pipe_even[0]);
+			if (dup2(t->pipe_odd[1], STDOUT_FILENO) == -1)
+				ft_putstr_fd("Error : [DUP2: due2 failed]\n", STDERR_FILENO);
+			close(t->pipe_odd[1]);
+		}
+		else
+		{
+			if (dup2(t->pipe_odd[0], STDIN_FILENO) == -1)
+				ft_putstr_fd("Error : [DUP2: due2 failed]\n", STDERR_FILENO);
+			close(t->pipe_odd[0]);
+			if (dup2(t->pipe_even[1], STDOUT_FILENO) == -1)
+				ft_putstr_fd("Error : [DUP2: due2 failed]\n", STDERR_FILENO);
+			close(t->pipe_even[1]);
+		}	
+	}
+	command = command_checker(t, i);
+	if (!command)
+		ft_putstr_fd("Error : [COMMAND: command is not available]\n",
+			STDERR_FILENO);
+	printf("path: %s, cmd: %s\n", command, t->command[i]);
+	execve(command, &t->command[i], 0);
+}
+
+void	command_process(t_arg *t, int i)
 {
 	int		pid;
 	int		status;
@@ -59,68 +110,41 @@ void	command_process(t_arg *t)
 		ft_putstr_fd("Error : [fork: fork failed]\n", STDERR_FILENO);
 	if (pid == 0)
 	{
-		if (t->curr_index == 1)
-		{
-			int i;
-			char *tmp_path;
-
-			i = 0;
-			tmp_path = 0;
-			while (t->path[i])
-			{
-				tmp_path = ft_strjoin(t->path[i], t->command[t->curr_index]);
-				if (!access(tmp_path, X_OK))
-					execve(tmp_path, &t->command[t->curr_index], t->envp);
-				free(tmp_path);
-				tmp_path = 0;
-				i++;
-			}
-			// int i;
-
-			// i = 0;
-			// while (t->path[i])
-			// {
-				
-			// 	// execv(t->path[i], &t->command[t->curr_index]);
-				
-			// 	printf("✅t->path[i]: %s &t->command[t->curr_index]: %s\n", t->path[i], t->command[t->curr_index]);
-			// 	// printf("t->path[i]: %s\n , &t->command[t->curr_index]: %s\n", t->path[i], t->command[t->curr_index]);
-			// 	// break ;
-			// 	// i++;
-			// 	i++;
-			// }
-		}
-		else
-		{
-			
-		}
+		child_process(t, i);
 	}
 	else
 	{
+		// if (i == 0)
+		// 	close(t->pipe_even[1]);
+		// else
+		// {
+		// 	if (i % 2)
+		// 	{
+		// 		close(t->pipe_even[0]);
+		// 		close(t->pipe_odd[1]);
+		// 	}
+		// 	else
+		// 	{
+		// 		close(t->pipe_even[1]);
+		// 		close(t->pipe_odd[0]);
+		// 	}
+		// }
 		waitpid(pid, &status, 0);
-		// if (WIFEXITED(status))
-		// 	printf("Parent: Exited!\vExit Code is %d, Signal is %d\n", 
-		// 		WEXITSTATUS(status), WTERMSIG(status));
-		// else if (WIFSIGNALED(status))
-		// 	printf("Parent: Signaled!\vExit Code is %d, Signal is %d\n", 
-		// 		WEXITSTATUS(status), WTERMSIG(status));
-		// else if (WIFSTOPPED(status))
-		// 	printf("Parent: Stopped!\vExit Code is %d, Signal is %d\n", 
-		// 		WSTOPSIG(status), WTERMSIG(status));
-		// else if (WIFCONTINUED(status))
-		// 	printf("Parent: Continued!\vExit Code is %d, Signal is %d\n", 
-		// 		WSTOPSIG(status), WTERMSIG(status));
 	}
-	(void)t;
 }
 
 void	pipe_process(t_arg *t)
 {
-	infile_to_pipe(t);
-	// while (t->curr_index <= t->max_index)
-	// {
-	command_process(t);
-	// 	t->curr_index++;
-	// }
-	// outfile_to_pipe(t);
+	int	i;
+
+	i = 0;
+	while (i < t->max_index)
+	{
+		if (i % 2)
+			pipe_open(t->pipe_odd);
+		else
+			pipe_open(t->pipe_even);
+		command_process(t, i);
+		i++;
+	}
 }
