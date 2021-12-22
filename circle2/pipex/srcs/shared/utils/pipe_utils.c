@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 01:20:07 by pacman            #+#    #+#             */
-/*   Updated: 2021/12/22 15:24:26 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/22 16:24:23 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,25 +157,50 @@ void	pipe_process(t_arg *t)
 	i = 0;
 	while (t->command[i])
 	{
+		// 파일명 / cmd / cmd / 파일명 / NULL
 		if (i % 2)
+		{
 			if (pipe(t->p1) == -1)
 				printf("error pipe p1\n");
+		}
 		else
+		{
 			if (pipe(t->p2) == -1)
 				printf("error pipe p2\n");
+		}
 		if (i == 0)
 		{
-			int fd;
+			int		fd;
+			char	*cmd;
+			int		pid;
 
+			pid = 0;
+			cmd = 0;
 			fd = open(t->command[0], O_RDONLY);
 			if (fd == -1)
 				printf("error open\n");
 			if (dup2(fd, STDIN_FILENO) == -1)
-				printf("error dup2")
+				printf("error dup2\n");
+			if (dup2(t->p2[1], STDOUT_FILENO) == -1)
+				printf("error dup2\n");
+			i++;
+			pid = fork();
+			if (pid)
+			{
+				cmd = command_checker(t, i);
+				execve(cmd, &t->command[i], 0);
+			}
+			else
+			{
+				
+			}
+		}
+		else if (i == 1)
+		{
+			
 		}
 		i++;
-	}
-	
+	// }
 	// 1. infile전에 파일 디스크립터를 이용해 파이프 셋팅 해야함.
 	// 2. fork()
 	// 3. infile에서 열었던 파일을 표준 입력과 출력으로 연결하기
