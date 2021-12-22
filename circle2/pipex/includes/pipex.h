@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 00:57:56 by pac-man           #+#    #+#             */
-/*   Updated: 2021/12/22 15:04:39 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/23 00:19:28 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@
 
 typedef struct s_arg
 {
-	int		count;
 	char	**path;
 	char	**command;
+	char	**envp;
 	int		p1[2];
 	int		p2[2];
 }			t_arg;

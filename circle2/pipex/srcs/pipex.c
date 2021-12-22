@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 00:59:49 by pac-man           #+#    #+#             */
-/*   Updated: 2021/12/22 18:57:12 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/23 00:33:31 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,19 @@ int	main(int argc, char **argv, char **envp)
 	t_arg_init(&t);
 	arg_init(&t, envp, argv, argc - 1);
 	pipe_process(&t);
-	// int i = 0;
-	// while (t.command[i])
-	// {
-	// 	printf("t.command%d, %s\n", i, t.command[i]);
-	// 	i++;
-	// }
-	// i = 0;
-	// while (t.path[i])
-	// {
-	// 	printf("t.path%d, %s\n", i, t.path[i]);
-	// 	i++;
-	// }
+	int i = 0;
+	printf("command_checker(t, 1): %s, %s\n", command_checker(&t, 1), t.command[1]);
+	printf("command_checker(t, 2): %s, %s\n", command_checker(&t, 2), t.command[2]);
+	while (t.command[i])
+	{
+		printf("t.command%d, %s\n", i, t.command[i]);
+		i++;
+	}
+	i = 0;
+	while (t.path[i])
+	{
+		printf("t.path%d, %s\n", i, t.path[i]);
+		i++;
+	}
 	return (0);
 }
