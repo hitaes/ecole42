@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/20 00:59:49 by pac-man           #+#    #+#             */
-/*   Updated: 2021/12/23 04:15:54 by pacman           ###   ########.fr       */
+/*   Created: 2021/12/17 01:20:07 by pacman            #+#    #+#             */
+/*   Updated: 2021/12/23 02:19:20 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../../../includes/pipex.h"
 
-int	main(int argc, char **argv, char **envp)
+int	file_open(char *file, int mode)
 {
-	t_arg	t;
+	int	fd;
 
-	if (argc < 5)
-		return (1);
-	arg_init(&t, envp, argv, argc - 1);
-	pipe_process(&t);
-	command_checker(&t, 0);
-	return (0);
+	fd = open(file, mode);
+	if (fd < 0)
+		ft_putstr_fd("Error : [OPEN: open failed]\n", STDERR_FILENO);
+	return (fd);
+}
+
+void	exec_cmd(t_arg *t, int i)
+{
+	char	*cmd;
+	char	*arg[2];
+
+	cmd = command_checker(t, i + 1);
+	if (!cmd)
+		printf("cmd is null");
+	arg[0] = t->command[i + 1];
+	arg[1] = 0;
+	execve(cmd, arg, t->envp);
 }

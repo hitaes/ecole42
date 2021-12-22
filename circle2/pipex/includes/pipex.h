@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 00:57:56 by pac-man           #+#    #+#             */
-/*   Updated: 2021/12/23 00:19:28 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/23 02:47:52 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 
 typedef struct s_arg
 {
+	int		pipe_count;
 	char	**path;
 	char	**command;
 	char	**envp;
@@ -45,8 +46,11 @@ void	ft_putstr_fd(char *s, int fd);
 size_t	ft_strlen(char *s);
 bool	ft_calloc(void **ptr, size_t cnt, size_t n);
 char	*ft_strdup(char *s);
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
 char	*ft_strjoin(char *s1, char *s2);
+size_t	ft_strlcat(char *dst, char *src, size_t dstsize);
+bool	ft_isspace(int c);
+char	*ft_strchr(const char *s, int c);
 
 // =============================================================================
 // UTILS
@@ -59,5 +63,15 @@ void	str_slicer(t_arg *t, char *s, int count);
 void	t_arg_init(t_arg *t);
 void	pipe_process(t_arg *t);
 char	*command_checker(t_arg *t, int i);
+void	child_proc(t_arg *t, int i);
+void	parent_prc(t_arg *t, int i, int pid);
+void	pipe_process(t_arg *t);
+int		file_open(char *file, int mode);
+void	exec_cmd(t_arg *t, int i);
+void	set_pipe_for_infile(t_arg *t);
+void	infile_to_pipe(t_arg *t, int i);
+void	set_pipe_for_outfile(t_arg *t, int i);
+void	set_pipe_for_middle(t_arg *t, int i);
+void	outfile_from_pipe(t_arg *t, int i);
 
 #endif

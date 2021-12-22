@@ -1,0 +1,6 @@
+Makefile
+includes
+out.txt
+pipex
+read.txt
+srcs

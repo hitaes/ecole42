@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/20 00:59:49 by pac-man           #+#    #+#             */
-/*   Updated: 2021/12/23 04:15:54 by pacman           ###   ########.fr       */
+/*   Created: 2021/02/27 01:47:15 by kimtaeseon        #+#    #+#             */
+/*   Updated: 2021/12/23 03:58:59 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../../../includes/pipex.h"
 
-int	main(int argc, char **argv, char **envp)
+char	*ft_strchr(const char *s, int c)
 {
-	t_arg	t;
+	char	cc;
 
-	if (argc < 5)
-		return (1);
-	arg_init(&t, envp, argv, argc - 1);
-	pipe_process(&t);
-	command_checker(&t, 0);
-	return (0);
+	cc = (char)c;
+	while (*s && *s != cc)
+		++s;
+	if (*s == cc)
+		return ((char *)s);
+	return (NULL);
 }
