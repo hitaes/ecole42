@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
+/*   By: taeskim <taeskim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 01:20:07 by pacman            #+#    #+#             */
-/*   Updated: 2021/12/22 10:52:57 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/22 11:16:54 by taeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,11 +142,19 @@ void	pipe_process(t_arg *t)
 	int	i;
 
 	i = 0;
-	infile_to_pipe(t, i);
-	while (i < t->count)
-	{
-		command_process(t, i);
-		i++;
-	}
-	outfile_to_pipe(t, i);
+	infile_to_pipe(t, i); // i = 0
+	i++; 
+	command_exec(t, i); // i == 1
+	i++;
+	outfile_to_pipe(t, i); // i == 2
+	// int	i;
+
+	// i = 0;
+	// infile_to_pipe(t, i);
+	// while (i < t->count)
+	// {
+	// 	command_process(t, i);
+	// 	i++;
+	// }
+	// outfile_to_pipe(t, i);
 }
