@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 01:20:07 by pacman            #+#    #+#             */
-/*   Updated: 2021/12/22 16:24:23 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/22 21:42:09 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,23 +114,38 @@ void	command_process(t_arg *t, int i)
 	int		status;
 
 	// if (i % 2)
-	if (i == 1)
-		pipe_open(t->p1);
-	else if (i == 2)
-		pipe_open(t->p2);
+	// if (i == 1)
+	// 	pipe_open(t->p1);
+	// else if (i == 2)
+	// 	pipe_open(t->p2);
 	// else
 	// 	pipe_open(t->p2);
+
+	// 파일 열고, pipe 읽기 셋팅
+	int fd;
+
+	(void)i;
+	fd = open(t->command[0], O_RDONLY);
+	if (fd == -1)
+		printf("open Error");
+	if (dup2(fd, STDIN_FILENO) == -1)
+		printf("Dup2 Error");
+	if (dup2(t->p2[1], STDOUT_FILENO) == -1)
+		printf("Dup2 Error");
 	pid = fork();
 	status = 0;
 	if (pid == -1)
 		ft_putstr_fd("Error : [fork: fork failed]\n", STDERR_FILENO);
 	if (pid == 0)
 	{
-		child_proc_pipe(t, i);
-		command_exec(t, i);
+		printf("child process\n");
+		// child_proc_pipe(t, i);
+		command_exec(t, i + 1);
+		
 	}
 	else
 	{
+		printf("parent process\n");
 		// if (i == 0)
 		// 	close(t->p2[1]);
 		// else
@@ -157,7 +172,6 @@ void	pipe_process(t_arg *t)
 	i = 0;
 	while (t->command[i])
 	{
-		// 파일명 / cmd / cmd / 파일명 / NULL
 		if (i % 2)
 		{
 			if (pipe(t->p1) == -1)
@@ -168,38 +182,38 @@ void	pipe_process(t_arg *t)
 			if (pipe(t->p2) == -1)
 				printf("error pipe p2\n");
 		}
-		if (i == 0)
-		{
-			int		fd;
-			char	*cmd;
-			int		pid;
+		command_process(t, i);
+		// if (i == 0)
+		// {
+		// 	int		fd;
+		// 	char	*cmd;
+		// 	int		pid;
+		// 	int		status;
 
-			pid = 0;
-			cmd = 0;
-			fd = open(t->command[0], O_RDONLY);
-			if (fd == -1)
-				printf("error open\n");
-			if (dup2(fd, STDIN_FILENO) == -1)
-				printf("error dup2\n");
-			if (dup2(t->p2[1], STDOUT_FILENO) == -1)
-				printf("error dup2\n");
-			i++;
-			pid = fork();
-			if (pid)
-			{
-				cmd = command_checker(t, i);
-				execve(cmd, &t->command[i], 0);
-			}
-			else
-			{
-				
-			}
-		}
-		else if (i == 1)
-		{
-			
-		}
+		// 	pid = 0;
+		// 	cmd = 0;
+		// 	fd = open(t->command[0], O_RDONLY);
+		// 	if (fd == -1)
+		// 		printf("error open\n");
+		// 	if (dup2(fd, STDIN_FILENO) == -1)
+		// 		printf("error dup2\n");
+		// 	if (dup2(t->p2[1], STDOUT_FILENO) == -1)
+		// 		printf("error dup2\n");
+		// 	i++;
+		// 	pid = fork();
+		// 	if (!pid)
+		// 	{
+		// 		cmd = command_checker(t, i);
+		// 		execve(cmd, &t->command[i], 0);
+		// 	}
+		// 	else
+		// 	{
+		// 		waitpid(pid, &status, 0);
+		// 	}
+		// }
+		
 		i++;
+	}
 	// }
 	// 1. infile전에 파일 디스크립터를 이용해 파이프 셋팅 해야함.
 	// 2. fork()
