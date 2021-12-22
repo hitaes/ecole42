@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 00:59:49 by pac-man           #+#    #+#             */
-/*   Updated: 2021/12/22 02:52:38 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/22 10:38:07 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_arg	t;
 
-	if (argc != 5)
-		return (1);
+	// if (argc != 5)
+	// 	return (1);
 	t_arg_init(&t);
 	arg_init(&t, envp, argv, argc - 1);
 	pipe_process(&t);
