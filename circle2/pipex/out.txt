@@ -1,6 +1,1 @@
-Makefile
-includes
-out.txt
-pipex
-read.txt
-srcs
+Hello world!!!! a1

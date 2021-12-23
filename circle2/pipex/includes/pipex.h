@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 00:57:56 by pac-man           #+#    #+#             */
-/*   Updated: 2021/12/23 02:47:52 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/23 10:11:43 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 typedef struct s_arg
 {
 	int		pipe_count;
+	int		count;
 	char	**path;
 	char	**command;
 	char	**envp;
