@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 02:14:41 by pacman            #+#    #+#             */
-/*   Updated: 2021/12/23 16:47:21 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/23 22:47:02 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,14 @@ void	pipe_process(t_arg *t)
 		if (i % 2)
 		{
 			if (pipe(t->p2) == -1)
-				printf("error pipe p2\n");
+				error_disposal(t, "Error: pipe\n", STDIN_FILENO);
 		}
 		else
 			if (pipe(t->p1) == -1)
-				printf("error pipe p1\n");
+				error_disposal(t, "Error: pipe\n", STDIN_FILENO);
 		pid = fork();
 		if (pid == -1)
-			ft_putstr_fd("Error : [fork: fork failed]\n", STDERR_FILENO);
+			error_disposal(t, "Error: fork\n", STDIN_FILENO);
 		else if (pid == 0)
 			child_proc(t, i);
 		else

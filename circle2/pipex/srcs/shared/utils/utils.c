@@ -6,19 +6,19 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 01:20:07 by pacman            #+#    #+#             */
-/*   Updated: 2021/12/23 16:40:06 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/23 22:48:26 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/pipex.h"
 
-int	file_open(char *file, int mode)
+int	file_open(t_arg *t, char *file, int mode)
 {
 	int	fd;
 
 	fd = open(file, mode);
 	if (fd < 0)
-		ft_putstr_fd("Error : [OPEN: open failed]\n", STDERR_FILENO);
+		error_disposal(t, "Error: open\n", STDIN_FILENO);
 	return (fd);
 }
 
@@ -39,6 +39,6 @@ void	exec_cmd(t_arg *t, int i)
 		j++;
 	}
 	if (!path)
-		printf("cmd is null");
+		error_disposal(t, "Error: cmd\n", STDIN_FILENO);
 	execve(path, cmd, t->envp);
 }

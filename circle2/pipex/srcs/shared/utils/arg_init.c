@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 17:27:43 by pac-man           #+#    #+#             */
-/*   Updated: 2021/12/23 18:34:45 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/23 22:46:27 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	arg_init(t_arg *t, char **envp, char **argv, int argc)
 	free_p(tmp);
 	t->command = (char **)malloc(sizeof(char *) * argc + 1);
 	if (!t->command)
-		ft_putstr_fd("Error : [t->command: Malloc Error]\n", STDERR_FILENO);
+		error_disposal(t, "Error: malloc\n", STDIN_FILENO);
 	while (i < argc)
 	{
 		t->command[i] = argv[i + 1];

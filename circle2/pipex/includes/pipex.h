@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 00:57:56 by pac-man           #+#    #+#             */
-/*   Updated: 2021/12/23 17:45:25 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/23 22:48:08 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	pipe_process(t_arg *t);
 void	child_proc(t_arg *t, int i);
 void	parent_prc(t_arg *t, int i, int pid);
 void	pipe_process(t_arg *t);
-int		file_open(char *file, int mode);
+int		file_open(t_arg *t, char *file, int mode);
 void	exec_cmd(t_arg *t, int i);
 void	set_pipe_for_infile(t_arg *t);
 void	infile_to_pipe(t_arg *t, int i);
@@ -75,5 +75,6 @@ void	set_pipe_for_outfile(t_arg *t, int i);
 void	set_pipe_for_middle(t_arg *t, int i);
 void	outfile_from_pipe(t_arg *t, int i);
 void	free_p(void *s);
+void	error_disposal(t_arg *t, char *s, int i);
 
 #endif
