@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 00:59:49 by pac-man           #+#    #+#             */
-/*   Updated: 2021/12/23 22:48:44 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/23 22:56:44 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	error_disposal(t_arg *t, char *s, int i)
 {
 	ft_putstr_fd(s, i);
 	free_all(t);
+	exit(1);
 }
 
 int	main(int argc, char **argv, char **envp)
