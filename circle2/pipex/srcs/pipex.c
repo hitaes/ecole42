@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 00:59:49 by pac-man           #+#    #+#             */
-/*   Updated: 2021/12/23 17:27:10 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/23 18:34:29 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	free_all(t_arg *t)
 		free_p(t->path[i]);
 		i++;
 	}
-	free_p(t->path[i]);
+	free_p(t->path);
 	free_p(t->command);
 }
 
