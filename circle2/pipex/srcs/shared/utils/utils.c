@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 01:20:07 by pacman            #+#    #+#             */
-/*   Updated: 2021/12/23 02:19:20 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/23 14:11:07 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,21 @@ int	file_open(char *file, int mode)
 
 void	exec_cmd(t_arg *t, int i)
 {
-	char	*cmd;
-	char	*arg[2];
+	char	**cmd;
+	char	*path;
+	int		j;
 
-	cmd = command_checker(t, i + 1);
-	if (!cmd)
+	j = 0;
+	cmd = ft_split(t->command[i + 1], ' ');
+	while (t->path[j])
+	{
+		path = ft_strjoin(t->path[j], *cmd);
+		if (!access(path, X_OK))
+			break ;
+		free_p(path);
+		j++;
+	}
+	if (!path)
 		printf("cmd is null");
-	arg[0] = t->command[i + 1];
-	arg[1] = 0;
-	execve(cmd, arg, t->envp);
+	execve(path, cmd, t->envp);
 }

@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 00:59:49 by pac-man           #+#    #+#             */
-/*   Updated: 2021/12/23 10:13:35 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/23 14:45:12 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,10 @@ void	free_all(t_arg *t)
 	i = 0;
 	while (i < t->count + 1)
 	{
-		free(t->path[i]);
-		t->path[i] = 0;
+		free_p(t->path[i]);
 		i++;
 	}
-	free(t->command);
-	t->command = 0;
+	free_p(t->command);
 }
 
 int	main(int argc, char **argv, char **envp)

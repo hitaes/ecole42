@@ -6,7 +6,7 @@
 #    By: pacman <pacman@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/20 00:56:50 by pac-man           #+#    #+#              #
-#    Updated: 2021/12/23 02:45:24 by pacman           ###   ########.fr        #
+#    Updated: 2021/12/23 14:11:51 by pacman           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,16 +56,16 @@ SHARED_SRC_LIST		=		$(D_LIBFT)ft_strncmp.c				\
 							$(D_LIBFT)ft_strlcpy.c				\
 							$(D_LIBFT)ft_strjoin.c				\
 							$(D_LIBFT)ft_strchr.c				\
-							$(D_LIBFT)ft_strlcat.c				\
+							$(D_LIBFT)ft_split.c				\
 							$(D_LIBFT)ft_isspace.c				\
 							$(D_UTILS)char_frequency.c			\
 							$(D_UTILS)arg_init.c				\
 							$(D_UTILS)substr.c					\
 							$(D_UTILS)str_slicer.c				\
 							$(D_UTILS)pipe_utils.c				\
-							$(D_UTILS)command_utils.c			\
 							$(D_UTILS)process_utils.c			\
 							$(D_UTILS)utils.c					\
+							$(D_UTILS)free.c					\
 
 PIPEX_SRCS			=		$(addprefix $(PIPEX_DIR), $(PIPEX_SRC_LIST))
 PIPEX_OBJS			=		$(PIPEX_SRCS:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 01:20:07 by pacman            #+#    #+#             */
-/*   Updated: 2021/12/23 02:40:54 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/23 10:53:28 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,3 @@ void	set_pipe_for_middle(t_arg *t, int i)
 		close(t->p1[1]);
 	}
 }
-
-// void	infile_to_pipe(t_arg *t, int i)
-// {
-// 	set_pipe_for_infile(t);
-// 	exec_cmd(t, i);
-// }
-
-// void	outfile_from_pipe(t_arg *t, int i)
-// {
-// 	set_pipe_for_outfile(t, i);
-// 	exec_cmd(t, i);
-// }
