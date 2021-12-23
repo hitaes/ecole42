@@ -6,7 +6,7 @@
 #    By: pacman <pacman@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/20 00:56:50 by pac-man           #+#    #+#              #
-#    Updated: 2021/12/23 14:11:51 by pacman           ###   ########.fr        #
+#    Updated: 2021/12/23 16:44:18 by pacman           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,6 @@ SHARED_SRC_LIST		=		$(D_LIBFT)ft_strncmp.c				\
 							$(D_UTILS)char_frequency.c			\
 							$(D_UTILS)arg_init.c				\
 							$(D_UTILS)substr.c					\
-							$(D_UTILS)str_slicer.c				\
 							$(D_UTILS)pipe_utils.c				\
 							$(D_UTILS)process_utils.c			\
 							$(D_UTILS)utils.c					\

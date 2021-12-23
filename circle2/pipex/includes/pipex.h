@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 00:57:56 by pac-man           #+#    #+#             */
-/*   Updated: 2021/12/23 14:12:03 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/23 17:45:25 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ char	*ft_strndup(const char *src, size_t size);
 size_t	char_frequency(char *s, char c);
 void	arg_init(t_arg *t, char **envp, char **argv, int argc);
 char	*substr(char *s, int from, int to);
-void	str_slicer(t_arg *t, char *s, int count);
 void	t_arg_init(t_arg *t);
 void	pipe_process(t_arg *t);
 void	child_proc(t_arg *t, int i);

@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 01:20:07 by pacman            #+#    #+#             */
-/*   Updated: 2021/12/23 14:11:07 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/23 16:40:06 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	exec_cmd(t_arg *t, int i)
 	cmd = ft_split(t->command[i + 1], ' ');
 	while (t->path[j])
 	{
+		t->path[j] = ft_strjoin(t->path[j], "/");
 		path = ft_strjoin(t->path[j], *cmd);
 		if (!access(path, X_OK))
 			break ;
-		free_p(path);
 		j++;
 	}
 	if (!path)

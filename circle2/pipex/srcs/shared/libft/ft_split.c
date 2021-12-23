@@ -6,7 +6,7 @@
 /*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 13:58:32 by pacman            #+#    #+#             */
-/*   Updated: 2021/12/23 14:17:37 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/23 18:19:27 by pacman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ char	**ft_split(char const *s, char c)
 	while (i < delimited)
 	{
 		strs[i++] = ft_strndup(s, strlen_ch(s, c));
+		// if (!strs[i])
+		// 	return (free_strs(strs, --i));
 		s += split_next_idx(s, c);
 	}
 	strs[i] = NULL;
