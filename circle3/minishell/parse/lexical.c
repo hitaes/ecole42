@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   lexical.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sgang <sgang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 20:10:57 by sgang             #+#    #+#             */
-/*   Updated: 2021/12/24 15:54:59 by pacman           ###   ########.fr       */
+/*   Updated: 2022/01/04 13:35:14 by sgang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	token_operator(t_dnode *iter, char **str, int *type)
 	const t_token	*prev = (t_token *)(iter->prev)->data;
 	t_token			*cur;
 	int				temp;
-​
+
 	if (idx == RET_ERROR)
 		return (token_other(iter, str, type));
 	++(*str);
@@ -81,31 +81,31 @@ static int	token_operator(t_dnode *iter, char **str, int *type)
 
 static int	lexical(t_dlist *list, char *str)
 {
-	int	ret;
-	int	type;
-​
+	t_token	*temp;
+	int		type;
+
 	type = 0;
-	ret = 0;
 	while (*str)
 	{
 		dlist_pback(list, NULL);
 		list->tail->prev->data = ft_calloc(1, sizeof(t_token), 0);
-		ret = token_operator(list->tail->prev, &str, &type);
-		if (ret)
+		if (token_operator(list->tail->prev, &str, &type))
 			return (RET_ERROR);
 		ft_space_skip(&str);
 	}
+	temp = list->tail->prev->data;
+	if (temp->type > DP_SEPARATE)
+		return (RET_ERROR);
 	return (0);
 }
-​
+
 int	parser(t_dlist *list, t_slist *ast, char *str)
 {
 	int	status;
-​
+
 	status = lexical(list, str);
 	if (status)
 		return (status);
-	// AST수정중
-	// status = syntax(list, ast);
+	status = syntax(list, ast);
 	return (status);
 }

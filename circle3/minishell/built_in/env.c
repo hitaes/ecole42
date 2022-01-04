@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sgang <sgang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 16:37:33 by sgang             #+#    #+#             */
-/*   Updated: 2021/12/24 15:19:19 by pacman           ###   ########.fr       */
+/*   Updated: 2021/12/18 20:17:27 by sgang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ t_dlist	*env_init(char **envp)
 {
 	t_dlist	*env;
 	char	*iter;
-	int		idx;
+	int	idx;
 
 	idx = -1;
 	env = dlist_new_list();

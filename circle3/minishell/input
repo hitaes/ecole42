@@ -1,1 +1,1 @@
-echo asd | echo aaa | b
+echo a | echo b | echo c

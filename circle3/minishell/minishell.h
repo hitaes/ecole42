@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pacman <pacman@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sgang <sgang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 20:09:45 by sgang             #+#    #+#             */
-/*   Updated: 2021/12/24 15:56:36 by pacman           ###   ########.fr       */
+/*   Updated: 2022/01/04 13:12:06 by sgang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "util/util.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <signal.h>
 #include <stdlib.h>
-// #include <readline/readline.h>
-// #include <readline/history.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
 #define RET_ERROR		-1
 #define DP_FILE			1
@@ -31,18 +32,33 @@
 #define TOKEN	";|<>"
 #define QUTOES	"\'\""
 
-typedef struct	s_env
+typedef struct		s_cmd
 {
-	char	*env;
-	char	*key;
-	char	*val;
+	char	*cmd;
+	t_slist	*args;
+}	t_cmd;
+
+typedef struct		s_env
+{
+	char			*env;
+	char			*key;
+	char			*val;
 }	t_env;
 
-typedef struct	t_token
+typedef struct		s_token
 {
-	int		type;
-	char	*val;
+	int				type;
+	char			*val;
 }	t_token;
+
+typedef struct		s_ast
+{
+	int				type;
+	void			*data;
+	struct s_ast	*left;
+	struct s_ast	*right;
+}	t_ast;
+
 
 // env
 void	env_unset(t_dnode *node, char *key);
@@ -57,3 +73,4 @@ int		parser(t_dlist *list, t_slist *ast, char *str);
 // main.c
 void	ft_space_skip(char **str);
 int		ft_strchr(char *charset, char ch);
+////////////////////////////////////////////////
