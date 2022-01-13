@@ -14,6 +14,18 @@
 		"new": "cpp",
 		"ostream": "cpp",
 		"string": "cpp",
-		"utility": "cpp"
+		"utility": "cpp",
+		"__locale": "cpp",
+		"atomic": "cpp",
+		"bit": "cpp",
+		"cstddef": "cpp",
+		"ios": "cpp",
+		"limits": "cpp",
+		"type_traits": "cpp",
+		"philo.h": "c",
+		"time.h": "c",
+		"unistd.h": "c",
+		"stdio.h": "c",
+		"pipex.h": "c"
 	}
 }

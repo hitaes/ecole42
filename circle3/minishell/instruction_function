@@ -1,0 +1,66 @@
+============= readline function
+char *readline(const char *) : 독특하다. 문자열을 입력받아 그 주소를 저장해준다. 아주 특이한 녀석이다.
+            독특한건 힙영역에 메모리에 할당이 되기 때문에 할당해제를 해줘야 한다는 것이다.
+
+int add_history(const char *) : readline과 이 녀석이 합쳐지면, 내가 입력한 기록을 볼수 있다... 기괴하다.
+
+int	rl_on_new_line(void) : readline lib내에 update관련 함수들에게 터미널 커서가 개행문자로 다음 줄로 이동했는걸 
+            알려주는 용도로 쓰이지 개행을 직접 하지는 않음. 개행 문자 출력 이후에 이용되고 문제가 있다면 -1을 반환
+
+void rl_replace_line (const char *text, int clear_undo) : rl_line_buffer라는 버퍼를 사용하는데 사용자가 입력한 문자열로 출력되도록 
+                해줌(첫번째 인자가 출력될 대체 문자고 두번째 인자가 0이면 초기화하지 않고 0 이외면 초기화 함) → 
+                rl_line_buffer를 flush하여 초기화하는 용도로 시그널 입력시 출력되는 시그널 문자표시를 없앨 수 있음
+
+void rl_redisplay (void) : rl_replace_line과 마찬가지로 rl_line_buffer변수를 사용해서 프롬프트와 
+                    출력(readline함수에 prompt로 준 문자열로 이용)
+==============
+
+============== signal and process fuction
+pid_t wait(int *wstatus) : 프로세스 종료시 상태를 전달받을 수 있는 함수이다. wstatus도 있으니 레퍼런스를 참조하자.
+pid_t waitpid(pid_t pid, int *wstatus, int options) : wait똑같이 작동하지만, 특정 pid를 설정해서 대기할수 있는 함수다.
+pid_t wait3(int *wstatus, int options, struct rusage *rusage) : wait함수와 같으나 추가된 정보를 더 받을 수 있다. 메모리 사용량, 작동시간 등등.. struct rusage를 참조하자.
+pid_t wait4(pid_t pid, int *wstatus, int options, struct rusage *rusage) : wait3과 같으나 waitpid의 기능을 갖추고 있다.
+sighandler_t signal(int signum, sighandler_t handler) : 시그널 전송.
+==============
+
+============== file and directory
+char *getcwd(char *buf, size_t size) : 현재 작업 디렉토리의 full path명을 null-terminated 문자열로 얻을 수 있다.
+                    추가적인 사용법은, 사이즈를 할당하지 않은 공간을 이용하려 buf를 NULL로 설정해서 반환받으면 된다. 단, 할당해제 해줘야한다.
+                    디렉토리의 길이가 size보다 크다면 NULL을 반환한다.
+int chdir(const char *path) : 작업디레토리를 변경할수 있는 함수이다. 실패시 -1
+int stat(const char *restrict pathname, struct stat *restrict statbuf) : file info를 받아오는 함수이다. struct stat 참조
+int fstat(int fd, struct stat *statbuf) : open되어 있는 file info를 받아오는 함수이다. 이하동
+int lstat(const char *restrict pathname, struct stat *restrict statbuf) : symbolic link 파일의 정보를 받아온다. 이하동 
+int unlink(const char *pathname) : 파일삭제함수 에러는 errno 참조.
+int execve(const char *pathname, char *const argv[], char *const envp[]) : 프로그램 실행 (참조 : https://www.it-note.kr/157)
+int dup(int oldfd) : file descriptor를 복사하여 새로운 fd를 반환한다. 기존 fd와 newfd는 둘다 유효하다. fd를 이용해 쓰거나, newfd를 이용해
+                    똑같이 파일에 작성한다.
+int dup2(int oldfd, int newfd) : dup과 유사하나 특이한 옵션을 가지고 있다. newfd를 지정해서 복제할수 있는데, newfd가 할당된 상태라면,
+                                newfd에 열려있는 파일을 종료후에 newfd에 oldfd를 복제하면서 연다.
+int pipe(int pipefd[2]) : 참고(https://reakwon.tistory.com/80)
+DIR * opendir(const char *name) : directory open (장문석 개새끼꺼 참조)
+struct dirent *readdir(DIR *dir) : get directory entry (장문석 개새끼꺼 참조)
+int closedir(DIR *dir) : close directory (장문석 개새끼꺼 참조)
+
+int ioctl(int fd, unsigned long request, ...) : (https://wogh8732.tistory.com/306)
+char *getenv(const char *name) : env를 확인하는 변수다.
+
+== https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=choi125496&logNo=130034222760 == 
+http://www.joinc.co.kr/modules/moniwiki/wiki.php/article/termios
+int tcgetattr(int fildes, struct termios *termios_p) : terminal controlling get attributes
+int tcsetattr(int fildes, int optional_actions, const struct termios *termios_p) : terminal controlling set attributes
+==========================
+
+
+int tgetent(char *bp, const char *name) : 
+int tgetflag(const char *id) : 
+int tgetnum(const char *id) : 
+char *tgetstr(const char *id, char **area) : 
+char *tgoto(const char *cap, int col, int row) : 
+int tputs(const char *str, int affcnt, int (*putc)(int)) : 
+
+============== 보류
+int isatty(int fd) : 
+ttyname :
+ttyslot :
+==============

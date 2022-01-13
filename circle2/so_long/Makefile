@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+         #
+#    By: pacman <pacman@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/14 12:29:05 by taeskim           #+#    #+#              #
-#    Updated: 2021/10/19 21:30:20 by pac-man          ###   ########.fr        #
+#    Updated: 2021/12/21 18:03:07 by pacman           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,7 +82,7 @@ $(NAME)				:		$(OBJS)
 							@make -C $(MLX_DIR) all;
 							@echo $(GREEN) "Object File Compiled!\n" $(EOC)
 							@echo $(YELLOW) "SO_LONG Building..." $(EOC)
-							$(CC) ${MFLAGS} -I $(HEADER_DIR) -o $(NAME) ${SO_LONG_OBJS} ${SHARED_OBJS}
+							@$(CC) ${MFLAGS} -I $(HEADER_DIR) -o $(NAME) ${SO_LONG_OBJS} ${SHARED_OBJS}
 							@echo $(GREEN) "Ready to be Executed!\n\n" $(EOC)
 
 %.o					:		%.c
@@ -103,7 +103,7 @@ clean				:
 fclean				:		clean
 							@echo $(YELLOW) "SO_LONG Removing..." $(EOC)
 							@$(RM) $(NAME)
-							@echo $(RED) "SO_LONG Removed!\n\n" $(EOC)
+							@echo $(RED) "SO_LONG Removed!\n\n" $(EOC)#include "../includes/pipex.h"
 							
 .PHONY				:		re
 re					:		fclean all

@@ -6,7 +6,7 @@
 /*   By: pac-man <pac-man@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 19:57:01 by pac-man           #+#    #+#             */
-/*   Updated: 2021/10/19 21:26:37 by pac-man          ###   ########.fr       */
+/*   Updated: 2021/10/20 23:27:27 by pac-man          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	cnt_draw(t_map *m)
 	void	*img;
 
 	img = mlx_xpm_file_to_image(m->mlx, IMAGE_WALL, &m->size_x, &m->size_y);
+	pause();
 	cnt_string = ft_itoa(m->cnt_action);
 	temp_string = ft_strdup("Action count : ");
 	temp_string = ft_strjoin(temp_string, cnt_string);
