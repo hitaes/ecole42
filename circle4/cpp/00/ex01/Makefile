@@ -29,7 +29,7 @@ RM          = rm -f
 NAME        = phonebook
 HEADER      = ./
 FOLDER      = ./
-SRC_LIST    = main.cpp phonebook.cpp
+SRC_LIST    = main.cpp Contact.cpp PhoneBook.cpp
 SRC         = $(addprefix $(FOLDER), $(SRC_LIST))
 OBJ         = $(SRC:.cpp=.o)
 
