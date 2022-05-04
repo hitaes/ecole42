@@ -14,6 +14,6 @@ int main(void) {
         else if (pb.cmd_type() == "SEARCH")
             pb.contact_search();
         else
-            std::cout << "Wrong CMD!\nUse the Available CMD\n";
+            COUT << "Wrong CMD!\nUse the Available CMD\n";
     }
 }

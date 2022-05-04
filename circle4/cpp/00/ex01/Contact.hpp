@@ -6,27 +6,31 @@
 # include <string>
 # include <iostream>
 
+#  define CIN std::cin
+#  define COUT std::cout
+#  define STRING std::string 
+
 class Contact
 {
     private:
-        std::string _first_name;
-        std::string _last_name;
-        std::string _nick_name;
-        std::string _phone_number;
-        std::string _secret;
-        std::string clear_white_space(std::string user_input);
+        STRING _first_name;
+        STRING _last_name;
+        STRING _nick_name;
+        STRING _phone_number;
+        STRING _secret;
+        STRING clear_white_space(STRING user_input);
 
     public:
-        void set_first_name(std::string user_input);
-        void set_last_name(std::string user_input);
-        void set_nick_name(std::string user_input);
-        void set_phone_number(std::string user_input);
-        void set_secret(std::string user_input);
-        std::string get_first_name(void) const;
-        std::string get_last_name(void) const;
-        std::string get_nick_name(void) const;
-        std::string get_phone_number(void) const;
-        std::string get_secret(void) const;
+        void set_first_name(STRING user_input);
+        void set_last_name(STRING user_input);
+        void set_nick_name(STRING user_input);
+        void set_phone_number(STRING user_input);
+        void set_secret(STRING user_input);
+        STRING get_first_name(void) const;
+        STRING get_last_name(void) const;
+        STRING get_nick_name(void) const;
+        STRING get_phone_number(void) const;
+        STRING get_secret(void) const;
 
         Contact(void);
         ~Contact(void);
