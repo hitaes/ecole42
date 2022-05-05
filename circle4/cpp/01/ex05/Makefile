@@ -26,10 +26,10 @@ RM          = rm -f
 # File Variables
 # =============================================================================
 
-NAME        = replace
+NAME        = harl
 HEADER      = ./
 FOLDER      = ./
-SRC_LIST    = main.cpp Replacer.cpp
+SRC_LIST    = main.cpp Harl.cpp
 SRC         = $(addprefix $(FOLDER), $(SRC_LIST))
 OBJ         = $(SRC:.cpp=.o)
 
