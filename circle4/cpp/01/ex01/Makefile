@@ -67,4 +67,6 @@ fclean      : clean
 	@echo $(RED) "$(NAME) is removed!\n\n" $(EOC)
 
 .PHONY      : re
-re          : fclean all
+re          : 
+	make fclean
+	make all
