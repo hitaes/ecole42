@@ -8,7 +8,7 @@ ClapTrap::ClapTrap() : _name("default"), _hit_point(10), _energy_point(10), _att
 
 ClapTrap::ClapTrap(std::string name) : _name(name), _hit_point(10), _energy_point(10), _attack_damage(0) {
     std::cout << "-------------------------------------------------" << std::endl;
-    std::cout << "Constructor is called. " << _name << " is initialized." << std::endl;
+    std::cout << "ClapTrap Constructor is called. " << _name << " is initialized." << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &src) {
@@ -19,7 +19,7 @@ ClapTrap::ClapTrap(const ClapTrap &src) {
 // Deconstructor
 
 ClapTrap::~ClapTrap() {
-    std::cout << "Deconstructor is called. " << _name << " is deconstructed" << std::endl;
+    std::cout << "ClapTrap Deconstructor is called. " << _name << " is deconstructed" << std::endl;
     std::cout << "=================================================" << std::endl;
 }
 
