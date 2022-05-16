@@ -22,7 +22,7 @@ public:
 
     // Constructors
     ClapTrap();
-    ClapTrap(const std::string name);
+    ClapTrap(const std::string& name);
     ClapTrap(const ClapTrap& clapTrap);
 
     // Overloaded Operator
