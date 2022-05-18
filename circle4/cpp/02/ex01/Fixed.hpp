@@ -12,8 +12,8 @@ private:
 
 public:
     Fixed();
-    Fixed(const int& value);
-    Fixed(const float& value);
+    Fixed(const int value);
+    Fixed(const float value);
     Fixed(const Fixed& fixed);
     ~Fixed();
 

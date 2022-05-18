@@ -7,15 +7,15 @@ Fixed::Fixed()
     std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(const int& value) 
+Fixed::Fixed(const int value) 
     : _rawBits(value << _fractionalBit) {
     std::cout << "Int constructor called" << std::endl;
+    this->_rawBits = value << this->_fractionalBit;
 }
 
-Fixed::Fixed(const float& value) {
+Fixed::Fixed(const float value) {
   std::cout << "Float constructor called" << std::endl;
-  const int scailingFactor(1 << _fractionalBit);
-  _rawBits = static_cast<int>(roundf(value * scailingFactor));
+  this->_rawBits = roundf(value * (1 << this->_fractionalBit));
 }
 
 Fixed::Fixed(const Fixed& fixed){
@@ -37,16 +37,15 @@ Fixed& Fixed::operator = (const Fixed &source){
 }
 
 float Fixed::toFloat(void) const {
-  const int scailingFactor(1 << _fractionalBit);
-  return (static_cast<float>(_rawBits) / scailingFactor);
+  return ((float)this->_rawBits / (float)(1 << this->_fractionalBit));
 }
 
 int Fixed::toInt(void) const {
-  return _rawBits >> _fractionalBit;
+  return this->_rawBits >> this->_fractionalBit;
 }
 
 int Fixed::getRawBits(void) const {
-    return _rawBits;
+    return this->_rawBits;
 }
 void Fixed::setRawBits(int const raw){
     this->_rawBits = raw;
