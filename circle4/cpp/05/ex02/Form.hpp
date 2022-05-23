@@ -11,7 +11,7 @@ class Bureaucrat;
 
 class Form
 {
-private:
+protected:
     const std::string _name;
     bool _is_signed;
     const int _grade_for_sign;
@@ -25,13 +25,14 @@ public:
     Form(const std::string name, int grade_for_sign, int grade_for_exec);
 
     // DeConstructors
-    ~Form();
+    virtual ~Form();
 
     // Overloaded operator
     Form &operator=(const Form &src);
 
     // Public methods
     void beSigned(Bureaucrat &person);
+    virtual void execute(Bureaucrat const &executor)const = 0;
 
     // Getter
     const std::string getName()const ;
@@ -47,6 +48,11 @@ public:
             virtual const char *what() const throw();
     };
     class GradeTooHighException : public std::exception
+    {
+        public:
+            virtual const char *what() const throw();
+    };
+    class FormNotSignedException : public std::exception
     {
         public:
             virtual const char *what() const throw();

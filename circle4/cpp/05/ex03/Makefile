@@ -29,7 +29,7 @@ RM          = rm -f
 NAME        = bureaucrat
 HEADER      = ./
 FOLDER      = ./
-SRC_LIST    = main.cpp Bureaucrat.cpp Form.cpp
+SRC_LIST    = main.cpp Bureaucrat.cpp Form.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
 SRC         = $(addprefix $(FOLDER), $(SRC_LIST))
 OBJ         = $(SRC:.cpp=.o)
 

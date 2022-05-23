@@ -150,6 +150,11 @@ void Bureaucrat::signForm(Form &form)
 	form.beSigned(*this);
 }
 
+void Bureaucrat::executeForm(Form &form)const
+{
+	form.execute(*this);
+}
+
 // ostream Overload
 std::ostream	&operator<<(std::ostream &o, Bureaucrat *a)
 {

@@ -75,6 +75,11 @@ void Form::beSigned(Bureaucrat &signer)
 		std::cout << this->getName() << " Form is already signed" << std::endl;
 }
 
+void Form::execute(Bureaucrat const &executor)const
+{
+	(void)executor;
+}
+
 // Getter
 const std::string	Form::getName(void)const
 {
@@ -114,6 +119,11 @@ const char *Form::GradeTooHighException::what(void) const throw()
 {
 	return ("Grade too high");
 };
+
+const char *Form::FormNotSignedException::what(void) const throw()
+{
+	return ("Form needs to be signed before executing");
+}
 
 // ostream Overload
 std::ostream	&operator<<(std::ostream &o, Form *a)

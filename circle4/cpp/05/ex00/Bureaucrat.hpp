@@ -14,8 +14,8 @@ public:
     // Constructors
     Bureaucrat();
     Bureaucrat(const Bureaucrat &copy);
-    Bureaucrat(int grade);
     Bureaucrat(const std::string name);
+    Bureaucrat(int grade);
     Bureaucrat(const std::string name, int grade);
 
     // Overloaded Operators
@@ -25,9 +25,10 @@ public:
     ~Bureaucrat();
 
     // Public Methods
-    void setGrade(int grade);
-	void incrementGrade(void);
+    void incrementGrade(void);
 	void decrementGrade(void);
+    // Setter
+    void setGrade(int grade);
 	// Getter
 	const std::string getName(void)const;
 	size_t getGrade(void)const;
