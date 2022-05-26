@@ -74,7 +74,7 @@ Conversion::Conversion(const std::string& input): _error(false), _input(input), 
 
 // Static Functions
 
-bool isNonDisplayable(const double &input)
+bool isNotPossible(const double &input)
 {
 	return (std::isnan(input) || std::isinf(input)) ? true : false;
 }
@@ -82,26 +82,26 @@ bool isNonDisplayable(const double &input)
 static void displayChar(std::ostream& o, const Conversion& c)
 {
 	o << "char: ";
-	if (isNonDisplayable(c.getValue()))
-		o << "Non displayable" << std::endl;
+	if (isNotPossible(c.getValue()))
+		o << "impossible" << std::endl;
 	else if (std::isprint(c.toChar()))
 		o << "'" << c.toChar() << "'" << std::endl;
 	else 
-		o << "impossible" << std::endl;
+		o << "Non displayable" << std::endl;
 }
 
 static void displayInt(std::ostream& o, const Conversion& c)
 {
 	o << "int: ";
-	if (isNonDisplayable(c.getValue()))
-		o << "Non displayable" << std::endl;
+	if (isNotPossible(c.getValue()))
+		o << "impossible" << std::endl;
 	else
 		o << c.toInt() << std::endl;
 }
 
 static void display(std::ostream& o, const Conversion& c)
 {
-	if (isNonDisplayable(c.getValue()))
+	if (isNotPossible(c.getValue()))
 	{
 		o << "float: " << std::showpos << c.toFloat() << "f" << std::endl;
 		o << "double: " << std::showpos << c.toDouble() << std::endl;
