@@ -2,12 +2,8 @@
 # define CONVERSION_H
 
 # include <cmath>
-# include <cstdlib>
-# include <limits>
 # include <iomanip>
 # include <iostream>
-# include <sstream>
-# include <stdexcept>
 # include <string>
 
 class Conversion
