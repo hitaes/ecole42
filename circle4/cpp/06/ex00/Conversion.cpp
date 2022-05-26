@@ -1,9 +1,6 @@
 #include "Conversion.hpp"
 
 // Canonical Form
-Conversion::Conversion(): _error(false), _input(""), _value(0.0)
-{
-}
 Conversion &Conversion::operator=(const Conversion& src)
 {
 	if (this != &src)
@@ -14,12 +11,10 @@ Conversion &Conversion::operator=(const Conversion& src)
 	}
 	return *this;
 }
-Conversion::Conversion(const Conversion &copy): _error(copy.getError()), _input(copy.getInput()), _value(copy.getValue())
-{
-}
-Conversion::~Conversion()
-{
-}
+Conversion::Conversion(const Conversion &copy): _error(copy.getError()), _input(copy.getInput()), _value(copy.getValue()) {}
+Conversion::Conversion(): _error(false), _input(""), _value(0.0){}
+// Deconstructor
+Conversion::~Conversion() {}
 
 // Public Methods
 char Conversion::toChar() const
@@ -44,10 +39,12 @@ bool Conversion::getError() const
 {
 	return (_error);
 }
+
 const double& Conversion::getValue() const
 {
 	return (_value);	
 }
+
 const std::string& Conversion::getInput() const
 {
 	return (_input);
@@ -73,7 +70,6 @@ Conversion::Conversion(const std::string& input): _error(false), _input(input), 
 }
 
 // Static Functions
-
 bool isNotPossible(const double &input)
 {
 	return (std::isnan(input) || std::isinf(input)) ? true : false;
