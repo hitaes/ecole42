@@ -1,6 +1,8 @@
 #ifndef WHATEVER_H
 # define WHATEVER_H
 
+# include <iostream>
+
 template< typename T >
 const T &max(const T &l, const T &r)
 {

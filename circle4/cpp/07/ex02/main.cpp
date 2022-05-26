@@ -20,7 +20,7 @@ int main(int, char**)
     Array<std::string> arr1(3);
     arr1[0] = "42";
     arr1[1] = "Seoul";
-    arr1[2] = "Jseo";
+    arr1[2] = "taeskim";
     Array<std::string> arr2(arr1);
     for (std::size_t i = 0 ; i < arr1.getSize() ; ++i)
     std::cout << arr1[i] << " ";
