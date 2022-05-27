@@ -26,7 +26,7 @@ RM          = rm -f
 # File Variables
 # =============================================================================
 
-NAME        = whatever
+NAME        = easyfind
 HEADER      = ./
 FOLDER      = ./
 SRC_LIST    = main.cpp
