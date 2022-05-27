@@ -12,6 +12,7 @@ int main()
     dummy.push_back(2);
     dummy.push_back(3);
 
+    //// Functional
     try
     {
         it = easyfind(dummy, 3);
@@ -24,7 +25,7 @@ int main()
     if (existing)
 		std::cout << *it << " found" << std::endl;
 
-
+    //// Functional
     existing = false;
 	try
     {
@@ -38,6 +39,7 @@ int main()
     if (existing)
 		std::cout << *it << " found" << std::endl;
 
+    //// MalFunctional
     existing = false;
 	try
     {
